@@ -2,6 +2,7 @@ from flask import request, Blueprint
 from flask_restful import Api, Resource
 from ..schema import MeasurementSchema
 from ..model import Measurement
+import json
 import datetime
 
 
@@ -13,7 +14,7 @@ api = Api(measurement_blueprint)
 class MeasurementListResource(Resource):
     @staticmethod
     def get():
-        measurements = Measurement.get_all()
+        measurements = Measurement.get_paged()
         result = measurement_schema.dump(measurements, many=True)
         return result
 
@@ -21,9 +22,9 @@ class MeasurementListResource(Resource):
 class MeasurementCreationResource(Resource):
     @staticmethod
     def post():
-        measurement = Measurement(0, 0, 0, datetime.datetime(2020, 5, 17), 0, 0, 0, 0, 0)
+        schema = MeasurementSchema()
+        measurement = schema.loads(request.data)
         measurement.save()
-        #return measurement.date
 
 
 api.add_resource(MeasurementListResource, '/api/measurement/', endpoint='measurement_list_resource')

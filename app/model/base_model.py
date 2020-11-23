@@ -12,6 +12,10 @@ class BaseModelMixin:
         db.session.commit()
 
     @classmethod
+    def get_paged(cls):
+        return cls.query.limit(10).all()
+
+    @classmethod
     def get_all(cls):
         return cls.query.all()
 
