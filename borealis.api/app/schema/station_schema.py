@@ -1,20 +1,14 @@
 from marshmallow import fields, post_load
 from app.extension import marshmallow
-from ..model import Measurement
+from ..model import Station
 
 
-class MeasurementSchema(marshmallow.Schema):
-    province = fields.Integer()
-    town = fields.Integer()
-    station = fields.Integer()
-    datetime = fields.DateTime()
-    magnitude = fields.Integer()
-    method = fields.Integer()
-    analysis_period = fields.Integer()
-    data = fields.Float()
-    validation_code = fields.String()
-    station_id = fields.String()
+class StationSchema(marshmallow.Schema):
+    code = fields.String()
+    address = fields.String()
+    start_date = fields.DateTime()
+    end_date = fields.DateTime()
 
     @post_load
     def make_user(self, data, **kwargs):
-        return Measurement(**data)
+        return Station(**data)

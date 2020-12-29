@@ -1,11 +1,11 @@
 from flask import request
 from flask_restful import  Resource
-from ..schema import MeasurementSchema, PFOCollectionSchema
-from ..business import measurementBusiness
+from ..schema import StationSchema, PFOCollectionSchema
+from ..business import stationBusiness
 
 pfocollection_schema = PFOCollectionSchema()
 
-class MeasurementListEndpoint(Resource):
+class StationtListEndpoint(Resource):
     @staticmethod
     def get():
         page = request.args.get('page')
@@ -13,14 +13,14 @@ class MeasurementListEndpoint(Resource):
         order_by = request.args.get('order_by')
         order_by_descending = request.args.get('order_by_descending')
 
-        measurements = measurementBusiness.get_measurements(page, per_page, order_by, order_by_descending)
-        result = pfocollection_schema.dump(measurements, many=False)
+        stations = stationBusiness.get_stations(page, per_page, order_by, order_by_descending)
+        result = pfocollection_schema.dump(stations, many=False)
 
         return result
 
-class MeasurementCreationEndpoint(Resource):
+class StationCreationEndpoint(Resource):
     @staticmethod
     def post():
-        schema = MeasurementSchema()
+        schema = StationSchema()
         measurement = schema.loads(request.data)
         measurement.save()

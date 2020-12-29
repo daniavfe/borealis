@@ -7,6 +7,9 @@ flask db migrate -m "MIGRATION_NAME"
 # Apply migration
 flask db upgrade
 
+# Revert migration
+flask db downgrade <<migrationhash>>
+
 # database
 docker run -p 3306:3306 -p 33060:33060 -v mysql-data:/var/lib/mysql --name borealis -e MYSQL_ROOT_PASSWORD=pass -d mysql
 

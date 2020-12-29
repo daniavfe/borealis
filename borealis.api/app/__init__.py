@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_restful import Api
 from app.extension import db
-from app.api.endpoints import measurement_blueprint
+from app.api.endpoints import measurement_blueprint, station_blueprint
 from .extension import marshmallow, migrate
 
 
@@ -20,4 +20,5 @@ def create_app():
     app.url_map.strict_slashes = False
     # Registra los blueprints
     app.register_blueprint(measurement_blueprint)
+    app.register_blueprint(station_blueprint)
     return app

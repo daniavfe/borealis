@@ -1,20 +1,20 @@
 from ..extension import db
 from ..dto import PFOCollection
-from ..model import Station
+from ..model import Magnitude
 from sqlalchemy import desc
 import math
 
-class StationBusiness:
+class MagnitudeBusiness:
 
-    def get_stations(self, page, per_page, order_by, order_by_descending):
+    def get_magnitudes(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            None: Station.start_date,
+            None: Magnitude.id,
         }
-        order_by_field = order_by_switch.get(order_by, Station.start_date)
+        order_by_field = order_by_switch.get(order_by, Magnitude.id)
 
         #get data
-        data = db.session.query(Station)
+        data = db.session.query(Magnitude)
 
         #filter data
 
@@ -35,4 +35,4 @@ class StationBusiness:
 
 
 
-stationBusiness = StationBusiness()
+magnitudeBusiness = MagnitudeBusiness()

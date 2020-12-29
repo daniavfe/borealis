@@ -13,6 +13,7 @@ class MeasurementSchema(marshmallow.Schema):
     analysis_period = fields.Integer()
     data = fields.Float()
     validation_code = fields.String()
+    station_id = fields.String()
 
     @post_load
     def make_user(self, data, **kwargs):
