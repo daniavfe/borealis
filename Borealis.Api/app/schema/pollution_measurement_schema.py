@@ -1,9 +1,10 @@
 from marshmallow import fields, post_load
 from app.extension import marshmallow
-from ..model import Measurement
+from ..model import PollutionMeasurement
+from .camel_cased_schema import CamelCasedSchema
 
 
-class MeasurementSchema(marshmallow.Schema):
+class PollutionMeasurementSchema(CamelCasedSchema):
     province = fields.Integer()
     town = fields.Integer()
     station = fields.Integer()
@@ -17,4 +18,4 @@ class MeasurementSchema(marshmallow.Schema):
 
     @post_load
     def make_user(self, data, **kwargs):
-        return Measurement(**data)
+        return PollutionMeasurement(**data)

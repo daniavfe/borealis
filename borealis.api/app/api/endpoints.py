@@ -1,14 +1,14 @@
 from flask import Blueprint
 from flask_restful import Api
-from .measurementEndpoint import MeasurementListEndpoint, MeasurementCreationEndpoint
+from .pollution_measurement_endpoint import PollutionMeasurementListEndpoint, PollutionMeasurementCreationEndpoint
 from .stationEndpoint import StationtListEndpoint, StationCreationEndpoint
 
 
 # Measurement endpoints
-measurement_blueprint = Blueprint('measurement_blueprint', __name__)
+measurement_blueprint = Blueprint('pollution_measurement_blueprint', __name__)
 measurement_api = Api(measurement_blueprint)
-measurement_api.add_resource(MeasurementListEndpoint, '/api/measurement/', endpoint='measurement_list_endpoint')
-measurement_api.add_resource(MeasurementCreationEndpoint, '/api/measurement/', endpoint='measurement_creation_endpoint')
+measurement_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollutionMeasurement/', endpoint='measurement_list_endpoint')
+measurement_api.add_resource(PollutionMeasurementCreationEndpoint, '/api/pollutionMeasurement/', endpoint='measurement_creation_endpoint')
 
 # Station endpoints
 station_blueprint = Blueprint('station_blueprint', __name__)

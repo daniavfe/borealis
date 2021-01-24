@@ -2,7 +2,7 @@ from ..extension import db
 from .base_model import BaseModelMixin
 
 
-class Measurement(db.Model, BaseModelMixin):
+class PollutionMeasurement(db.Model, BaseModelMixin):
     province = db.Column(db.Integer, primary_key=True)
     town = db.Column(db.Integer, primary_key=True)
     station = db.Column(db.Integer, primary_key=True)

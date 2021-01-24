@@ -1,30 +1,29 @@
 from ..extension import db
 from ..dto import PFOCollection
-from ..model import Measurement
+from ..model import PollutionMeasurement
 from sqlalchemy import desc
 import math
 
-class MeasurementBusiness:
+class PollutionMeasurementBusiness:
 
     def get_measurements(self, page, per_page, order_by, order_by_descending):
-
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            None: Measurement.datetime,
-            "province":Measurement.province,
-            "town": Measurement.town,
-            "station": Measurement.station,
-            "datetime":Measurement.datetime,
-            "magnitude": Measurement.magnitude,
-            "method": Measurement.method,
-            "analysis_period":Measurement.analysis_period,
-            "data": Measurement.data,
-            "validation_code":Measurement.validation_code,
+            None: PollutionMeasurement.datetime,
+            "province":PollutionMeasurement.province,
+            "town": PollutionMeasurement.town,
+            "station": PollutionMeasurement.station,
+            "datetime":PollutionMeasurement.datetime,
+            "magnitude": PollutionMeasurement.magnitude,
+            "method": PollutionMeasurement.method,
+            "analysisPeriod":PollutionMeasurement.analysis_period,
+            "data": PollutionMeasurement.data,
+            "validationCode":PollutionMeasurement.validation_code,
         }
-        order_by_field = order_by_switch.get(order_by, Measurement.datetime)
+        order_by_field = order_by_switch.get(order_by, PollutionMeasurement.datetime)
 
         #get data
-        data = db.session.query(Measurement)
+        data = db.session.query(PollutionMeasurement)
 
         #filter data
 
@@ -44,5 +43,4 @@ class MeasurementBusiness:
         return PFOCollection(page, page_count, per_page, order_by_field, order_by_descending, data)
 
 
-
-measurementBusiness = MeasurementBusiness()
+pollutionMeasurementBusiness = PollutionMeasurementBusiness()

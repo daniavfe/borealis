@@ -12,10 +12,8 @@ class StationtListEndpoint(Resource):
         per_page = request.args.get('per_page')
         order_by = request.args.get('order_by')
         order_by_descending = request.args.get('order_by_descending')
-
         stations = stationBusiness.get_stations(page, per_page, order_by, order_by_descending)
         result = pfocollection_schema.dump(stations, many=False)
-
         return result
 
 class StationCreationEndpoint(Resource):

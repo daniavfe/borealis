@@ -29,11 +29,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app\api\endpoints.py" />
-    <Compile Include="app\api\measurementEndpoint.py" />
+    <Compile Include="app\api\pollution_measurement_endpoint.py" />
     <Compile Include="app\api\stationEndpoint.py" />
     <Compile Include="app\api\__init__.py" />
     <Compile Include="app\business\magnitude_business.py" />
-    <Compile Include="app\business\measurement_business.py" />
+    <Compile Include="app\business\pollution_measurement_business.py" />
     <Compile Include="app\business\station_business.py" />
     <Compile Include="app\business\__init__.py" />
     <Compile Include="app\common\__init__.py" />
@@ -44,25 +44,21 @@
     <Compile Include="app\extension.py" />
     <Compile Include="app\model\base_model.py" />
     <Compile Include="app\model\magnitude.py" />
-    <Compile Include="app\model\measurement.py" />
+    <Compile Include="app\model\pollution_measurement.py" />
     <Compile Include="app\model\station.py" />
     <Compile Include="app\model\__init__.py" />
+    <Compile Include="app\schema\camel_cased_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\schema\magnitude_schema.py" />
-    <Compile Include="app\schema\measurement_schema.py" />
+    <Compile Include="app\schema\pollution_measurement_schema.py" />
     <Compile Include="app\schema\pfocollection_schema.py" />
     <Compile Include="app\schema\station_schema.py" />
     <Compile Include="app\schema\__init__.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="main.py" />
-    <Compile Include="migrations\env.py" />
-    <Compile Include="migrations\versions\05ba1496d4df_initial.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="migrations\alembic.ini" />
-    <Content Include="migrations\README" />
-    <Content Include="migrations\script.py.mako" />
-    <Content Include="migrations\versions\__pycache__\05ba1496d4df_initial.cpython-37.pyc" />
-    <Content Include="migrations\__pycache__\env.cpython-37.pyc" />
     <Content Include="readme.txt" />
     <Content Include="requirements.txt" />
   </ItemGroup>
@@ -75,10 +71,6 @@
     <Folder Include="app\dto\" />
     <Folder Include="app\model\" />
     <Folder Include="app\schema\" />
-    <Folder Include="migrations\" />
-    <Folder Include="migrations\versions\" />
-    <Folder Include="migrations\versions\__pycache__\" />
-    <Folder Include="migrations\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
