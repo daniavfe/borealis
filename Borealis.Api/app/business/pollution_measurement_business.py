@@ -42,5 +42,3 @@ class PollutionMeasurementBusiness:
 
         return PFOCollection(page, page_count, per_page, order_by_field, order_by_descending, data)
 
-
-pollutionMeasurementBusiness = PollutionMeasurementBusiness()

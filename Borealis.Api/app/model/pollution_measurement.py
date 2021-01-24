@@ -12,7 +12,7 @@ class PollutionMeasurement(db.Model, BaseModelMixin):
     analysis_period = db.Column(db.Integer, nullable=False)
     data = db.Column(db.Float, nullable=False)
     validation_code = db.Column(db.String(1), nullable=False)
-    station_id = db.Column(db.String(20), db.ForeignKey('station.code'), nullable=False)
+    station_id = db.Column(db.String(20), db.ForeignKey('pollution_station.code'), nullable=False)
 
     def __init__(self, province, town, station, datetime, magnitude, method,
                  analysis_period, data, validation_code, station_id):

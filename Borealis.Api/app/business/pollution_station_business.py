@@ -1,20 +1,20 @@
 from ..extension import db
 from ..dto import PFOCollection
-from ..model import Station
+from ..model import PollutionStation
 from sqlalchemy import desc
 import math
 
-class StationBusiness:
+class PollutionStationBusiness:
 
     def get_stations(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            None: Station.start_date,
+            None: PollutionStation.start_date,
         }
-        order_by_field = order_by_switch.get(order_by, Station.start_date)
+        order_by_field = order_by_switch.get(order_by, PollutionStation.start_date)
 
         #get data
-        data = db.session.query(Station)
+        data = db.session.query(PollutionStation)
 
         #filter data
 
@@ -32,7 +32,3 @@ class StationBusiness:
         data = data.offset(per_page*page-1).limit(per_page).all()
 
         return PFOCollection(page, page_count, per_page, order_by_field, order_by_descending, data)
-
-
-
-stationBusiness = StationBusiness()

@@ -1,9 +1,10 @@
 from flask import request
 from flask_restful import  Resource
 from ..schema import PollutionMeasurementSchema, PFOCollectionSchema
-from ..business import pollutionMeasurementBusiness
+from ..business import PollutionMeasurementBusiness
 
 pfocollection_schema = PFOCollectionSchema()
+pollutionMeasurementBusiness = PollutionMeasurementBusiness()
 
 class PollutionMeasurementListEndpoint(Resource):
     @staticmethod

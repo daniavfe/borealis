@@ -1,11 +1,12 @@
 from flask import request
 from flask_restful import  Resource
-from ..schema import StationSchema, PFOCollectionSchema
-from ..business import stationBusiness
+from ..schema import PollutionStationSchema, PFOCollectionSchema
+from ..business import PollutionStationBusiness
 
 pfocollection_schema = PFOCollectionSchema()
+pollutionStationBusiness = PollutionStationBusiness()
 
-class StationtListEndpoint(Resource):
+class PollutionStationtListEndpoint(Resource):
     @staticmethod
     def get():
         page = request.args.get('page')
@@ -16,7 +17,7 @@ class StationtListEndpoint(Resource):
         result = pfocollection_schema.dump(stations, many=False)
         return result
 
-class StationCreationEndpoint(Resource):
+class PollutionStationCreationEndpoint(Resource):
     @staticmethod
     def post():
         schema = StationSchema()
