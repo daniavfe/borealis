@@ -7,7 +7,8 @@ from .camel_cased_schema import CamelCasedSchema
 class DensitySchema(CamelCasedSchema):
     district_id = fields.Integer()
     neighborhood_id = fields.Integer()
-    date = fields.DateTime()
+    year = fields.Integer()
+    month = fields.Integer()
     value = fields.Integer()
 
     @post_load

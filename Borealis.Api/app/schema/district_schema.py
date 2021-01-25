@@ -7,6 +7,7 @@ from .camel_cased_schema import CamelCasedSchema
 class DistrictSchema(CamelCasedSchema):
     id = fields.String()
     name = fields.String()
+    surface = fields.Float()
 
     @post_load
     def make_district(self, data, **kwargs):

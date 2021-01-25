@@ -7,6 +7,7 @@ from .camel_cased_schema import CamelCasedSchema
 class NeighborhoodSchema(CamelCasedSchema):
     id = fields.String()
     district_id = fields.Integer()
+    surface = fields.Float()
     name = fields.String()
 
     @post_load

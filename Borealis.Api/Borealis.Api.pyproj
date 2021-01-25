@@ -11,13 +11,16 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <LaunchProvider>Web launcher</LaunchProvider>
-    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <WebBrowserUrl>
+    </WebBrowserUrl>
     <OutputPath>.</OutputPath>
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>Borealis.Api</Name>
     <RootNamespace>Borealis.Api</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
-    <WebBrowserPort>5000</WebBrowserPort>
+    <WebBrowserPort>
+    </WebBrowserPort>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +48,13 @@
     <Compile Include="app\common\__init__.py" />
     <Compile Include="app\configuration\development.py" />
     <Compile Include="app\configuration\__init__.py" />
+    <Compile Include="app\dto\district_data_dto.py" />
+    <Compile Include="app\dto\density_data_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\neighborhood_data_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\dto\pfocollection.py" />
     <Compile Include="app\dto\__init__.py" />
     <Compile Include="app\extension.py" />
@@ -63,6 +73,11 @@
     <Compile Include="app\model\pollution_station.py" />
     <Compile Include="app\model\__init__.py" />
     <Compile Include="app\schema\camel_cased_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\neighborhood_data_dto_schema.py" />
+    <Compile Include="app\schema\district_data_dto_schema.py" />
+    <Compile Include="app\schema\density_data_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\density_schema.py" />

@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
 import requests
-import datetime
 import csv
+import json
 
 
 #request to web page
@@ -23,8 +24,7 @@ def getAvailableMonthsAndZones(year, district):
     soup = BeautifulSoup(response.content, 'html.parser');
     month_list = list(map(lambda x:x['value'].strip(), soup.find(attrs={"name" : "selectMes"}).findChildren()));
     zone_list = list(map(lambda x:x['value'].strip(), soup.find(attrs={"name" : "selectBarrio"}).findChildren()))[1:];
-    return month_list, zone_list;
-    
+    return month_list, zone_list;    
 
 def getDataValuesFromTable(item):
     itemKey = item.find('td', {"class" : "CabTab0"}).text.split('/')[1].strip();
@@ -39,23 +39,55 @@ def getDensity(year, district, month, zones):
     soup = BeautifulSoup(response.content, 'html.parser');
     try:
         table =  soup.find_all('table')[1].findChildren('tr')[2:];
-        return list(map(lambda x:getDataValuesFromTable(x), table));
+        return list(set(map(lambda x:getDataValuesFromTable(x), table)));
     except:
         return [];
 
+def insertDistrict(name):
+    payload = {"name": name, "surface":0.0}
+    return int(requests.post("http://127.0.0.1:5000/api/density/district", data=json.dumps(payload)).content)
+
+def insertNeighborhood(districtId, name):
+    payload = {"districtId":districtId, "name":name, "surface":0.0}
+    return int(requests.post("http://127.0.0.1:5000/api/density/neighborhood", data=json.dumps(payload)).content)
+
+def insertDensity(districtId, neighborhoodId, year, month, value):
+    payload = {"districtId":districtId, "neighborhoodId":neighborhoodId, "year":year, "month":month, "value":value}
+    response = requests.post("http://127.0.0.1:5000/api/density", data=json.dumps(payload));
+    x = response
 
 district_list, year_list = getDitrictsAndYears()
-final_list = [];
+final_list = []
+
+district_id_list = dict()
+neighborhood_id_list = dict()
+
+
 for district in district_list:
+    districtId = 0
+    if(not district[3:] in district_id_list):
+        districtId = insertDistrict(district[3:])
+        district_id_list[district[3:]] = districtId
+    else:
+        districtId =  district_id_list[district[3:]]
+
     for year in year_list:
-        month_list, zone_list = getAvailableMonthsAndZones(year, district)
+        month_list, zone_list = getAvailableMonthsAndZones(year, district)      
         for month in month_list:
             densities = getDensity(year, district, month, zone_list);
-            for density in densities:
-                month_number = int(month[0:2]);
-                final_list.append({'year': year, 'month':month, 'district':district[3:], 'zone':density[0], 'value': density[1]});
+            for density in densities: 
+                neighborhoodId = 0
+                if(not density[0] in neighborhood_id_list):
+                    neighborhoodId = insertNeighborhood(districtId, density[0])
+                    neighborhood_id_list[density[0]] = neighborhoodId
+                else:
+                     neighborhoodId = neighborhood_id_list[density[0]]
 
-            print(f'{district} {year}-{month}');
+                month_number = int(month[0:2]);
+                insertDensity(districtId, neighborhoodId, year, month_number, density[1])          
+                final_list.append({'year': year, 'month':month_number, 'district':district[3:], 'zone':density[0], 'value': density[1]})
+            print(f'{district} {year}-{month}')
+
 
 
 keys = final_list[0].keys();

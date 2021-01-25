@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_restful import Api
 from .pollution_measurement_endpoint import PollutionMeasurementListEndpoint, PollutionMeasurementCreationEndpoint
 from .pollution_station_endpoint import PollutionStationtListEndpoint, PollutionStationCreationEndpoint
-from .density_endpoint import DensityDistrictListEndpoint, DensityDistrictCreationEndpoint, DensityNeighborhoodListEndpoint, DensityNeighborhoodCreationEndpoint, DensityCreationEndpoint
+from .density_endpoint import *
 
 
 # Measurement endpoints
@@ -25,5 +25,5 @@ density_api.add_resource(DensityDistrictListEndpoint, '/api/density/district/', 
 density_api.add_resource(DensityDistrictCreationEndpoint, '/api/density/district/', endpoint='district_creation_endpoint')
 density_api.add_resource(DensityNeighborhoodListEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_list_endpoint')
 density_api.add_resource(DensityNeighborhoodCreationEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_creation_endpoint')
-#density_api.add_resource(DensityNeighborhoodListEndpoint, '/api/density/', endpoint='neighborhood_list_endpoint')
+density_api.add_resource(DensityListEndpoint, '/api/density/', endpoint='density_list_endpoint')
 density_api.add_resource(DensityCreationEndpoint, '/api/density/', endpoint='density_creation_endpoint')

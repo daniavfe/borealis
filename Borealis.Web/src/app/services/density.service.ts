@@ -1,17 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DensityData } from '../types/densityData';
-import { PFOCollection } from '../types/pfoCollection';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DensityService {
 
+  apiUrl = environment.apiUrl;
+  
   constructor(private http : HttpClient) { }
 
-  public GetDensityData(page, perPage, orderBy, orderByDescending):Observable<PFOCollection<DensityData>>{
-    return this.http.get<PFOCollection<DensityData>>("");
+  //Dame datos del año X, mes X, distrito X, y barrio X
+  
+  public GetDensityAvailableData(): Observable<DensityAvailableData>{
+    return this.http.get(`${this.apiUrl}/density/availableData`);
+  } 
+
+  public GetDensityData(year: number[], month: number[], district:number[], barrio: number[]){
+
   }
+
 }

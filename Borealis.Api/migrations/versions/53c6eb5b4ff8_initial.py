@@ -1,8 +1,8 @@
-"""meh
+"""initial
 
-Revision ID: 9760fa003081
+Revision ID: 53c6eb5b4ff8
 Revises: 
-Create Date: 2021-01-24 08:02:01.858659
+Create Date: 2021-01-25 21:55:33.943283
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9760fa003081'
+revision = '53c6eb5b4ff8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,9 @@ def upgrade():
     op.create_table('district',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('surface', sa.Float(), nullable=True),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
     )
     op.create_table('magnitude',
     sa.Column('id', sa.String(length=10), nullable=False),
@@ -41,9 +43,11 @@ def upgrade():
     op.create_table('neighborhood',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=True),
+    sa.Column('surface', sa.Float(), nullable=True),
     sa.Column('district_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['district_id'], ['district.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('name')
     )
     op.create_table('pollution_measurement',
     sa.Column('province', sa.Integer(), nullable=False),
@@ -62,11 +66,12 @@ def upgrade():
     op.create_table('density',
     sa.Column('district_id', sa.Integer(), nullable=False),
     sa.Column('neighborhood_id', sa.Integer(), nullable=False),
-    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('year', sa.Integer(), nullable=False),
+    sa.Column('month', sa.Integer(), nullable=False),
     sa.Column('value', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['district_id'], ['district.id'], ),
     sa.ForeignKeyConstraint(['neighborhood_id'], ['neighborhood.id'], ),
-    sa.PrimaryKeyConstraint('district_id', 'neighborhood_id', 'date')
+    sa.PrimaryKeyConstraint('district_id', 'neighborhood_id', 'year', 'month')
     )
     # ### end Alembic commands ###
 
