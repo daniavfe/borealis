@@ -10,10 +10,11 @@ import { NeighborhoodData } from 'src/app/types/neighborhoodData';
 })
 export class DensityComponent implements OnInit {
   
-  single: any[];
+  single2020: any[];
+  single2019: any[];
   densityData: DensityData[];
 
-  view: any[] = [700, 400];
+  view: any[] = [2000, 500];
 
   // options
   showXAxis = true;
@@ -43,17 +44,41 @@ export class DensityComponent implements OnInit {
 
 
   getDensityData():void{
-    this.densityService.getdensityData().subscribe(
+
+    let years = [2020,2019];
+
+    this.densityService.getdensityData(years, [], [], []).subscribe(
       res=>{
         this.densityData = res;
+        this.single2020 =this.densityData[0].districts.map(
+          el=>el.neighborhoods.map(
+            (sel)=>
+            {
+              return {
+                name:sel.name, 
+                value:Object.values(sel.values).reduce((a,b)=> a+b, 0)/12
+              }
+            }
+          )
+        ).flat();
+      
+        
 
-        let x = this.densityData[0].districts.map(el=>{
-          return el.neighborhoods.map((sel)=>{
-            return {'name':sel.name, 'value':sel.values[10]}
-          })
-        })
-
-        console.log(x );
+        this.single2019 =this.densityData[1].districts.map(
+          el=>el.neighborhoods.map(
+            (sel)=>
+            {
+              return {
+                name:sel.name, 
+                value:Object.values(sel.values).reduce((a,b)=> a+b, 0)/12
+              }
+            }
+          )
+        ).flat();
+        var x  =this.single2020.reduce((a,b)=> a + b.value ,0);
+        var y  =this.single2019.reduce((a,b)=> a + b.value ,0);
+        console.log(x);
+        console.log(y);
 
         // this.single = this.densityData[0].districts[0].neighborhoods.map((el)=>{
         //   return {'name':el.name, 'value':el.values[10]}
@@ -62,6 +87,8 @@ export class DensityComponent implements OnInit {
       err=>{
 
       }
+
+      
     )
   }
 

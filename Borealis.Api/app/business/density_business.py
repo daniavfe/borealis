@@ -30,10 +30,24 @@ class DensityBusiness:
         density.save()
         return 1
 
-    def get_densities(self):
+    def get_densities(self, years, districts, neighborhoods, months):
 
-        data = db.session.query(Density).order_by(Density.year.desc(), Density.district_id.desc(), Density.neighborhood_id.desc(), Density.month.desc()).all()
+        data = db.session.query(Density).order_by(Density.year.desc(), Density.district_id.desc(), Density.neighborhood_id.desc(), Density.month.desc())
         
+        #filters
+        if( years != []):
+            data = data.filter(Density.year.in_(years))
+        if( districts != []):
+            data = data.filter(Density.district_id.in_(districts))
+        if( neighborhoods != []):
+            data = data.filter(Density.neighborhood_id.in_(neighborhoods))
+        if( months != []):
+            data = data.filter(Density.month.in_(months))
+        data = data.all()
+
+        for item in data:
+            print(f'{item.district_id}')
+
         year_key_func = lambda x: x.year
         district_key_func = lambda x: x.district_id
         neighborhood_key_func = lambda x: x.neighborhood_id

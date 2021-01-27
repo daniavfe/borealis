@@ -40,7 +40,12 @@ class DensityNeighborhoodCreationEndpoint(Resource):
 class DensityListEndpoint(Resource):
     @staticmethod
     def get():
-        densities = density_business.get_densities()
+        years = request.args.getlist('years')
+        districts = request.args.getlist('districts')
+        neighborhoods = request.args.getlist('neighborhoods')
+        months = request.args.getlist('months')
+
+        densities = density_business.get_densities(years, districts, neighborhoods, months)
         return densityDataDtoSchema.dump(densities, many=True)
 
 class DensityCreationEndpoint(Resource):
