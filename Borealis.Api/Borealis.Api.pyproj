@@ -35,10 +35,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\api\endpoints.py" />
+    <Compile Include="app\api\holiday_endpoint.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\api\pollution_measurement_endpoint.py" />
     <Compile Include="app\api\pollution_station_endpoint.py" />
     <Compile Include="app\api\__init__.py" />
     <Compile Include="app\business\density_business.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\business\holiday_business.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\business\magnitude_business.py" />
@@ -65,6 +71,12 @@
     <Compile Include="app\model\district.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\model\holiday.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\holiday_scope.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\model\magnitude.py" />
     <Compile Include="app\model\neighborhood.py">
       <SubType>Code</SubType>
@@ -73,6 +85,9 @@
     <Compile Include="app\model\pollution_station.py" />
     <Compile Include="app\model\__init__.py" />
     <Compile Include="app\schema\camel_cased_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\holiday_schema.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\neighborhood_data_dto_schema.py" />
@@ -92,8 +107,16 @@
     <Compile Include="app\schema\__init__.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="main.py" />
+    <Compile Include="migrations\env.py" />
+    <Compile Include="migrations\versions\53c6eb5b4ff8_initial.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="migrations\alembic.ini" />
+    <Content Include="migrations\README" />
+    <Content Include="migrations\script.py.mako" />
+    <Content Include="migrations\versions\__pycache__\53c6eb5b4ff8_initial.cpython-37.pyc" />
+    <Content Include="migrations\versions\__pycache__\cb86a0710b6a_added_holidays.cpython-37.pyc" />
+    <Content Include="migrations\__pycache__\env.cpython-37.pyc" />
     <Content Include="readme.txt" />
     <Content Include="requirements.txt" />
   </ItemGroup>
@@ -106,6 +129,10 @@
     <Folder Include="app\dto\" />
     <Folder Include="app\model\" />
     <Folder Include="app\schema\" />
+    <Folder Include="migrations\" />
+    <Folder Include="migrations\versions\" />
+    <Folder Include="migrations\versions\__pycache__\" />
+    <Folder Include="migrations\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

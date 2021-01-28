@@ -8,3 +8,4 @@ from .neighborhood_schema import NeighborhoodSchema
 from .density_data_dto_schema import DensityDataDtoSchema
 from .district_data_dto_schema import DistrictDataDtoSchema
 from .neighborhood_data_dto_schema import NeighborhoodDataDtoSchema
+from .holiday_schema import HolidaySchema

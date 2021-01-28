@@ -7,6 +7,10 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Borealis.Api", "Borealis.Ap
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Borealis.DensityParser", "Borealis.DensityParser\Borealis.DensityParser.pyproj", "{ED1FF3FA-38B0-4FF5-B8C9-E3F7B2948149}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Borealis.HolidayParser", "Borealis.HolidayParser\Borealis.HolidayParser.pyproj", "{9F506304-F3EE-46BA-B29B-7C05A09DCDC4}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "borealis.PollutionParser", "borealis.data\borealis.PollutionParser.pyproj", "{182319AB-A9BB-4DD8-A1A7-EDB1B23A5C9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,10 @@ Global
 		{7F50ADFC-FD7B-4741-9E69-DFDEC1695CFA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED1FF3FA-38B0-4FF5-B8C9-E3F7B2948149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED1FF3FA-38B0-4FF5-B8C9-E3F7B2948149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F506304-F3EE-46BA-B29B-7C05A09DCDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F506304-F3EE-46BA-B29B-7C05A09DCDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{182319AB-A9BB-4DD8-A1A7-EDB1B23A5C9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{182319AB-A9BB-4DD8-A1A7-EDB1B23A5C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

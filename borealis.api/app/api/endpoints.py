@@ -1,8 +1,9 @@
 from flask import Blueprint
 from flask_restful import Api
-from .pollution_measurement_endpoint import PollutionMeasurementListEndpoint, PollutionMeasurementCreationEndpoint
-from .pollution_station_endpoint import PollutionStationtListEndpoint, PollutionStationCreationEndpoint
+from .pollution_measurement_endpoint import *
+from .pollution_station_endpoint import *
 from .density_endpoint import *
+from .holiday_endpoint import *
 
 
 # Measurement endpoints
@@ -27,3 +28,11 @@ density_api.add_resource(DensityNeighborhoodListEndpoint, '/api/density/neighbor
 density_api.add_resource(DensityNeighborhoodCreationEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_creation_endpoint')
 density_api.add_resource(DensityListEndpoint, '/api/density/', endpoint='density_list_endpoint')
 density_api.add_resource(DensityCreationEndpoint, '/api/density/', endpoint='density_creation_endpoint')
+
+
+# Holiday endpoints
+holiday_blueprint = Blueprint('holiday_blueprint', __name__)
+holiday_api = Api(holiday_blueprint)
+holiday_api.add_resource(HolidayListEndpoint, '/api/holiday/', endpoint='holiday_list_endpoint')
+holiday_api.add_resource(HolidayCreationEndpoint, '/api/holiday/', endpoint='holiday_creation_endpoint')
+

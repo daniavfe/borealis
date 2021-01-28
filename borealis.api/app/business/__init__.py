@@ -1,4 +1,5 @@
 from .pollution_measurement_business import PollutionMeasurementBusiness
 from .pollution_station_business import PollutionStationBusiness
 from .density_business import DensityBusiness
-from .magnitude_business import magnitudeBusiness
+from .holiday_business import HolidayBusiness
+from .magnitude_business import MagnitudeBusiness

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{182319ab-a9bb-4dd8-a1a7-edb1b23a5c9f}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>main.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <Name>borealis.PollutionParser</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="data\2001\Abr_mo01.txt" />
+    <Content Include="data\2001\Ago_mo01.txt" />
+    <Content Include="data\2001\dic_mo01.txt" />
+    <Content Include="data\2001\Ene_mo01.txt" />
+    <Content Include="data\2001\Feb_mo01.txt" />
+    <Content Include="data\2001\Jul_mo01.txt" />
+    <Content Include="data\2001\Jun_mo01.txt" />
+    <Content Include="data\2001\Mar_mo01.txt" />
+    <Content Include="data\2001\May_mo01.txt" />
+    <Content Include="data\2001\nov_mo01.txt" />
+    <Content Include="data\2001\oct_mo01.txt" />
+    <Content Include="data\2001\Sep_mo01.txt" />
+    <Content Include="data\2016\abr_mo16.txt" />
+    <Content Include="data\2016\ago_mo16.txt" />
+    <Content Include="data\2016\dic_mo16.txt" />
+    <Content Include="data\2016\ene_mo16.txt" />
+    <Content Include="data\2016\feb_mo16.txt" />
+    <Content Include="data\2016\jul_mo16.txt" />
+    <Content Include="data\2016\jun_mo16.txt" />
+    <Content Include="data\2016\mar_mo16.txt" />
+    <Content Include="data\2016\may_mo16.txt" />
+    <Content Include="data\2016\nov_mo16.txt" />
+    <Content Include="data\2016\oct_mo16.txt" />
+    <Content Include="data\2016\sep_mo16.txt" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\2001" />
+    <Folder Include="data\2016" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
