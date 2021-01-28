@@ -15,7 +15,6 @@ def insert_holiday(date, day_of_week, name, scope):
     return requests.post("http://127.0.0.1:5000/api/holiday", data=json.dumps(payload)).content;
 
 
-
 get_calendar_file()
 with open('calendar.csv') as input_file:
     csv_reader = csv.reader(input_file, delimiter=';')
