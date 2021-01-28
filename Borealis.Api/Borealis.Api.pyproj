@@ -1,0 +1,188 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>7f50adfc-fd7b-4741-9e69-dfdec1695cfa</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>main.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>
+    </WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>Borealis.Api</Name>
+    <RootNamespace>Borealis.Api</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <WebBrowserPort>
+    </WebBrowserPort>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app\api\density_endpoint.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\api\endpoints.py" />
+    <Compile Include="app\api\holiday_endpoint.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\api\pollution_measurement_endpoint.py" />
+    <Compile Include="app\api\pollution_station_endpoint.py" />
+    <Compile Include="app\api\__init__.py" />
+    <Compile Include="app\business\density_business.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\business\holiday_business.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\business\magnitude_business.py" />
+    <Compile Include="app\business\pollution_measurement_business.py" />
+    <Compile Include="app\business\pollution_station_business.py" />
+    <Compile Include="app\business\__init__.py" />
+    <Compile Include="app\common\__init__.py" />
+    <Compile Include="app\configuration\development.py" />
+    <Compile Include="app\configuration\__init__.py" />
+    <Compile Include="app\dto\district_data_dto.py" />
+    <Compile Include="app\dto\density_data_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\neighborhood_data_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\pfocollection.py" />
+    <Compile Include="app\dto\__init__.py" />
+    <Compile Include="app\extension.py" />
+    <Compile Include="app\model\base_model.py" />
+    <Compile Include="app\model\density.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\district.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\holiday.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\holiday_scope.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\magnitude.py" />
+    <Compile Include="app\model\neighborhood.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\pollution_measurement.py" />
+    <Compile Include="app\model\pollution_station.py" />
+    <Compile Include="app\model\__init__.py" />
+    <Compile Include="app\schema\camel_cased_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\holiday_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\neighborhood_data_dto_schema.py" />
+    <Compile Include="app\schema\district_data_dto_schema.py" />
+    <Compile Include="app\schema\density_data_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\density_schema.py" />
+    <Compile Include="app\schema\neighborhood_schema.py" />
+    <Compile Include="app\schema\district_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\magnitude_schema.py" />
+    <Compile Include="app\schema\pollution_measurement_schema.py" />
+    <Compile Include="app\schema\pfocollection_schema.py" />
+    <Compile Include="app\schema\pollution_station_schema.py" />
+    <Compile Include="app\schema\__init__.py" />
+    <Compile Include="app\__init__.py" />
+    <Compile Include="main.py" />
+    <Compile Include="migrations\env.py" />
+    <Compile Include="migrations\versions\53c6eb5b4ff8_initial.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="migrations\alembic.ini" />
+    <Content Include="migrations\README" />
+    <Content Include="migrations\script.py.mako" />
+    <Content Include="migrations\versions\__pycache__\53c6eb5b4ff8_initial.cpython-37.pyc" />
+    <Content Include="migrations\versions\__pycache__\cb86a0710b6a_added_holidays.cpython-37.pyc" />
+    <Content Include="migrations\__pycache__\env.cpython-37.pyc" />
+    <Content Include="readme.txt" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\api\" />
+    <Folder Include="app\business\" />
+    <Folder Include="app\common\" />
+    <Folder Include="app\configuration\" />
+    <Folder Include="app\dto\" />
+    <Folder Include="app\model\" />
+    <Folder Include="app\schema\" />
+    <Folder Include="migrations\" />
+    <Folder Include="migrations\versions\" />
+    <Folder Include="migrations\versions\__pycache__\" />
+    <Folder Include="migrations\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.7</Version>
+      <Description>env (Python 3.7 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
