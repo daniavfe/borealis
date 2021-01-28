@@ -1,6 +1,6 @@
 from ..extension import db
 from ..dto import PFOCollection
-from ..model import Magnitude
+from ..model import PollutionMagnitude
 from sqlalchemy import desc
 import math
 

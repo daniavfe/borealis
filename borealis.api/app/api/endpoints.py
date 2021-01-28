@@ -1,22 +1,17 @@
 from flask import Blueprint
 from flask_restful import Api
-from .pollution_measurement_endpoint import *
-from .pollution_station_endpoint import *
+from .pollution_endpoint import *
 from .density_endpoint import *
 from .holiday_endpoint import *
 
 
 # Measurement endpoints
-measurement_blueprint = Blueprint('pollution_measurement_blueprint', __name__)
-measurement_api = Api(measurement_blueprint)
-measurement_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollutionMeasurement/', endpoint='pollution_measurement_list_endpoint')
-measurement_api.add_resource(PollutionMeasurementCreationEndpoint, '/api/pollutionMeasurement/', endpoint='pollution_measurement_creation_endpoint')
-
-# Station endpoints
-station_blueprint = Blueprint('pollution_station_blueprint', __name__)
-station_api = Api(station_blueprint)
-station_api.add_resource(PollutionStationtListEndpoint, '/api/pollutionStation/', endpoint='pollution_station_list_endpoint')
-station_api.add_resource(PollutionStationCreationEndpoint, '/api/pollutionStation/', endpoint='pollution_station_creation_endpoint')
+pollution_blueprint = Blueprint('pollution_blueprint', __name__)
+pollution_api = Api(pollution_blueprint)
+pollution_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollution//', endpoint='pollution_measurement_list_endpoint')
+pollution_api.add_resource(PollutionMeasurementCreationEndpoint, '/api/pollution/', endpoint='pollution_measurement_creation_endpoint')
+pollution_api.add_resource(PollutionStationtListEndpoint, '/api/pollution/station/', endpoint='pollution_station_list_endpoint')
+pollution_api.add_resource(PollutionStationCreationEndpoint, '/api/pollution/station/', endpoint='pollution_station_creation_endpoint')
 
 
 # Density endpoints

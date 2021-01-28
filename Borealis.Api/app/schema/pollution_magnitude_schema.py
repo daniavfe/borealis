@@ -1,10 +1,10 @@
 from marshmallow import fields, post_load
 from app.extension import marshmallow
-from ..model import Magnitude
+from ..model import PollutionMagnitude
 
 
-class MagnitudeSchema(marshmallow.Schema):
-    id = fields.String()
+class PollutionMagnitudeSchema(marshmallow.Schema):
+    id = fields.Integer()
     name = fields.String()
     formula = fields.String()
     measurement_unit = fields.DateTime()

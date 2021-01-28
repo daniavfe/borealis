@@ -19,8 +19,7 @@ def create_app():
     # Deshabilita el modo estricto de acabado de una URL con /
     app.url_map.strict_slashes = False
     # Registra los blueprints
-    app.register_blueprint(measurement_blueprint)
-    app.register_blueprint(station_blueprint)
+    app.register_blueprint(pollution_blueprint)
     app.register_blueprint(density_blueprint)
     app.register_blueprint(holiday_blueprint)
     return app

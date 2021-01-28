@@ -4,7 +4,7 @@ from ..model import PollutionMeasurement
 from sqlalchemy import desc
 import math
 
-class PollutionMeasurementBusiness:
+class PollutionBusiness:
 
     def get_measurements(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending

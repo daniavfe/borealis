@@ -3,6 +3,7 @@ from .base_model import BaseModelMixin
 
 
 class Holiday(db.Model, BaseModelMixin):
+    __tablename__ = 'holidays'
     date = db.Column(db.DateTime, primary_key=True)
     day_of_week = db.Column(db.Integer)
     name = db.Column(db.String(200))

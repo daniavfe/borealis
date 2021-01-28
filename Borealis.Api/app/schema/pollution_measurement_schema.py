@@ -5,9 +5,6 @@ from .camel_cased_schema import CamelCasedSchema
 
 
 class PollutionMeasurementSchema(CamelCasedSchema):
-    province = fields.Integer()
-    town = fields.Integer()
-    station = fields.Integer()
     datetime = fields.DateTime()
     magnitude = fields.Integer()
     method = fields.Integer()

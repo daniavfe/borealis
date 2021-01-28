@@ -3,10 +3,11 @@ from .base_model import BaseModelMixin
 
 
 class Neighborhood(db.Model, BaseModelMixin):
+    __tablename__ = 'neighborhoods'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
     surface = db.Column(db.Float)
-    district_id = db.Column(db.Integer, db.ForeignKey('district.id'), nullable=False)
+    district_id = db.Column(db.Integer, db.ForeignKey('districts.id'), nullable=False)
     densities = db.relationship("Density", backref="neighborhood")
 
 

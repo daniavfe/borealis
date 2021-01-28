@@ -3,8 +3,9 @@ from .base_model import BaseModelMixin
 
 
 class Density(db.Model, BaseModelMixin):
-    district_id = db.Column(db.Integer, db.ForeignKey('district.id'), nullable=False, primary_key=True)
-    neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhood.id'), nullable=False, primary_key=True)
+    __tablename__ = 'densities'
+    district_id = db.Column(db.Integer, db.ForeignKey('districts.id'), nullable=False, primary_key=True)
+    neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=False, primary_key=True)
     year = db.Column(db.Integer, primary_key=True)
     month = db.Column(db.Integer, primary_key=True)
     value = db.Column(db.Integer)

@@ -1,19 +1,21 @@
 from ..extension import db
 from .base_model import BaseModelMixin
 
-class Magnitude(db.Model, BaseModelMixin):
-    id = db.Column(db.String(10), primary_key=True)
+class PollutionMagnitude(db.Model, BaseModelMixin):
+    __tablename__ = 'pollution_magnitudes'
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     formula = db.Column(db.String(5), nullable=False)
     measurement_unit = db.Column(db.String(10), nullable=False)
-    measurement_technique = db.Column(db.String(100), nullable=False)
+    
+    measurements = db.relationship("PollutionMeasurement", backref="magnitude")
+    #stations = db.relationship('PollutionStationMagnitude',  back_populates="magnitudes")
 
-    def __init__(self, id, name, formula, measurement_unit, measurement_technique):
+    def __init__(self, id, name, formula, measurement_unit):
         self.id = id
         self.name = name
         self.formula = formula
         self.measurement_unit = measurement_unit
-        self.measurement_technique = measurement_technique
 
     def __repr__(self):
         return f'Station({self.id}_{self.name})'

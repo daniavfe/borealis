@@ -3,6 +3,7 @@ from .base_model import BaseModelMixin
 
 
 class District(db.Model, BaseModelMixin):
+    __tablename__ = 'districts'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
     surface = db.Column(db.Float)

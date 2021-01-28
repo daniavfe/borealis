@@ -38,8 +38,7 @@
     <Compile Include="app\api\holiday_endpoint.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\api\pollution_measurement_endpoint.py" />
-    <Compile Include="app\api\pollution_station_endpoint.py" />
+    <Compile Include="app\api\pollution_endpoint.py" />
     <Compile Include="app\api\__init__.py" />
     <Compile Include="app\business\density_business.py">
       <SubType>Code</SubType>
@@ -48,7 +47,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\business\magnitude_business.py" />
-    <Compile Include="app\business\pollution_measurement_business.py" />
+    <Compile Include="app\business\pollution_business.py" />
     <Compile Include="app\business\pollution_station_business.py" />
     <Compile Include="app\business\__init__.py" />
     <Compile Include="app\common\__init__.py" />
@@ -77,12 +76,15 @@
     <Compile Include="app\model\holiday_scope.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\model\magnitude.py" />
+    <Compile Include="app\model\pollution_magnitude.py" />
     <Compile Include="app\model\neighborhood.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\model\pollution_measurement.py" />
     <Compile Include="app\model\pollution_station.py" />
+    <Compile Include="app\model\pollution_station_magnitude.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\model\__init__.py" />
     <Compile Include="app\schema\camel_cased_schema.py">
       <SubType>Code</SubType>
@@ -100,7 +102,7 @@
     <Compile Include="app\schema\district_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\magnitude_schema.py" />
+    <Compile Include="app\schema\pollution_magnitude_schema.py" />
     <Compile Include="app\schema\pollution_measurement_schema.py" />
     <Compile Include="app\schema\pfocollection_schema.py" />
     <Compile Include="app\schema\pollution_station_schema.py" />

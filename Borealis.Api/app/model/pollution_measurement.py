@@ -3,29 +3,25 @@ from .base_model import BaseModelMixin
 
 
 class PollutionMeasurement(db.Model, BaseModelMixin):
-    province = db.Column(db.Integer, primary_key=True)
-    town = db.Column(db.Integer, primary_key=True)
-    station = db.Column(db.Integer, primary_key=True)
+    __tablename__ = 'pollution_measurements'
     datetime = db.Column(db.DateTime, primary_key=True)
-    magnitude = db.Column(db.Integer, primary_key=True)
+    magnitude_id = db.Column(db.Integer, db.ForeignKey('pollution_magnitudes.id'), primary_key=True)
+    station_id = db.Column(db.Integer, db.ForeignKey("pollution_stations.id"), primary_key=True)
     method = db.Column(db.Integer, nullable=False)
     analysis_period = db.Column(db.Integer, nullable=False)
     data = db.Column(db.Float, nullable=False)
     validation_code = db.Column(db.String(1), nullable=False)
-    station_id = db.Column(db.String(20), db.ForeignKey('pollution_station.code'), nullable=False)
-
-    def __init__(self, province, town, station, datetime, magnitude, method,
-                 analysis_period, data, validation_code, station_id):
-        self.province = province
-        self.town = town
-        self.station = station
+    
+    
+    def __init__(self, datetime, station_id, magnitude_id, method,
+                 analysis_period, data, validation_code):
         self.datetime = datetime
-        self.magnitude = magnitude
+        self.station_id = station_id
+        self.magnitude_id = magnitude_id
         self.method = method
         self.analysis_period = analysis_period
         self.data = data
         self.validation_code = validation_code
-        self.station_id = station_id
 
     def __repr__(self):
         return f'Measurement({self.province}_{self.town}_{self.station})'
