@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  api:
+    build: Borealis.Api\.
+    ports:
+      - "5000:5000"
+
+  ddbb: 
+    image: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - D:\Projects\ddbb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+  
+  geoserver:
+    image: kartoza/geoserver
+    ports:
+      - "8080:8080"
+    volumes:
+    - D:\Projects\geoserver:/home/geoserver/data
+    environment:
+      GEOSERVER_DATA_DIR: /home/geoserver/data
+      GEOSERVER_ADMIN_PASSWORD: pass
+      GEOSERVER_ADMIN_USER: user
