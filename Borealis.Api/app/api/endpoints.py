@@ -8,7 +8,7 @@ from .holiday_endpoint import *
 # Measurement endpoints
 pollution_blueprint = Blueprint('pollution_blueprint', __name__)
 pollution_api = Api(pollution_blueprint)
-pollution_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollution//', endpoint='pollution_measurement_list_endpoint')
+pollution_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollution/', endpoint='pollution_measurement_list_endpoint')
 pollution_api.add_resource(PollutionMeasurementCreationEndpoint, '/api/pollution/', endpoint='pollution_measurement_creation_endpoint')
 pollution_api.add_resource(PollutionStationtListEndpoint, '/api/pollution/station/', endpoint='pollution_station_list_endpoint')
 pollution_api.add_resource(PollutionStationCreationEndpoint, '/api/pollution/station/', endpoint='pollution_station_creation_endpoint')

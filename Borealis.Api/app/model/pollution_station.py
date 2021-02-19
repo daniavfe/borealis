@@ -1,13 +1,11 @@
 from ..extension import db
 from .base_model import BaseModelMixin
-from sqlalchemy import MetaData
-
-metadata = MetaData()
 
 class PollutionStation(db.Model, BaseModelMixin):
     __tablename__ = 'pollution_stations'
     id = db.Column(db.Integer, primary_key=True)
-    address = db.Column(db.String(100))
+    name = db.Column(db.String(100))
+    address = db.Column(db.String(200), nullable =False)
     start_date = db.Column(db.DateTime, nullable=False)
     end_date = db.Column(db.DateTime)
     latitude = db.Column(db.String(20))
@@ -22,6 +20,9 @@ class PollutionStation(db.Model, BaseModelMixin):
         self.address = address
         self.start_date = start_date
         self.end_date = end_date
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude
 
     def __repr__(self):
         return f'Station({self.code}_{self.address})'

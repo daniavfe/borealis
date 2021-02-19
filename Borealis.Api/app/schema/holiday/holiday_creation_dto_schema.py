@@ -1,10 +1,9 @@
 from marshmallow import fields, post_load
-from app.extension import marshmallow
-from ..model import Holiday
-from .camel_cased_schema import CamelCasedSchema
+from ...dto import HolidayCreationDto
+from ..camel_cased_schema import CamelCasedSchema
 
 
-class HolidaySchema(CamelCasedSchema):
+class HolidayCreationDtoSchema(CamelCasedSchema):
     date = fields.DateTime()
     day_of_week = fields.Integer()
     name = fields.String()

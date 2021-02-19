@@ -12,7 +12,7 @@ def get_calendar_file():
 
 def insert_holiday(date, day_of_week, name, scope):
     payload = {"date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope}
-    return requests.post("http://127.0.0.1:5000/api/holiday", data=json.dumps(payload)).content;
+    return requests.post("http://127.0.0.1:5000/api/pollution/station/", data=json.dumps(payload)).content;
 
 
 get_calendar_file()

@@ -10,6 +10,11 @@ number_of_items = len(lines)
 number_of_processedItems = 0
 percentage = 0.0
 
+#Añadir magnitudes
+
+
+#Antes de octubre de 2017
+
 # Strips the newline character
 for line in lines:
     province = line[0:2]

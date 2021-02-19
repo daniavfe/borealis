@@ -1,8 +1,8 @@
 """initial
 
-Revision ID: f49f082ca84b
+Revision ID: 415e08768070
 Revises: 
-Create Date: 2021-01-28 23:29:19.284539
+Create Date: 2021-02-10 20:01:17.213273
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f49f082ca84b'
+revision = '415e08768070'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +41,8 @@ def upgrade():
     )
     op.create_table('pollution_stations',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('address', sa.String(length=100), nullable=True),
+    sa.Column('name', sa.String(length=100), nullable=True),
+    sa.Column('address', sa.String(length=200), nullable=False),
     sa.Column('start_date', sa.DateTime(), nullable=False),
     sa.Column('end_date', sa.DateTime(), nullable=True),
     sa.Column('latitude', sa.String(length=20), nullable=True),
@@ -62,8 +63,6 @@ def upgrade():
     sa.Column('datetime', sa.DateTime(), nullable=False),
     sa.Column('magnitude_id', sa.Integer(), nullable=False),
     sa.Column('station_id', sa.Integer(), nullable=False),
-    sa.Column('method', sa.Integer(), nullable=False),
-    sa.Column('analysis_period', sa.Integer(), nullable=False),
     sa.Column('data', sa.Float(), nullable=False),
     sa.Column('validation_code', sa.String(length=1), nullable=False),
     sa.ForeignKeyConstraint(['magnitude_id'], ['pollution_magnitudes.id'], ),

@@ -48,19 +48,62 @@
     </Compile>
     <Compile Include="app\business\magnitude_business.py" />
     <Compile Include="app\business\pollution_business.py" />
-    <Compile Include="app\business\pollution_station_business.py" />
     <Compile Include="app\business\__init__.py" />
     <Compile Include="app\common\__init__.py" />
     <Compile Include="app\configuration\development.py" />
     <Compile Include="app\configuration\__init__.py" />
-    <Compile Include="app\dto\district_data_dto.py" />
-    <Compile Include="app\dto\density_data_dto.py">
+    <Compile Include="app\dto\density\density_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\neighborhood_data_dto.py">
+    <Compile Include="app\dto\density\district_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\density\neighborhood_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\density\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\density\district_data_dto.py" />
+    <Compile Include="app\dto\density\density_data_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\density\neighborhood_data_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\holiday\holiday_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\holiday\holiday_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\pfocollection.py" />
+    <Compile Include="app\dto\pollution\pollution_magnitude_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\pollution\pollution_magnitude_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\pollution\pollution_measurement_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\pollution\pollution_measurement_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\pollution\pollution_station_creation_dto.py" />
+    <Compile Include="app\dto\pollution\pollution_station_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\pollution\__init__.py" />
+    <Compile Include="app\dto\traffic\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\weather\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\dto\__init__.py" />
     <Compile Include="app\extension.py" />
     <Compile Include="app\model\base_model.py" />
@@ -89,23 +132,47 @@
     <Compile Include="app\schema\camel_cased_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\holiday_schema.py">
+    <Compile Include="app\schema\density\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\neighborhood_data_dto_schema.py" />
-    <Compile Include="app\schema\district_data_dto_schema.py" />
-    <Compile Include="app\schema\density_data_dto_schema.py">
+    <Compile Include="app\schema\holiday\holiday_dto_schema.py" />
+    <Compile Include="app\schema\holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\density_schema.py" />
-    <Compile Include="app\schema\neighborhood_schema.py" />
-    <Compile Include="app\schema\district_schema.py">
+    <Compile Include="app\schema\holiday\holiday_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution_magnitude_schema.py" />
-    <Compile Include="app\schema\pollution_measurement_schema.py" />
+    <Compile Include="app\schema\density\neighborhood_data_dto_schema.py" />
+    <Compile Include="app\schema\density\district_data_dto_schema.py" />
+    <Compile Include="app\schema\density\density_data_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\density\density_creation_dto_schema.py" />
+    <Compile Include="app\schema\density\neighborhood_creation_dto_schema.py" />
+    <Compile Include="app\schema\density\district_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\pollution\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\pollution\pollution_magnitude_schema.py" />
+    <Compile Include="app\schema\pollution\pollution_measurement_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\pollution\pollution_measurement_schema.py" />
     <Compile Include="app\schema\pfocollection_schema.py" />
-    <Compile Include="app\schema\pollution_station_schema.py" />
+    <Compile Include="app\schema\pollution\pollution_station_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\pollution\pollution_station_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\traffic\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\weather\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\schema\__init__.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="main.py" />
@@ -129,8 +196,18 @@
     <Folder Include="app\common\" />
     <Folder Include="app\configuration\" />
     <Folder Include="app\dto\" />
+    <Folder Include="app\dto\density\" />
+    <Folder Include="app\dto\holiday\" />
+    <Folder Include="app\dto\pollution\" />
+    <Folder Include="app\dto\traffic\" />
+    <Folder Include="app\dto\weather\" />
     <Folder Include="app\model\" />
     <Folder Include="app\schema\" />
+    <Folder Include="app\schema\density\" />
+    <Folder Include="app\schema\holiday\" />
+    <Folder Include="app\schema\pollution\" />
+    <Folder Include="app\schema\traffic\" />
+    <Folder Include="app\schema\weather\" />
     <Folder Include="migrations\" />
     <Folder Include="migrations\versions\" />
     <Folder Include="migrations\versions\__pycache__\" />

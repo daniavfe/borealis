@@ -7,7 +7,9 @@ class District(db.Model, BaseModelMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
     surface = db.Column(db.Float)
-    neighborhoods = db.relationship("Neighborhood")
+    
+    #relationships
+    neighborhoods = db.relationship("Neighborhood", backref="district")
     densities = db.relationship("Density", backref="district")
 
 
