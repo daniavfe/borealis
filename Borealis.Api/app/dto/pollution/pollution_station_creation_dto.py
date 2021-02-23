@@ -1,5 +1,5 @@
 class PollutionStationCreationDto():
-    def __init__(self, name, surface, district_id):
+    def __init__(self,id, name, address, start_date, end_date, latitude, longitude, altitude):
         self.id = id
         self.name = name
         self.address = address

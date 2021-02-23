@@ -3,7 +3,7 @@ from app.extension import marshmallow
 from ...dto import PollutionStationDto
 from ..camel_cased_schema import CamelCasedSchema
 
-class PollutionStationDtoSchema():
+class PollutionStationDtoSchema(CamelCasedSchema):
     id = fields.Integer()
     name = fields.String()
     address = fields.String()

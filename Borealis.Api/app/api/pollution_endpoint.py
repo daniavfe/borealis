@@ -15,7 +15,7 @@ class PollutionMeasurementListEndpoint(Resource):
         #Get measurements from business
         measurements = pollution_business.get_measurements(page, per_page, order_by, order_by_descending)
         #Instance schema
-        pfocollection_schema = PFOCollectionDtoSchema[PollutionMeasurementDtoSchema]()
+        pfocollection_schema = get_pfo(PollutionMeasurementDtoSchema)
         #Return json data
         return pfocollection_schema.dump(measurements, many=False)
 
@@ -37,7 +37,7 @@ class PollutionStationListEndpoint(Resource):
         #Get stations from business
         stations = pollution_business.get_stations(page, per_page, order_by, order_by_descending)
         #Instance schema
-        pfocollection_schema = PFOCollectionDtoSchema[PollutionStationDtoSchema]()
+        pfocollection_schema = get_pfo(PollutionStationDtoSchema)
         #Return json data
         return pfocollection_schema.dump(stations, many=False)
 
@@ -49,9 +49,7 @@ class PollutionStationCreationEndpoint(Resource):
         #Parse json to dto
         pollution_station_creation_dto = pollution_station_creation_dto_schema.loads(request.data)
         #Create station
-        id = pollution_business.create_station(pollution_station_creation_dto)
-        #Return id
-        return json.dump(id)
+        return pollution_business.create_station(pollution_station_creation_dto)
 
 class PollutionMagnitudeListEndpoint(Resource):
     @staticmethod
@@ -61,7 +59,7 @@ class PollutionMagnitudeListEndpoint(Resource):
         #Get stations from business
         magnitudes = pollution_business.get_magnitudes(page, per_page, order_by, order_by_descending)
         #Instance schema
-        pfocollection_schema = PFOCollectionDtoSchema[PollutionMagnitudeDtoSchema]()
+        pfocollection_schema = get_pfo(PollutionMagnitudeDtoSchema)
         #Return json data
         return pfocollection_schema.dump(magnitudes, many=False)
 
@@ -73,6 +71,4 @@ class PollutionMagnitudeCreationEndpoint(Resource):
         #Parse json to dto
         pollution_magnitude_creation_dto = pollution_magnitude_creation_dto_schema.loads(request.data)
         #Create magnitude
-        id = pollution_business.create_station(pollution_magnitude_creation_dto)
-        #Return id
-        return json.dump(id)
+        return pollution_business.create_magnitude(pollution_magnitude_creation_dto)

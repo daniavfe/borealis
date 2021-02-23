@@ -1,13 +1,13 @@
 from marshmallow import fields, post_load
 from app.extension import marshmallow
 from ...dto import PollutionMagnitudeCreationDto
+from ..camel_cased_schema import CamelCasedSchema
 
-class PollutionMagnitudeCreationDtoSchema(marshmallow.Schema):
+class PollutionMagnitudeCreationDtoSchema(CamelCasedSchema):
     id = fields.Integer()
     name = fields.String()
     formula = fields.String()
-    measurement_unit = fields.DateTime()
-    measurement_technique = fields.DateTime()
+    measurement_unit = fields.String()
 
     @post_load
     def make(self, data, **kwargs):

@@ -10,13 +10,9 @@ class PollutionBusiness:
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
             None: PollutionMeasurement.datetime,
-            "province":PollutionMeasurement.province,
-            "town": PollutionMeasurement.town,
-            "station": PollutionMeasurement.station,
+            "stationId": PollutionMeasurement.station_id,
             "datetime":PollutionMeasurement.datetime,
-            "magnitude": PollutionMeasurement.magnitude,
-            "method": PollutionMeasurement.method,
-            "analysisPeriod":PollutionMeasurement.analysis_period,
+            "magnitudeId": PollutionMeasurement.magnitude_id,
             "data": PollutionMeasurement.data,
             "validationCode":PollutionMeasurement.validation_code,
         }
@@ -38,9 +34,10 @@ class PollutionBusiness:
         page_count = math.floor(data.count() / per_page);
         page = int(page) if (page != None and int(page) > 0 and int(page) <= page_count) else 1
 
-        data = data.offset(per_page*page-1).limit(per_page).all()
+        data = data.offset(per_page*(page-1)).limit(per_page).all()
+        mappedData = list(map(lambda x: PollutionMeasurementDto(x.datetime, x.station_id, x.magnitude_id, x.data, x.validation_code), data))
 
-        return PFOCollection(page, page_count, per_page, order_by_field, order_by_descending, data)
+        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
     def create_measurement(self, measurement_creation_dto):
         
@@ -53,7 +50,6 @@ class PollutionBusiness:
         pollution_measurement.save()
 
     def get_stations(self, page, per_page, order_by, order_by_descending):
-        
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
             None: PollutionStation.start_date,
@@ -76,9 +72,10 @@ class PollutionBusiness:
         page_count = math.floor(data.count() / per_page);
         page = int(page) if (page != None and int(page) > 0 and int(page) <= page_count) else 1
 
-        data = data.offset(per_page*page-1).limit(per_page).all()
+        data = data.offset(per_page*(page-1)).limit(per_page).all()
 
-        return PFOCollection(page, page_count, per_page, order_by_field, order_by_descending, data)
+        mappedData = list(map(lambda x: PollutionStationDto(x.id, x.name, x.address, x.start_date, x.end_date, x.latitude, x.longitude, x.altitude), data))
+        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
     def create_station(self, station_creation_dto):
         #TODO: Comprobaciones
@@ -99,7 +96,7 @@ class PollutionBusiness:
             None: PollutionMagnitude.id,
 
         }
-        order_by_field = order_by_switch.get(order_by, PollutionMagnitude.datetime)
+        order_by_field = order_by_switch.get(order_by, PollutionMagnitude.id)
 
         #get data
         data = db.session.query(PollutionMagnitude)
@@ -117,10 +114,10 @@ class PollutionBusiness:
         page_count = math.floor(data.count() / per_page);
         page = int(page) if (page != None and int(page) > 0 and int(page) <= page_count) else 1
 
-        data = data.offset(per_page*page-1).limit(per_page).all()
+        data = data.offset(per_page*(page-1)).limit(per_page).all()
 
-        mappedData = data.map(lambda x: PollutionMagnitudeDto(x.id, x.name, x.formula, x.measurement_unit, x.measurements.count()))
-        return PFOCollection(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
+        mappedData = list(map(lambda x: PollutionMagnitudeDto(x.id, x.name, x.formula, x.measurement_unit), data))
+        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
     def create_magnitude(self, magnitude_creation_dto):
         # TODO: Comprobaciones

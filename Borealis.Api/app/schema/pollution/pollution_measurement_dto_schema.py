@@ -6,9 +6,7 @@ from ..camel_cased_schema import CamelCasedSchema
 
 class PollutionMeasurementDtoSchema(CamelCasedSchema):
     datetime = fields.DateTime()
-    magnitude = fields.Integer()
-    method = fields.Integer()
-    analysis_period = fields.Integer()
+    magnitude_id = fields.Integer()
     data = fields.Float()
     validation_code = fields.String()
     station_id = fields.String()
