@@ -105,6 +105,7 @@
     <Compile Include="app\dto\pollution\pollution_measurement_dto.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\dto\pollution\pollution_station_magnitude_creation_dto.py" />
     <Compile Include="app\dto\pollution\pollution_station_creation_dto.py" />
     <Compile Include="app\dto\pollution\pollution_station_dto.py">
       <SubType>Code</SubType>
@@ -174,6 +175,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\pollution\pollution_magnitude_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\pollution\pollution_station_magnitude_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\pollution\__init__.py">

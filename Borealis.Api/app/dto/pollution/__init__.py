@@ -4,3 +4,4 @@ from .pollution_station_creation_dto import PollutionStationCreationDto
 from .pollution_station_dto import PollutionStationDto
 from .pollution_magnitude_creation_dto import PollutionMagnitudeCreationDto
 from .pollution_magnitude_dto import PollutionMagnitudeDto
+from .pollution_station_magnitude_creation_dto import PollutionStationMagnitudeCreationDto

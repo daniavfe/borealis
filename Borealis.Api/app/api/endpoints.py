@@ -14,6 +14,7 @@ pollution_api.add_resource(PollutionStationListEndpoint, '/api/pollution/station
 pollution_api.add_resource(PollutionStationCreationEndpoint, '/api/pollution/station/', endpoint='pollution_station_creation_endpoint')
 pollution_api.add_resource(PollutionMagnitudeListEndpoint, '/api/pollution/magnitude/', endpoint='pollution_magnitude_list_endpoint')
 pollution_api.add_resource(PollutionMagnitudeCreationEndpoint, '/api/pollution/magnitude/', endpoint='pollution_magnitude_creation_endpoint')
+pollution_api.add_resource(PollutionStationMagnitudeEndpoint, '/api/pollution/station/assign/', endpoint='pollution_station_assign_endpoint')
 
 
 # Density endpoints
@@ -23,7 +24,7 @@ density_api.add_resource(DensityDistrictListEndpoint, '/api/density/district/', 
 density_api.add_resource(DensityDistrictCreationEndpoint, '/api/density/district/', endpoint='district_creation_endpoint')
 density_api.add_resource(DensityNeighborhoodListEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_list_endpoint')
 density_api.add_resource(DensityNeighborhoodCreationEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_creation_endpoint')
-density_api.add_resource(DensityListEndpoint, '/api/density/', endpoint='density_list_endpoint')
+density_api.add_resource(DensityListEndpoint, '/api/density/', endpoint='density_list_endpoint') 
 density_api.add_resource(DensityCreationEndpoint, '/api/density/', endpoint='density_creation_endpoint')
 density_api.add_resource(DensityDataEndpoint, '/api/density/data', endpoint='density_data_endpoint')
 

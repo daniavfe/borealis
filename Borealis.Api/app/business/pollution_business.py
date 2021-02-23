@@ -121,9 +121,14 @@ class PollutionBusiness:
 
     def create_magnitude(self, magnitude_creation_dto):
         # TODO: Comprobaciones
-        pollution_magnitude = PollutionMagnitude(magnitude_creation_dto.id,
+        magnitude = PollutionMagnitude(magnitude_creation_dto.id,
                                                  magnitude_creation_dto.name,
                                                  magnitude_creation_dto.formula,
                                                  magnitude_creation_dto.measurement_unit)
-        pollution_magnitude.save()
-        return pollution_magnitude.id
+        magnitude.save()
+        return magnitude.id
+
+    def assign_station_magnitude(self, station_magnitude_creation_dto):
+        # TODO: Comprobaciones
+        station_magnitude = PollutionStationMagnitude(station_magnitude_creation_dto.station_id, station_magnitude_creation_dto.magnitude_id)
+        station_magnitude.save()

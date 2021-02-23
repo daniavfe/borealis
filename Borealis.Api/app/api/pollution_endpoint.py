@@ -72,3 +72,13 @@ class PollutionMagnitudeCreationEndpoint(Resource):
         pollution_magnitude_creation_dto = pollution_magnitude_creation_dto_schema.loads(request.data)
         #Create magnitude
         return pollution_business.create_magnitude(pollution_magnitude_creation_dto)
+
+class PollutionStationMagnitudeEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        pollution_station_magnitude_creation_dto_schema = PollutionStationMagnitudeCreationDtoSchema()
+        #Parse json to dto
+        pollution_station_magnitude_creation_dto = pollution_station_magnitude_creation_dto_schema.loads(request.data)
+        #Create station magnitude
+        return pollution_business.assign_station_magnitude(pollution_station_magnitude_creation_dto)
