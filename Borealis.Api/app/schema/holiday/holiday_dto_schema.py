@@ -1,5 +1,5 @@
 from marshmallow import fields, post_load
-from ...model import Holiday
+from ...dto import HolidayDto
 from ..camel_cased_schema import CamelCasedSchema
 
 
@@ -10,5 +10,5 @@ class HolidayDtoSchema(CamelCasedSchema):
     scope = fields.String()
 
     @post_load
-    def make_holiday(self, data, **kwargs):
-        return Holiday(**data)
+    def make(self, data, **kwargs):
+        return HolidayDto(**data)

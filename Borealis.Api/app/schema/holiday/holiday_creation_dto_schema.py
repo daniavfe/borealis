@@ -10,5 +10,5 @@ class HolidayCreationDtoSchema(CamelCasedSchema):
     scope = fields.String()
 
     @post_load
-    def make_holiday(self, data, **kwargs):
-        return Holiday(**data)
+    def make(self, data, **kwargs):
+        return HolidayCreationDto(**data)

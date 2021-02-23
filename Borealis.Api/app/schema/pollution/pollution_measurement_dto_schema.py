@@ -1,10 +1,10 @@
 from marshmallow import fields, post_load
 from app.extension import marshmallow
-from ..model import PollutionMeasurement
-from .camel_cased_schema import CamelCasedSchema
+from ...dto import PollutionMeasurementDto
+from ..camel_cased_schema import CamelCasedSchema
 
 
-class PollutionMeasurementSchema(CamelCasedSchema):
+class PollutionMeasurementDtoSchema(CamelCasedSchema):
     datetime = fields.DateTime()
     magnitude = fields.Integer()
     method = fields.Integer()
@@ -14,5 +14,5 @@ class PollutionMeasurementSchema(CamelCasedSchema):
     station_id = fields.String()
 
     @post_load
-    def make_user(self, data, **kwargs):
-        return PollutionMeasurement(**data)
+    def make(self, data, **kwargs):
+        return PollutionMeasurementDto(**data)

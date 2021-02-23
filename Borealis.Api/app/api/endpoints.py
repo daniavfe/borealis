@@ -10,8 +10,10 @@ pollution_blueprint = Blueprint('pollution_blueprint', __name__)
 pollution_api = Api(pollution_blueprint)
 pollution_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollution/', endpoint='pollution_measurement_list_endpoint')
 pollution_api.add_resource(PollutionMeasurementCreationEndpoint, '/api/pollution/', endpoint='pollution_measurement_creation_endpoint')
-pollution_api.add_resource(PollutionStationtListEndpoint, '/api/pollution/station/', endpoint='pollution_station_list_endpoint')
+pollution_api.add_resource(PollutionStationListEndpoint, '/api/pollution/station/', endpoint='pollution_station_list_endpoint')
 pollution_api.add_resource(PollutionStationCreationEndpoint, '/api/pollution/station/', endpoint='pollution_station_creation_endpoint')
+pollution_api.add_resource(PollutionMagnitudeListEndpoint, '/api/pollution/magnitude/', endpoint='pollution_magnitude_list_endpoint')
+pollution_api.add_resource(PollutionMagnitudeCreationEndpoint, '/api/pollution/magnitude/', endpoint='pollution_magnitude_creation_endpoint')
 
 
 # Density endpoints
@@ -23,6 +25,7 @@ density_api.add_resource(DensityNeighborhoodListEndpoint, '/api/density/neighbor
 density_api.add_resource(DensityNeighborhoodCreationEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_creation_endpoint')
 density_api.add_resource(DensityListEndpoint, '/api/density/', endpoint='density_list_endpoint')
 density_api.add_resource(DensityCreationEndpoint, '/api/density/', endpoint='density_creation_endpoint')
+density_api.add_resource(DensityDataEndpoint, '/api/density/data', endpoint='density_data_endpoint')
 
 
 # Holiday endpoints
@@ -31,3 +34,12 @@ holiday_api = Api(holiday_blueprint)
 holiday_api.add_resource(HolidayListEndpoint, '/api/holiday/', endpoint='holiday_list_endpoint')
 holiday_api.add_resource(HolidayCreationEndpoint, '/api/holiday/', endpoint='holiday_creation_endpoint')
 
+
+#Weather
+weather_blueprint = Blueprint('weather_blueprint', __name__)
+weather_api = Api(holiday_blueprint)
+
+
+#Traffic
+traffic_blueprint = Blueprint('traffic_blueprint', __name__)
+traffic_api = Api(holiday_blueprint)

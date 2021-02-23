@@ -18,8 +18,11 @@ def create_app():
     Api(app, catch_all_404s=True)
     # Deshabilita el modo estricto de acabado de una URL con /
     app.url_map.strict_slashes = False
-    # Registra los blueprints
+    
+    #Api Blueprints
     app.register_blueprint(pollution_blueprint)
     app.register_blueprint(density_blueprint)
     app.register_blueprint(holiday_blueprint)
+    app.register_blueprint(weather_blueprint)
+    app.register_blueprint(traffic_blueprint)
     return app

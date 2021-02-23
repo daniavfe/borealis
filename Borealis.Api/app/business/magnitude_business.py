@@ -1,5 +1,5 @@
 from ..extension import db
-from ..dto import PFOCollection
+from ..dto import *
 from ..model import PollutionMagnitude
 from sqlalchemy import desc
 import math
@@ -31,7 +31,7 @@ class MagnitudeBusiness:
 
         data = data.offset(per_page*page-1).limit(per_page).all()
 
-        return PFOCollection(page, page_count, per_page, order_by_field, order_by_descending, data)
+        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, data)
 
 
 

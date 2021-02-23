@@ -10,5 +10,5 @@ class NeighborhoodDataDtoSchema(CamelCasedSchema):
     values = fields.Dict()
 
     @post_load
-    def make_neighborhood_data_dto(self, data, **kwargs):
+    def make(self, data, **kwargs):
         return NeighborhoodDataDto(**data)

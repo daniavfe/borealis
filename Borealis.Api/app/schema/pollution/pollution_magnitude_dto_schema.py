@@ -1,9 +1,9 @@
 from marshmallow import fields, post_load
 from app.extension import marshmallow
-from ..model import PollutionMagnitude
+from ...dto import PollutionMagnitudeDto
 
 
-class PollutionMagnitudeSchema(marshmallow.Schema):
+class PollutionMagnitudeDtoSchema(marshmallow.Schema):
     id = fields.Integer()
     name = fields.String()
     formula = fields.String()
@@ -11,5 +11,5 @@ class PollutionMagnitudeSchema(marshmallow.Schema):
     measurement_technique = fields.DateTime()
 
     @post_load
-    def make_user(self, data, **kwargs):
-        return Magnitude(**data)
+    def make(self, data, **kwargs):
+        return PollutionMagnitudeDto(**data)

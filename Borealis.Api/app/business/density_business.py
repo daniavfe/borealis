@@ -1,5 +1,5 @@
 from ..extension import db
-from ..dto import PFOCollection, DensityDataDto, DistrictDataDto, NeighborhoodDataDto
+from ..dto import *
 from ..model import District, Neighborhood, Density
 from sqlalchemy import desc
 import math

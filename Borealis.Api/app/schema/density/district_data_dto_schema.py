@@ -11,5 +11,5 @@ class DistrictDataDtoSchema(CamelCasedSchema):
     neighborhoods= fields.Nested(NeighborhoodDataDtoSchema, many=True)
 
     @post_load
-    def make_district_data_dto(self, data, **kwargs):
+    def make(self, data, **kwargs):
         return DistrictDataDto(**data)

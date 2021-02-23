@@ -39,6 +39,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\api\pollution_endpoint.py" />
+    <Compile Include="app\api\query_params_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\api\__init__.py" />
     <Compile Include="app\business\density_business.py">
       <SubType>Code</SubType>
@@ -55,7 +58,16 @@
     <Compile Include="app\dto\density\density_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\dto\density\density_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\dto\density\district_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\density\district_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\density\neighborhood_dto.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\density\neighborhood_creation_dto.py">
@@ -80,7 +92,7 @@
     <Compile Include="app\dto\holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\pfocollection.py" />
+    <Compile Include="app\dto\pfo_collection_dto.py" />
     <Compile Include="app\dto\pollution\pollution_magnitude_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
@@ -132,6 +144,12 @@
     <Compile Include="app\schema\camel_cased_schema.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\schema\density\district_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\density\neighborhood_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\schema\density\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -152,15 +170,18 @@
     <Compile Include="app\schema\density\district_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\schema\pollution\pollution_magnitude_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\schema\pollution\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_magnitude_schema.py" />
+    <Compile Include="app\schema\pollution\pollution_magnitude_dto_schema.py" />
     <Compile Include="app\schema\pollution\pollution_measurement_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_measurement_schema.py" />
-    <Compile Include="app\schema\pfocollection_schema.py" />
+    <Compile Include="app\schema\pollution\pollution_measurement_dto_schema.py" />
+    <Compile Include="app\schema\pfo_collection_dto_schema.py" />
     <Compile Include="app\schema\pollution\pollution_station_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>

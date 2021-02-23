@@ -1,7 +1,7 @@
 from marshmallow import fields, post_load
 from app.extension import marshmallow
-from ..dto import PollutionStationCreationDto
-from .camel_cased_schema import CamelCasedSchema
+from ...dto import PollutionStationCreationDto
+from ..camel_cased_schema import CamelCasedSchema
 
 class PollutionStationCreationDtoSchema(CamelCasedSchema):
     id = fields.Integer()
