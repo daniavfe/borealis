@@ -29,7 +29,6 @@ class DensityDistrictCreationEndpoint(Resource):
         #Create district
         return density_business.create_district(district_creation_dto)
 
-
 class DensityNeighborhoodListEndpoint(Resource):
     @staticmethod
     def get():
@@ -39,9 +38,9 @@ class DensityNeighborhoodListEndpoint(Resource):
         #Get neighborhoods from business
         neightborhoods = density_business.get_neighborhoods(page, per_page, order_by, order_by_descending, district_id)
         #Instance schema
-        pfocollection_schema = PFOCollectionDtoSchema[NeighborhoodDtoSchema]()
+        pfocollection_schema = get_pfo(NeighborhoodDtoSchema)
         #Return json data
-        return pfocollection_schema.dump(districts, many=False)
+        return pfocollection_schema.dump(neightborhoods, many=False)
 
 class DensityNeighborhoodCreationEndpoint(Resource):
     @staticmethod
@@ -51,19 +50,17 @@ class DensityNeighborhoodCreationEndpoint(Resource):
         #Parse json to dto
         neighborhood_creation_dto = neighborhood_creation_dto_schema.loads(request.data)
         #Create neighborhood
-        density_business.create_neighborhood(neighborhood_creation_dto)
+        return density_business.create_neighborhood(neighborhood_creation_dto)
 
 class DensityListEndpoint(Resource):
     @staticmethod
     def get():
         #Get params from url
         page, per_page, order_by, order_by_descending = QueryParamsHelper.get_paged_params(request)
-        district_id = request.args.get('district_id')
-        neighborhood_id = request.args.get('neighborhood_id')
         #Get districts from business
-        densitites = density_business.get_densities(page, per_page, order_by, order_by_descending, district_id, neighborhood_id)
+        densitites = density_business.get_densities(page, per_page, order_by, order_by_descending)
         #Instance schema
-        pfocollection_schema = PFOCollectionDtoSchema[DensityDtoSchema]()
+        pfocollection_schema = get_pfo(DensityDtoSchema)
         #Return json data
         return pfocollection_schema.dump(densitites, many=False)
 
@@ -75,7 +72,7 @@ class DensityCreationEndpoint(Resource):
         #Parse json to dto
         density_creation_dto = density_creation_dto_schema.loads(request.data)
         #Create density
-        return density_business.create_density(density_creation_dto)
+        density_business.create_density(density_creation_dto)
 
 class DensityDataEndpoint(Resource):
     @staticmethod

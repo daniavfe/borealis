@@ -1,5 +1,6 @@
 from .density_creation_dto_schema import DensityCreationDtoSchema
 from .density_data_dto_schema import DensityDataDtoSchema
+from .density_dto_schema import DensityDtoSchema
 from .district_creation_dto_schema import DistrictCreationDtoSchema
 from .district_data_dto_schema import DistrictDataDtoSchema
 from .district_dto_schema import DistrictDtoSchema

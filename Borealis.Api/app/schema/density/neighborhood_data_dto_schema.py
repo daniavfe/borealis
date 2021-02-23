@@ -5,7 +5,7 @@ from ..camel_cased_schema import CamelCasedSchema
 
 
 class NeighborhoodDataDtoSchema(CamelCasedSchema):
-    id = fields.Number()
+    id = fields.Integer()
     name = fields.String()
     values = fields.Dict()
 

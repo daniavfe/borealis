@@ -34,7 +34,7 @@ class DensityBusiness:
 
         data = data.offset(per_page*(page-1)).limit(per_page).all()
 
-        mappedData = list(map(lambda x: DistrictDto(x.id, x.name, x.surface, x.neighborhoods.count(Neighborhood.id), x.densities.count(Density.district_id)), data))
+        mappedData = list(map(lambda x: DistrictDto(x.id, x.name, x.surface), data))
         return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
     def create_district(self, district_creation_dto):
@@ -43,20 +43,76 @@ class DensityBusiness:
         district.save()
         return district.id
 
-    def get_neighborhoods(self, district_id):
-        return db.session.query(Neighborhood).filter(Neighborhood.district_id == district_id).all()
+    def get_neighborhoods(self, page, per_page, order_by, order_by_descending, district_id):
+        order_by_descending = order_by_descending != None and order_by_descending   
+        order_by_switch = {
+            None: Neighborhood.id,
 
-    def create_neighborhood(self, neightbordhood):
-        #comprobaciones
-        neightbordhood.save()
-        return neightbordhood.id
+        }
+        order_by_field = order_by_switch.get(order_by, Neighborhood.id)
 
-    def create_density(self, density):
-        #comprobaciones
+        #get data
+        data = db.session.query(Neighborhood)
+
+        #filter data
+        data = data.filter(Neighborhood.district_id == district_id)
+
+        #order data
+        if(order_by_descending):
+            data = data.order_by(desc(order_by_field))
+        else:
+            data = data.order_by(order_by_field)
+
+        #page data
+        per_page = int(per_page) if (per_page != None and int(per_page) > 0) else 10
+        page_count = math.floor(data.count() / per_page);
+        page = int(page) if (page != None and int(page) > 0 and int(page) <= page_count) else 1
+
+        data = data.offset(per_page*(page-1)).limit(per_page).all()
+
+        mappedData = list(map(lambda x: NeighborhoodDto(x.id, x.name, x.surface, x.district_id), data))
+        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
+
+    def create_neighborhood(self, neighborhood_creation_dto):
+         # TODO: Comprobaciones
+        neightborhood = Neighborhood(neighborhood_creation_dto.name, neighborhood_creation_dto.surface, neighborhood_creation_dto.district_id)
+        neightborhood.save()
+        return neightborhood.id
+
+    def get_densities(self, page, per_page, order_by, order_by_descending):
+        order_by_descending = order_by_descending != None and order_by_descending
+        order_by_switch = {
+            None: Density.year
+        }
+        order_by_field = order_by_switch.get(order_by, Density.year)
+
+        #get data
+        data = db.session.query(Density)
+
+        #filter data
+
+        #order data
+        if(order_by_descending):
+            data = data.order_by(desc(order_by_field))
+        else:
+            data = data.order_by(order_by_field)
+
+        #page data
+        per_page = int(per_page) if (per_page != None and int(per_page) > 0) else 10
+        page_count = math.floor(data.count() / per_page);
+        page = int(page) if (page != None and int(page) > 0 and int(page) <= page_count) else 1
+
+        data = data.offset(per_page*(page-1)).limit(per_page).all()
+
+        mappedData = list(map(lambda x: DensityDto(x.district_id, x.neighborhood_id, x.year, x.month, x.value), data))
+        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
+
+    def create_density(self, density_creation_dto):
+         # TODO: Comprobaciones
+        density = Density(density_creation_dto.district_id, density_creation_dto.neighborhood_id, density_creation_dto.year, density_creation_dto.month, density_creation_dto.value)
         density.save()
-        return 1
 
-    def get_densities(self, years, districts, neighborhoods, months):
+    def get_density_data(self, years, districts, neighborhoods, months):
 
         data = db.session.query(Density).order_by(Density.year.desc(), Density.district_id.desc(), Density.neighborhood_id.desc(), Density.month.desc())
         

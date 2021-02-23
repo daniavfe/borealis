@@ -5,7 +5,6 @@ from ..camel_cased_schema import CamelCasedSchema
 
 
 class NeighborhoodCreationDtoSchema(CamelCasedSchema):
-    id = fields.String()
     district_id = fields.Integer()
     surface = fields.Float()
     name = fields.String()

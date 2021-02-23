@@ -144,6 +144,9 @@
     <Compile Include="app\schema\camel_cased_schema.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\schema\density\density_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\schema\density\district_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
