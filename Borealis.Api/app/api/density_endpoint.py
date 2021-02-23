@@ -15,7 +15,7 @@ class DensityDistrictListEndpoint(Resource):
         #Get districts from business
         districts = density_business.get_districts(page, per_page, order_by, order_by_descending)
         #Instance schema
-        pfocollection_schema = PFOCollectionDtoSchema[DistrictDtoSchema]()
+        pfocollection_schema = get_pfo(DistrictDtoSchema)
         #Return json data
         return pfocollection_schema.dump(districts, many=False)
 
@@ -27,7 +27,8 @@ class DensityDistrictCreationEndpoint(Resource):
         #Parse json to dto
         district_creation_dto = district_creation_dto_schema.loads(request.data)
         #Create district
-        density_business.create_district(district_creation_dto)
+        return density_business.create_district(district_creation_dto)
+
 
 class DensityNeighborhoodListEndpoint(Resource):
     @staticmethod

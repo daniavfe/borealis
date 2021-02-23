@@ -16,7 +16,7 @@ class HolidayListEndpoint(Resource):
         #Get holidays from business
         holidays = holiday_business.get_holidays(page, per_page, order_by, order_by_descending)
         #Instance schema
-        pfocollection_schema = get_pfo(HolidayDtoSchema);
+        pfocollection_schema = get_pfo(HolidayDtoSchema)
         #Return json data
         return pfocollection_schema.dump(holidays, many=False)
 
