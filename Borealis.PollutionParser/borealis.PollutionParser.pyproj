@@ -44,10 +44,21 @@
     <Content Include="data\2016\nov_mo16.txt" />
     <Content Include="data\2016\oct_mo16.txt" />
     <Content Include="data\2016\sep_mo16.txt" />
+    <Content Include="data\magnitudes.csv" />
+    <Content Include="data\stations.csv" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="main.py" />
+    <Compile Include="magnitude_parser.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PollutionParser.py" />
+    <Compile Include="station_parser.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />

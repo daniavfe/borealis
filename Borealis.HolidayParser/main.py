@@ -16,6 +16,7 @@ def insert_holiday(date, day_of_week, name, scope):
 
 
 get_calendar_file()
+
 with open('calendar.csv') as input_file:
     csv_reader = csv.reader(input_file, delimiter=';')
     line_count = 0
