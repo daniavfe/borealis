@@ -6,12 +6,12 @@ from ..camel_cased_schema import CamelCasedSchema
 class PollutionStationCreationDtoSchema(CamelCasedSchema):
     id = fields.Integer()
     name = fields.String()
-    address = fields.String()
-    start_date = fields.DateTime()
+    address = fields.String(missing=None)
+    start_date = fields.DateTime(missing=None)
     end_date = fields.DateTime(missing=None)
-    longitude = fields.String()
-    latitude = fields.String()
-    altitude = fields.Integer()
+    longitude = fields.String(missing=None)
+    latitude = fields.String(missing=None)
+    altitude = fields.Integer(missing=None)
 
     @post_load
     def make(self, data, **kwargs):
