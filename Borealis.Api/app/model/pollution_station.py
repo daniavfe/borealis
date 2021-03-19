@@ -5,7 +5,7 @@ class PollutionStation(db.Model, BaseModelMixin):
     __tablename__ = 'pollution_stations'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    address = db.Column(db.String(200), nullable =False)
+    address = db.Column(db.String(200), nullable=False)
     start_date = db.Column(db.DateTime, nullable=False)
     end_date = db.Column(db.DateTime)
     latitude = db.Column(db.String(20))

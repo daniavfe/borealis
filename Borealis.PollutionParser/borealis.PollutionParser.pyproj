@@ -20,30 +20,6 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="data\2001\Abr_mo01.txt" />
-    <Content Include="data\2001\Ago_mo01.txt" />
-    <Content Include="data\2001\dic_mo01.txt" />
-    <Content Include="data\2001\Ene_mo01.txt" />
-    <Content Include="data\2001\Feb_mo01.txt" />
-    <Content Include="data\2001\Jul_mo01.txt" />
-    <Content Include="data\2001\Jun_mo01.txt" />
-    <Content Include="data\2001\Mar_mo01.txt" />
-    <Content Include="data\2001\May_mo01.txt" />
-    <Content Include="data\2001\nov_mo01.txt" />
-    <Content Include="data\2001\oct_mo01.txt" />
-    <Content Include="data\2001\Sep_mo01.txt" />
-    <Content Include="data\2016\abr_mo16.txt" />
-    <Content Include="data\2016\ago_mo16.txt" />
-    <Content Include="data\2016\dic_mo16.txt" />
-    <Content Include="data\2016\ene_mo16.txt" />
-    <Content Include="data\2016\feb_mo16.txt" />
-    <Content Include="data\2016\jul_mo16.txt" />
-    <Content Include="data\2016\jun_mo16.txt" />
-    <Content Include="data\2016\mar_mo16.txt" />
-    <Content Include="data\2016\may_mo16.txt" />
-    <Content Include="data\2016\nov_mo16.txt" />
-    <Content Include="data\2016\oct_mo16.txt" />
-    <Content Include="data\2016\sep_mo16.txt" />
     <Content Include="data\magnitudes.csv" />
     <Content Include="data\stations.csv" />
     <Content Include="requirements.txt" />
@@ -55,15 +31,16 @@
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PollutionParser.py" />
+    <Compile Include="measurement_analyzer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="measurement_downloader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="measurement_parser.py" />
     <Compile Include="station_parser.py">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="data\" />
-    <Folder Include="data\2001" />
-    <Folder Include="data\2016" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
@@ -75,6 +52,9 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X64</Architecture>
     </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>
