@@ -29,6 +29,20 @@ class PollutionMeasurementCreationEndpoint(Resource):
         #Create measurement
         pollution_business.create_measurement(pollution_measurement_creation_dto)
 
+class PollutionMeasurementBatchCreationEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        pollution_measurement_creation_dto_schema = PollutionMeasurementCreationDtoSchema()
+        #Parse json to dto
+        pollution_measurement_creation_dto_list = pollution_measurement_creation_dto_schema.loads(request.data, many=True)
+        #Create measurement
+        items_not_created = pollution_business.create_measurements_in_batch(pollution_measurement_creation_dto_list)
+        #Instance result schema
+        pollution_batch_creation_result_dto_schema = PollutionBatchCreationResultDtoSchema()
+        #Return json data
+        return pollution_batch_creation_result_dto_schema.dump(items_not_created, many=False)
+
 class PollutionStationListEndpoint(Resource):
     @staticmethod
     def get():

@@ -1,7 +1,7 @@
 from ..extension import db
 from ..dto import *
 from ..model import *
-from sqlalchemy import desc
+from sqlalchemy import desc, exc
 import math
 
 class PollutionBusiness:
@@ -48,6 +48,26 @@ class PollutionBusiness:
                                                      measurement_creation_dto.data, 
                                                      measurement_creation_dto.validation_code)
         pollution_measurement.save()
+
+    def create_measurements_in_batch(self, measurement_creation_dto_list):
+        
+        items_not_created_positions = []
+        index = 0
+        for measurement_creation_dto in measurement_creation_dto_list:
+            pollution_measurement = PollutionMeasurement(measurement_creation_dto.datetime, 
+                                                         measurement_creation_dto.station_id, 
+                                                         measurement_creation_dto.magnitude_id, 
+                                                         measurement_creation_dto.data, 
+                                                         measurement_creation_dto.validation_code)
+            try:
+                pollution_measurement.save()
+            except exc.SQLAlchemyError:
+                items_not_created_positions.append(index)
+
+            index+=1
+
+        return PollutionBatchCreationResultDto(items_not_created_positions)
+
 
     def get_stations(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending

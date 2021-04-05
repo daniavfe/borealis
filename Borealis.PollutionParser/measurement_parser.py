@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from operator import itemgetter 
 import requests
 import json
 import sys
@@ -7,68 +8,92 @@ import os
 
 class MeasurementParser():
 
-    def __init__(self, path):
+    def __init__(self):
         self.__base_uri__ = "http://127.0.0.1:5000/api"
         self.__endpoint__= "/pollution"
-        self.__path__ = path
-        self.magnitudes = set()
-        self.stations = set()
 
     def __insert_measurement__(self, datetime, magnitude_id, station_id, data, validation_code):
         payload = {"datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id,
                    "data": data, "validationCode": validation_code}
-        self.magnitudes.add(magnitude_id)
-        self.stations.add(station_id)
         #requests.post(self.__base_uri__+self.__endpoint__, data=json.dumps(payload))
 
-    def load_from_folder(self, folder_path):
-        return
+    def __insert_accumulated_measurements__(self, measurements):
+        print(f'Inserted many {len(measurements)}')
+        response = requests.post(self.__base_uri__+self.__endpoint__+'/many', data=json.dumps(measurements))
+        items_not_created = json.loads(response.content)['itemsNotCreatedPositions']
 
-    def load_txt(self, file_path):
-        file = open(file_path, 'r')
-        lines = file.readlines()
-        number_of_items = len(lines)
-        number_of_processedItems = 0
-        percentage = 0.0 
- 
-        #Antes de octubre de 2017
-        # Strips the newline character
-        for line in lines:
-            #province = line[0:2]
-            #town = line[2:5]
-            station_id = int(line[5:8])
-            magnitude_id = int(line[8:10])
-            #method = line[10:12]
-            #analysis_period = line[12:14]
-            date = datetime(int("20"+line[14:16]), int(line[16:18]), int(line[18:20]))
-            count = 0
-            while count < 24:
-                index = 20 + (count * 6)
-                data = float(line[index: index+5])
-                validation_code = line[index+5:index+6]
-                count += 1
-                measurement_datetime = date + timedelta(hours=count)
-                self.__insert_measurement__(measurement_datetime,magnitude_id,station_id, data, validation_code  )
-
+        if len(items_not_created) > 0:
+            return itemgetter(*items_not_created)(measurements)
         
+        return []
 
+    def __get_insertable_object__(self, datetime, magnitude_id, station_id, data, validation_code):
+        return {"datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id, "data": data, "validationCode": validation_code}
+
+    def __write_not_inserted_items__(self, not_inserted_measurements, path):
+        file = open(path, "w")
+        data = json.dump(not_inserted_measurements)
+        file.write(data)
+        file.close()
+
+    def __complete_upload__(self, file, name, year, month):
+        print(f'Upload completed')
+        #insertar evento que terminó la subida de x fichero
+
+    def load(self, file_path):
+        file = open(file_path, 'r')
+        content = file.readlines()
+        number_of_items = len(content)
+        number_of_processedItems = 0
+ 
+        station_id = -1
+        magnitude_id = -1
+        year = -1
+        month = -1
+        day = -1
+
+        items_to_upload_threshold = 500
+        accumulated_items_to_upload = []
+        items_not_uploaded = []
+
+        for line in content:
+            if line[2] == ',':
+                component = line.split(',')
+                station_id = int(component[2])
+                magnitude_id = int(component[3])
+                year = int(component[6])
+                month = int(component[7])
+                day = int(component[8])
+                date = datetime(year, month, day)
+                for hour in range(0, 24):
+                    index = 9 + (hour*2)
+                    data = float(component[index])
+                    validation_code = component[index+1]
+                    measurement_datetime = date + timedelta(hours=hour+1)
+                    accumulated_items_to_upload.append(self.__get_insertable_object__(measurement_datetime,magnitude_id,station_id, data, validation_code))
+            else:
+                station_id = int(line[5:8])
+                magnitude_id = int(line[8:10])
+                year = int("20"+line[14:16])
+                month = int(line[16:18])
+                day = int(line[18:20])
+                date = datetime(year, month, day)
+                for hour in range(0, 24):
+                    index = 20 + (hour * 6)
+                    data = float(line[index: index+5])
+                    validation_code = line[index+5:index+6]
+                    measurement_datetime = date + timedelta(hours=hour+1)
+                    accumulated_items_to_upload.append(self.__get_insertable_object__(measurement_datetime,magnitude_id,station_id, data, validation_code))
+
+            
             number_of_processedItems += 1
-            percentage = number_of_processedItems / number_of_items * 100
-            sys.stdout.flush()
-            print(f'{percentage} %')
-        print(self.magnitudes)
-        print(self.stations)
+            if len(accumulated_items_to_upload) >= items_to_upload_threshold:
+                items_not_uploaded.extend(self.__insert_accumulated_measurements__(accumulated_items_to_upload))
+                accumulated_items_to_upload.clear()
+                print(f'Progress: {number_of_processedItems *100/number_of_items} %')
 
-    def load_csv(self, file_path, delimiter):
-        with open(file_path) as input_file:
-            csv_reader = csv.reader(input_file, delimiter=delimiter)
-            line_count = 0
-            for row in csv_reader:
-                if line_count == 0:
-                    line_count+= 1
-                else:
-                    self.__insert_magnitude__(row[0], row[1],row[2], row[3])
-                    line_count+= 1
+        if len(accumulated_items_to_upload) > 0:
+          items_not_uploaded.extend(self.__insert_accumulated_measurements__(accumulated_items_to_upload))
 
-    
+        self.__complete_upload__(file_path, 'name', 2009, "Abril")
 
