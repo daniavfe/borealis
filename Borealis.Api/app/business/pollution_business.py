@@ -68,7 +68,6 @@ class PollutionBusiness:
 
         return PollutionBatchCreationResultDto(items_not_created_positions)
 
-
     def get_stations(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
@@ -113,8 +112,9 @@ class PollutionBusiness:
     def get_magnitudes(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            None: PollutionMagnitude.id,
-
+            "id": PollutionMagnitude.id,
+            "name": PollutionMagnitude.name,
+            None: PollutionMagnitude.id
         }
         order_by_field = order_by_switch.get(order_by, PollutionMagnitude.id)
 
@@ -124,7 +124,7 @@ class PollutionBusiness:
         #filter data
 
         #order data
-        if(order_by_descending):
+        if(order_by_descending == True):
             data = data.order_by(desc(order_by_field))
         else:
             data = data.order_by(order_by_field)

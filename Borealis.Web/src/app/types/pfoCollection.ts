@@ -5,7 +5,7 @@ export class PFOCollection<T>{
     public perPage: Number;
     public orderBy:String;
     public orderByDescending: Boolean;
-    public items : T;
+    public items : T[];
 
     constructor(page, pageCount, perPage, orderBy, orderByDescending, items) {
         this.page = page;

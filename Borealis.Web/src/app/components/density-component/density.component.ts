@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { DensityService } from 'src/app/services/density.service';
 import { DensityData } from 'src/app/types/densityData';
 import { NeighborhoodData } from 'src/app/types/neighborhoodData';
@@ -30,7 +30,8 @@ export class DensityComponent implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private densityService:DensityService) {
+  constructor(
+    private densityService:DensityService) {
 
   }
 

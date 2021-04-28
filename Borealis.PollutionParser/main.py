@@ -13,8 +13,8 @@ from measurement_analyzer import MeasurementAnalyzer
 #station_parser = StationParser()
 #station_parser.load('data/stations.csv')
 
-measurement_parser = MeasurementParser()
-measurement_parser.load('data/measurements/2001/Ene_mo01.txt')
+measurement_parser = MeasurementParser(10, 70)
+measurement_parser.load_with_parallelism('data/measurements/2001/Ene_mo01.txt')
 
 #measurement_downloader = MeasurementDownloader("https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default", "data/measurements/")
 #measurement_downloader.get_available_files()

@@ -20,6 +20,4 @@ export class DensityService {
     let district_list = districts.length > 1? '&districts='+districts.join('&districts='):'';
     return this.http.get<DensityData[]>(`${this.apiUrl}/density${year_list}${district_list}`);
   } 
-
-
 }

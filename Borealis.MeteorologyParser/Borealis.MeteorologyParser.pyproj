@@ -26,8 +26,16 @@
     <Compile Include="meteorology_downloader.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="meteorology_parser.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\magnitudes.csv" />
+    <Content Include="data\meteorology\2019\2019.txt" />
+    <Content Include="data\meteorology\2020\2020.txt" />
+    <Content Include="data\meteorology\2021\2021.txt" />
+    <Content Include="data\stations.csv" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +48,13 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X64</Architecture>
     </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\meteorology\" />
+    <Folder Include="data\meteorology\2019\" />
+    <Folder Include="data\meteorology\2020\" />
+    <Folder Include="data\meteorology\2021\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
