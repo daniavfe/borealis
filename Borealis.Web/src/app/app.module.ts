@@ -24,23 +24,23 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DensityComponent,
-    MagnitudeListComponent,
-    MagnitudeFormComponent,
-    StationListComponent,
-    StationFormComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    NgxChartsModule,
-    AppRoutingModule
-  ],
-  providers: [DensityService, MagnitudeService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        DensityComponent,
+        MagnitudeListComponent,
+        MagnitudeFormComponent,
+        StationListComponent,
+        StationFormComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        FormsModule,
+        NgxChartsModule,
+        AppRoutingModule
+    ],
+    providers: [DensityService, MagnitudeService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

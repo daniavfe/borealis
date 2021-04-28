@@ -3,9 +3,9 @@ export class PFOCollection<T>{
     public page: Number;
     public pageCount: Number;
     public perPage: Number;
-    public orderBy:String;
+    public orderBy: String;
     public orderByDescending: Boolean;
-    public items : T[];
+    public items: T[];
 
     constructor(page, pageCount, perPage, orderBy, orderByDescending, items) {
         this.page = page;

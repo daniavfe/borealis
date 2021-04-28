@@ -4,93 +4,91 @@ import { DensityData } from 'src/app/types/densityData';
 import { NeighborhoodData } from 'src/app/types/neighborhoodData';
 
 @Component({
-  selector: 'density-component',
-  templateUrl: './density.component.html',
-  styleUrls: ['./density.component.scss']
+    selector: 'density-component',
+    templateUrl: './density.component.html',
+    styleUrls: ['./density.component.scss']
 })
 export class DensityComponent implements OnInit {
-  
-  single2020: any[];
-  single2019: any[];
-  densityData: DensityData[];
 
-  view: any[] = [2000, 500];
+    single2020: any[];
+    single2019: any[];
+    densityData: DensityData[];
 
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
+    view: any[] = [2000, 500];
 
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = true;
+    xAxisLabel = 'Country';
+    showYAxisLabel = true;
+    yAxisLabel = 'Population';
 
-  constructor(
-    private densityService:DensityService) {
+    colorScheme = {
+        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    };
 
-  }
+    constructor(
+        private densityService: DensityService) {
 
-  onSelect(event) {
-    console.log(event);
-  }
+    }
 
-  ngOnInit(): void {
-    this.getDensityData();
-  }
+    onSelect(event) {
+        console.log(event);
+    }
+
+    ngOnInit(): void {
+        this.getDensityData();
+    }
 
 
-  getDensityData():void{
+    getDensityData(): void {
 
-    let years = [2020,2019];
+        let years = [2020, 2019];
 
-    this.densityService.getdensityData(years, [], [], []).subscribe(
-      res=>{
-        this.densityData = res;
-        this.single2020 =this.densityData[0].districts.map(
-          el=>el.neighborhoods.map(
-            (sel)=>
-            {
-              return {
-                name:sel.name, 
-                value:Object.values(sel.values).reduce((a,b)=> a+b, 0)/12
-              }
+        this.densityService.getdensityData(years, [], [], []).subscribe(
+            res => {
+                this.densityData = res;
+                this.single2020 = this.densityData[0].districts.map(
+                    el => el.neighborhoods.map(
+                        (sel) => {
+                            return {
+                                name: sel.name,
+                                value: Object.values(sel.values).reduce((a, b) => a + b, 0) / 12
+                            }
+                        }
+                    )
+                ).flat();
+
+
+
+                this.single2019 = this.densityData[1].districts.map(
+                    el => el.neighborhoods.map(
+                        (sel) => {
+                            return {
+                                name: sel.name,
+                                value: Object.values(sel.values).reduce((a, b) => a + b, 0) / 12
+                            }
+                        }
+                    )
+                ).flat();
+                var x = this.single2020.reduce((a, b) => a + b.value, 0);
+                var y = this.single2019.reduce((a, b) => a + b.value, 0);
+                console.log(x);
+                console.log(y);
+
+                // this.single = this.densityData[0].districts[0].neighborhoods.map((el)=>{
+                //   return {'name':el.name, 'value':el.values[10]}
+                // }); 
+            },
+            err => {
+
             }
-          )
-        ).flat();
-      
-        
 
-        this.single2019 =this.densityData[1].districts.map(
-          el=>el.neighborhoods.map(
-            (sel)=>
-            {
-              return {
-                name:sel.name, 
-                value:Object.values(sel.values).reduce((a,b)=> a+b, 0)/12
-              }
-            }
-          )
-        ).flat();
-        var x  =this.single2020.reduce((a,b)=> a + b.value ,0);
-        var y  =this.single2019.reduce((a,b)=> a + b.value ,0);
-        console.log(x);
-        console.log(y);
 
-        // this.single = this.densityData[0].districts[0].neighborhoods.map((el)=>{
-        //   return {'name':el.name, 'value':el.values[10]}
-        // }); 
-      },
-      err=>{
-
-      }
-
-      
-    )
-  }
+        )
+    }
 
 }

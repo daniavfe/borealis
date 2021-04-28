@@ -1,6 +1,6 @@
-export class Magnitude{
-    id:number;
-    name:string;
-    formula:string;
-    measurementUnit:string
+export class Magnitude {
+    id: number;
+    name: string;
+    formula: string;
+    measurementUnit: string
 }
