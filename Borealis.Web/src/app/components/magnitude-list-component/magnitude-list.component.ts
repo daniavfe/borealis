@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { MagnitudeService } from 'src/app/services/magnitude.service';
-import { Magnitude } from 'src/app/types/magnitude';
+import { Magnitude } from 'src/app/types/magnitude/magnitude';
 
 
 @Component({

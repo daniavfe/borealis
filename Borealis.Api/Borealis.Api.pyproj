@@ -35,6 +35,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\api\endpoints.py" />
+    <Compile Include="app\api\event_endpoint.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\api\holiday_endpoint.py">
       <SubType>Code</SubType>
     </Compile>
@@ -44,6 +47,9 @@
     </Compile>
     <Compile Include="app\api\__init__.py" />
     <Compile Include="app\business\density_business.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\business\event_business.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\business\holiday_business.py">
@@ -81,6 +87,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\density\neighborhood_data_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\event\event_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\event\event_log_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\event\event_type.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\event\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\holiday\holiday_creation_dto.py">
@@ -129,6 +147,9 @@
     <Compile Include="app\model\district.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\model\event.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\model\holiday.py">
       <SubType>Code</SubType>
     </Compile>
@@ -158,6 +179,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\density\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\event\event_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\event\event_log_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\event\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\holiday\holiday_dto_schema.py" />
@@ -210,16 +240,8 @@
     <Compile Include="app\schema\__init__.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="main.py" />
-    <Compile Include="migrations\env.py" />
-    <Compile Include="migrations\versions\53c6eb5b4ff8_initial.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="migrations\alembic.ini" />
-    <Content Include="migrations\README" />
-    <Content Include="migrations\script.py.mako" />
-    <Content Include="migrations\versions\__pycache__\53c6eb5b4ff8_initial.cpython-37.pyc" />
-    <Content Include="migrations\versions\__pycache__\cb86a0710b6a_added_holidays.cpython-37.pyc" />
-    <Content Include="migrations\__pycache__\env.cpython-37.pyc" />
     <Content Include="readme.txt" />
     <Content Include="requirements.txt" />
   </ItemGroup>
@@ -231,6 +253,7 @@
     <Folder Include="app\configuration\" />
     <Folder Include="app\dto\" />
     <Folder Include="app\dto\density\" />
+    <Folder Include="app\dto\event\" />
     <Folder Include="app\dto\holiday\" />
     <Folder Include="app\dto\pollution\" />
     <Folder Include="app\dto\traffic\" />
@@ -238,14 +261,11 @@
     <Folder Include="app\model\" />
     <Folder Include="app\schema\" />
     <Folder Include="app\schema\density\" />
+    <Folder Include="app\schema\event\" />
     <Folder Include="app\schema\holiday\" />
     <Folder Include="app\schema\pollution\" />
     <Folder Include="app\schema\traffic\" />
     <Folder Include="app\schema\weather\" />
-    <Folder Include="migrations\" />
-    <Folder Include="migrations\versions\" />
-    <Folder Include="migrations\versions\__pycache__\" />
-    <Folder Include="migrations\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

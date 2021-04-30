@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StationService } from 'src/app/services/station.service';
+import { StationCreation } from 'src/app/types/station/stationCreation';
 
 @Component({
     selector: 'station-form',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StationFormComponent implements OnInit {
 
-    constructor() { }
+    public station:StationCreation;
+
+    constructor(private stationService:StationService) { }
 
     ngOnInit(): void {
+        this.station = new StationCreation();
     }
 
+    createStation():void{
+        this.stationService.createStation(this.station).subscribe(
+            res=>{
+                console.log(res);
+            }
+        );
+    }
 }

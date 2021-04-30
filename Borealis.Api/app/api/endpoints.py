@@ -3,6 +3,7 @@ from flask_restful import Api
 from .pollution_endpoint import *
 from .density_endpoint import *
 from .holiday_endpoint import *
+from .event_endpoint import *
 
 
 # Measurement endpoints
@@ -45,3 +46,9 @@ weather_api = Api(holiday_blueprint)
 #Traffic
 traffic_blueprint = Blueprint('traffic_blueprint', __name__)
 traffic_api = Api(holiday_blueprint)
+
+#Event
+event_blueprint = Blueprint('event_blueprint', __name__)
+event_api = Api(event_blueprint)
+event_api.add_resource(EventListEndpoint, '/api/event/', endpoint='event_list_endpoint')
+event_api.add_resource(EventLogCreationEndpoint, '/api/event/log', endpoint='event_log_creation_endpoint')

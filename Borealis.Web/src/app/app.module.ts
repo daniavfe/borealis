@@ -21,6 +21,8 @@ import { StationFormComponent } from './components/station-form-component/statio
 import { DensityService } from './services/density.service';
 import { MagnitudeService } from './services/magnitude.service';
 import { FormsModule } from '@angular/forms';
+import { EventListComponent } from './components/event-list-component/event-list.component';
+import { HolidayListComponent } from './components/holiday-list/holiday-list.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { FormsModule } from '@angular/forms';
         MagnitudeFormComponent,
         StationListComponent,
         StationFormComponent,
+        EventListComponent,
+        HolidayListComponent,
     ],
     imports: [
         BrowserModule,

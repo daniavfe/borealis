@@ -1,3 +1,7 @@
-<ul>
-    <li *ngFor="let station in stations></li>
-</ul>
+<div>
+    <ul>
+        <li *ngFor="let station of stations">{{station.name}}</li>
+    </ul>
+
+    <station-form></station-form>
+</div>

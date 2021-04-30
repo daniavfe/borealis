@@ -1,7 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { DensityService } from 'src/app/services/density.service';
-import { DensityData } from 'src/app/types/densityData';
-import { NeighborhoodData } from 'src/app/types/neighborhoodData';
+import { DensityData } from 'src/app/types/density/densityData';
 
 @Component({
     selector: 'density-component',
@@ -9,7 +8,6 @@ import { NeighborhoodData } from 'src/app/types/neighborhoodData';
     styleUrls: ['./density.component.scss']
 })
 export class DensityComponent implements OnInit {
-
     single2020: any[];
     single2019: any[];
     densityData: DensityData[];

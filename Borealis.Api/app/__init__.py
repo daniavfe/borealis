@@ -25,4 +25,5 @@ def create_app():
     app.register_blueprint(holiday_blueprint)
     app.register_blueprint(weather_blueprint)
     app.register_blueprint(traffic_blueprint)
+    app.register_blueprint(event_blueprint)
     return app

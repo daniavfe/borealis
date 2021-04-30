@@ -1,1 +1,12 @@
-<p>station-form works!</p>
+<div>
+    <input type="number" placeholder="id" [(ngModel)]="station.id">
+    <input type="text" placeholder="name"  [(ngModel)]="station.name">
+    <input type="text" placeholder="address"  [(ngModel)]="station.address">
+    <input type="datetime-local" placeholder="start_date"  [(ngModel)]="station.startDate">
+    <input type="datetime-local" placeholder="end_date"  [(ngModel)]="station.endDate">
+    <input type="text" placeholder="latitude"  [(ngModel)]="station.latitude">
+    <input type="text" placeholder="longitude"  [(ngModel)]="station.longitude">
+    <input type="number" placeholder="altitude"  [(ngModel)]="station.altitude">
+
+    <button (click)="createStation()">Create station</button>
+</div>

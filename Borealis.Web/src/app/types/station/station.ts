@@ -7,5 +7,4 @@ export class Station{
     latitude:string;
     longitude:string;
     altitude:number;
-
 }
