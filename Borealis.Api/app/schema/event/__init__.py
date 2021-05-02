@@ -1,2 +1,4 @@
 from .event_dto_schema import EventDtoSchema
-from .event_log_creation_dto_schema import EventLogCreationDtoSchema
+from .log_event_creation_dto_schema import LogEventCreationDtoSchema
+from .file_download_event_creation_dto_schema import FileDownloadEventCreationDtoSchema
+from .file_upload_event_creation_dto_schema import FileUploadEventCreationDtoSchema

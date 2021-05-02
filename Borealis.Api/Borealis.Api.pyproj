@@ -41,6 +41,9 @@
     <Compile Include="app\api\holiday_endpoint.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\api\magnitude_endpoint.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\api\pollution_endpoint.py" />
     <Compile Include="app\api\query_params_helper.py">
       <SubType>Code</SubType>
@@ -92,7 +95,9 @@
     <Compile Include="app\dto\event\event_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\event\event_log_creation_dto.py">
+    <Compile Include="app\dto\event\file_upload_event_creation_dto.py" />
+    <Compile Include="app\dto\event\file_download_event_creation_dto.py" />
+    <Compile Include="app\dto\event\log_event_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\event\event_type.py">
@@ -108,6 +113,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\holiday\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\magnitude\magnitude_existence_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\magnitude\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\pfo_collection_dto.py" />
@@ -184,7 +195,9 @@
     <Compile Include="app\schema\event\event_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\event\event_log_creation_dto_schema.py">
+    <Compile Include="app\schema\event\file_upload_event_creation_dto_schema.py" />
+    <Compile Include="app\schema\event\file_download_event_creation_dto_schema.py" />
+    <Compile Include="app\schema\event\log_event_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\event\__init__.py">
@@ -205,6 +218,12 @@
     <Compile Include="app\schema\density\density_creation_dto_schema.py" />
     <Compile Include="app\schema\density\neighborhood_creation_dto_schema.py" />
     <Compile Include="app\schema\density\district_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\magnitude\magnitude_existence_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\magnitude\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\pollution\pollution_batch_creation_result_dto_schema.py">
@@ -255,6 +274,7 @@
     <Folder Include="app\dto\density\" />
     <Folder Include="app\dto\event\" />
     <Folder Include="app\dto\holiday\" />
+    <Folder Include="app\dto\magnitude\" />
     <Folder Include="app\dto\pollution\" />
     <Folder Include="app\dto\traffic\" />
     <Folder Include="app\dto\weather\" />
@@ -263,6 +283,7 @@
     <Folder Include="app\schema\density\" />
     <Folder Include="app\schema\event\" />
     <Folder Include="app\schema\holiday\" />
+    <Folder Include="app\schema\magnitude\" />
     <Folder Include="app\schema\pollution\" />
     <Folder Include="app\schema\traffic\" />
     <Folder Include="app\schema\weather\" />

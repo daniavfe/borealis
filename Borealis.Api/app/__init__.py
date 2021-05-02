@@ -21,6 +21,7 @@ def create_app():
     
     #Api Blueprints
     app.register_blueprint(pollution_blueprint)
+    app.register_blueprint(magnitude_blueprint)
     app.register_blueprint(density_blueprint)
     app.register_blueprint(holiday_blueprint)
     app.register_blueprint(weather_blueprint)

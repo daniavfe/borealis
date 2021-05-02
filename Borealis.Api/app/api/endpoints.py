@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api
 from .pollution_endpoint import *
+from .magnitude_endpoint import *
 from .density_endpoint import *
 from .holiday_endpoint import *
 from .event_endpoint import *
@@ -11,13 +12,17 @@ pollution_blueprint = Blueprint('pollution_blueprint', __name__)
 pollution_api = Api(pollution_blueprint)
 pollution_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollution/', endpoint='pollution_measurement_list_endpoint')
 pollution_api.add_resource(PollutionMeasurementCreationEndpoint, '/api/pollution/', endpoint='pollution_measurement_creation_endpoint')
-pollution_api.add_resource(PollutionMeasurementBatchCreationEndpoint, '/api/pollution/many', endpoint='pollution_measurement_batch_creation_endpoint')
+pollution_api.add_resource(PollutionMeasurementBatchCreationEndpoint, '/api/pollution/many/', endpoint='pollution_measurement_batch_creation_endpoint')
 pollution_api.add_resource(PollutionStationListEndpoint, '/api/pollution/station/', endpoint='pollution_station_list_endpoint')
 pollution_api.add_resource(PollutionStationCreationEndpoint, '/api/pollution/station/', endpoint='pollution_station_creation_endpoint')
-pollution_api.add_resource(PollutionMagnitudeListEndpoint, '/api/pollution/magnitude/', endpoint='pollution_magnitude_list_endpoint')
-pollution_api.add_resource(PollutionMagnitudeCreationEndpoint, '/api/pollution/magnitude/', endpoint='pollution_magnitude_creation_endpoint')
 pollution_api.add_resource(PollutionStationMagnitudeEndpoint, '/api/pollution/station/assign/', endpoint='pollution_station_assign_endpoint')
 
+#Magnitude endpoints
+magnitude_blueprint = Blueprint('magnitude_blueprint', __name__)
+magnitude_api = Api(magnitude_blueprint )
+magnitude_api.add_resource(MagnitudeListEndpoint, '/api/measurement/magnitude/', endpoint='measurement_magnitude_list_endpoint')
+magnitude_api.add_resource(MagnitudeCreationEndpoint, '/api/measurement/magnitude/', endpoint='measurement_magnitude_creation_endpoint')
+magnitude_api.add_resource(MagnitudeExistenceEndpoint, '/api/measurement/magnitude/existence', endpoint='measurement_magnitude_existence_endpoint')
 
 # Density endpoints
 density_blueprint = Blueprint('density_blueprint', __name__)
@@ -28,8 +33,7 @@ density_api.add_resource(DensityNeighborhoodListEndpoint, '/api/density/neighbor
 density_api.add_resource(DensityNeighborhoodCreationEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_creation_endpoint')
 density_api.add_resource(DensityListEndpoint, '/api/density/', endpoint='density_list_endpoint') 
 density_api.add_resource(DensityCreationEndpoint, '/api/density/', endpoint='density_creation_endpoint')
-density_api.add_resource(DensityDataEndpoint, '/api/density/data', endpoint='density_data_endpoint')
-
+density_api.add_resource(DensityDataEndpoint, '/api/density/data/', endpoint='density_data_endpoint')
 
 # Holiday endpoints
 holiday_blueprint = Blueprint('holiday_blueprint', __name__)
@@ -37,11 +41,9 @@ holiday_api = Api(holiday_blueprint)
 holiday_api.add_resource(HolidayListEndpoint, '/api/holiday/', endpoint='holiday_list_endpoint')
 holiday_api.add_resource(HolidayCreationEndpoint, '/api/holiday/', endpoint='holiday_creation_endpoint')
 
-
 #Weather
 weather_blueprint = Blueprint('weather_blueprint', __name__)
 weather_api = Api(holiday_blueprint)
-
 
 #Traffic
 traffic_blueprint = Blueprint('traffic_blueprint', __name__)
@@ -51,4 +53,6 @@ traffic_api = Api(holiday_blueprint)
 event_blueprint = Blueprint('event_blueprint', __name__)
 event_api = Api(event_blueprint)
 event_api.add_resource(EventListEndpoint, '/api/event/', endpoint='event_list_endpoint')
-event_api.add_resource(EventLogCreationEndpoint, '/api/event/log', endpoint='event_log_creation_endpoint')
+event_api.add_resource(LogEventCreationEndpoint, '/api/event/log/', endpoint='log_event_creation_endpoint')
+event_api.add_resource(FileDownloadEventCreationEndpoint, '/api/event/filedownload/', endpoint='file_download_event_creation_endpoint')
+event_api.add_resource(FileUploadEventCreationEndpoint, '/api/event/fileupload/', endpoint='file_upload_event_creation_endpoint')

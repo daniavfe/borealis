@@ -1,8 +1,8 @@
 from marshmallow import fields, post_load
-from ...dto import EventLogCreationDto
+from ...dto import LogEventCreationDto
 from ..camel_cased_schema import CamelCasedSchema
 
-class EventLogCreationDtoSchema(CamelCasedSchema):
+class LogEventCreationDtoSchema(CamelCasedSchema):
     message = fields.String()
     
     @post_load

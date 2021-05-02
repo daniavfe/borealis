@@ -43,7 +43,7 @@ class EventBusiness(object):
     def create_file_download_event(self, file_download_event_dto):
         self.__create_event__(EventType.Download.name, "")
 
-    def create_file_upload_progress_event(self, file_upload_progress_event_dto):
+    def create_file_upload_event(self, file_upload_progress_event_dto):
         self.__create_event__(EventType.UploadProgress.name, "")
 
     def __create_event__(self, event_type, details):

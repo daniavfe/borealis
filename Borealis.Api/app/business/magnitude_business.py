@@ -6,20 +6,23 @@ import math
 
 class MagnitudeBusiness:
 
+    # Obtiene el listado de magnitudes
     def get_magnitudes(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            None: Magnitude.id,
+            "id": PollutionMagnitude.id,
+            "name": PollutionMagnitude.name,
+            None: PollutionMagnitude.id
         }
-        order_by_field = order_by_switch.get(order_by, Magnitude.id)
+        order_by_field = order_by_switch.get(order_by, PollutionMagnitude.id)
 
         #get data
-        data = db.session.query(Magnitude)
+        data = db.session.query(PollutionMagnitude)
 
         #filter data
 
         #order data
-        if(order_by_descending):
+        if(order_by_descending == True):
             data = data.order_by(desc(order_by_field))
         else:
             data = data.order_by(order_by_field)
@@ -29,10 +32,25 @@ class MagnitudeBusiness:
         page_count = math.floor(data.count() / per_page);
         page = int(page) if (page != None and int(page) > 0 and int(page) <= page_count) else 1
 
-        data = data.offset(per_page*page-1).limit(per_page).all()
+        data = data.offset(per_page*(page-1)).limit(per_page).all()
 
-        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, data)
+        mappedData = list(map(lambda x: PollutionMagnitudeDto(x.id, x.name, x.formula, x.measurement_unit), data))
+        return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
+    def create_magnitude(self, magnitude_creation_dto):
+        # TODO: Comprobaciones
+        magnitude = PollutionMagnitude(magnitude_creation_dto.id,
+                                                 magnitude_creation_dto.name,
+                                                 magnitude_creation_dto.formula,
+                                                 magnitude_creation_dto.measurement_unit)
+        magnitude.save()
+        return magnitude.id
+
+    # De un listado de ids devuelve aquellas que no existen en base de datos
+    def magnitude_existence(self, magnitude_ids):
+        db_magnitude_ids = [item.id for item in db.session.query(PollutionMagnitude.id).filter(PollutionMagnitude.id.in_(magnitude_ids)).all()]
+        not_included_magnitudes = list(set([int(item) for item in magnitude_ids]).difference(set(db_magnitude_ids)))
+        return MagnitudeExistenceDto(not_included_magnitudes)
 
 
 magnitudeBusiness = MagnitudeBusiness()

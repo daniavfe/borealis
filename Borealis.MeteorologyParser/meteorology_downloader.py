@@ -35,14 +35,20 @@ class MeteorologyDownloader():
             print(f'File {path} unzipped')
         else:
             print(f'File {path} does not exist')
+    
+    def __create_directory__(self, path):
+        if not os.path.isdir(path):
+            try:
+                os.makedirs(path)
+            except:
+                print(f"Error while creating directory: {path}")
 
     def get_available_files(self):
         available_files = self.__get_file_list__()     
         for file in available_files:
             download_folder_path = os.path.join(self.__download_path__,  file['year'])
             download_path = os.path.join(download_folder_path, file['year']+'.txt')
-            if not os.path.exists(download_path):
-                os.mkdir(download_folder_path)
+            self.__create_directory__(download_folder_path)
             self.__download_file__(download_path, file['url'])
     
     #TODO: Get hourly data from server-> Check last file from database and download it and process it

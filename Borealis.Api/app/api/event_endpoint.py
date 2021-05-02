@@ -18,13 +18,33 @@ class EventListEndpoint(Resource):
         #Return json data
         return pfocollection_schema.dump(events, many=False)
 
-class EventLogCreationEndpoint(Resource):
+class LogEventCreationEndpoint(Resource):
     @staticmethod
     def post():
         #Instance schema
-        event_log_creation_dto_schema = EventLogCreationDtoSchema()
+        log_event_creation_dto_schema = LogEventCreationDtoSchema()
         #Parse json to dto
-        event_log_creation_dto = event_log_creation_dto_schema.loads(request.data)
+        log_event_creation_dto = log_event_creation_dto_schema.loads(request.data)
         #Create holiday
-        event_business.create_log_event(event_log_creation_dto)
+        event_business.create_log_event(log_event_creation_dto)
+
+class FileDownloadEventCreationEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        file_download_event_creation_dto_schema = FileDownloadEventCreationDtoSchema()
+        #Parse json to dto
+        file_download_event_creation_dto = file_download_event_creation_dto_schema.loads(request.data)
+        #Create holiday
+        event_business.create_file_download_event(file_download_event_creation_dto)
+
+class FileUploadEventCreationEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        file_upload_event_creation_dto_schema = FileUploadEventCreationDtoSchema()
+        #Parse json to dto
+        file_upload_event_creation_dto = file_upload_event_creation_dto_schema.loads(request.data)
+        #Create holiday
+        event_business.create_file_upload_event(file_upload_event_creation_dto)
 

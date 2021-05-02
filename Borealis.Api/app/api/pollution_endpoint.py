@@ -65,28 +65,6 @@ class PollutionStationCreationEndpoint(Resource):
         #Create station
         return pollution_business.create_station(pollution_station_creation_dto)
 
-class PollutionMagnitudeListEndpoint(Resource):
-    @staticmethod
-    def get():
-        #Get params from url
-        page, per_page, order_by, order_by_descending = QueryParamsHelper.get_paged_params(request)
-        #Get stations from business
-        magnitudes = pollution_business.get_magnitudes(page, per_page, order_by, order_by_descending)
-        #Instance schema
-        pfocollection_schema = get_pfo(PollutionMagnitudeDtoSchema)
-        #Return json data
-        return pfocollection_schema.dump(magnitudes, many=False)
-
-class PollutionMagnitudeCreationEndpoint(Resource):
-    @staticmethod
-    def post():
-        #Instance schema
-        pollution_magnitude_creation_dto_schema = PollutionMagnitudeCreationDtoSchema()
-        #Parse json to dto
-        pollution_magnitude_creation_dto = pollution_magnitude_creation_dto_schema.loads(request.data)
-        #Create magnitude
-        return pollution_business.create_magnitude(pollution_magnitude_creation_dto)
-
 class PollutionStationMagnitudeEndpoint(Resource):
     @staticmethod
     def post():

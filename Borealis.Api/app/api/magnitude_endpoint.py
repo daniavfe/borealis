@@ -1,0 +1,43 @@
+from flask import request
+from flask_restful import  Resource
+from ..schema import *
+from ..business import MagnitudeBusiness
+from .query_params_helper import QueryParamsHelper
+import json
+
+magnitude_business = MagnitudeBusiness()
+
+class MagnitudeListEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get params from url
+        page, per_page, order_by, order_by_descending = QueryParamsHelper.get_paged_params(request)
+        #Get stations from business
+        magnitudes = magnitude_business.get_magnitudes(page, per_page, order_by, order_by_descending)
+        #Instance schema
+        pfocollection_schema = get_pfo(PollutionMagnitudeDtoSchema)
+        #Return json data
+        return pfocollection_schema.dump(magnitudes, many=False)
+
+class MagnitudeCreationEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        pollution_magnitude_creation_dto_schema = PollutionMagnitudeCreationDtoSchema()
+        #Parse json to dto
+        pollution_magnitude_creation_dto = pollution_magnitude_creation_dto_schema.loads(request.data)
+        #Create magnitude
+        return magnitude_business.create_magnitude(pollution_magnitude_creation_dto)
+
+class MagnitudeExistenceEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get params from url
+        magnitude_ids = request.args.getlist('magnitude_ids')
+        #Get not found magnitude ids
+        magnitude_existence_dto = magnitude_business.magnitude_existence(magnitude_ids)
+        #Instance schema
+        magnitude_existence_dto_schema = MagnitudeExistenceDtoSchema()
+        #Return json data
+        return magnitude_existence_dto_schema.dump(magnitude_existence_dto, many=False)
+

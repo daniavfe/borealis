@@ -1,4 +1,5 @@
 from .density import *
+from .magnitude import *
 from .holiday import *
 from .pollution import *
 from .traffic import *

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 //Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,14 +16,15 @@ import { MagnitudeListComponent } from './components/magnitude-list-component/ma
 import { MagnitudeFormComponent } from './components/magnitude-form-component/magnitude-form.component';
 import { StationListComponent } from './components/station-list-component/station-list.component';
 import { StationFormComponent } from './components/station-form-component/station-form.component';
-
+import { EventListComponent } from './components/event-list-component/event-list.component';
+import { HolidayListComponent } from './components/holiday-list-component/holiday-list.component';
 
 //Services
 import { DensityService } from './services/density.service';
 import { MagnitudeService } from './services/magnitude.service';
-import { FormsModule } from '@angular/forms';
-import { EventListComponent } from './components/event-list-component/event-list.component';
-import { HolidayListComponent } from './components/holiday-list/holiday-list.component';
+import { StationService } from './services/station.service';
+import { HolidayService } from './services/holiday.service';
+import { EventService } from './services/event.service';
 
 
 @NgModule({
@@ -44,7 +46,13 @@ import { HolidayListComponent } from './components/holiday-list/holiday-list.com
         NgxChartsModule,
         AppRoutingModule
     ],
-    providers: [DensityService, MagnitudeService],
+    providers: [
+        DensityService, 
+        MagnitudeService, 
+        StationService, 
+        HolidayService, 
+        EventService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
