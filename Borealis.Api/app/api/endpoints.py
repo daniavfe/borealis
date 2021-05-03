@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api
-from .pollution_endpoint import *
+from .measurement_endpoint import *
+from .station_endpoint import *
 from .magnitude_endpoint import *
 from .density_endpoint import *
 from .holiday_endpoint import *
@@ -8,21 +9,26 @@ from .event_endpoint import *
 
 
 # Measurement endpoints
-pollution_blueprint = Blueprint('pollution_blueprint', __name__)
-pollution_api = Api(pollution_blueprint)
-pollution_api.add_resource(PollutionMeasurementListEndpoint, '/api/pollution/', endpoint='pollution_measurement_list_endpoint')
-pollution_api.add_resource(PollutionMeasurementCreationEndpoint, '/api/pollution/', endpoint='pollution_measurement_creation_endpoint')
-pollution_api.add_resource(PollutionMeasurementBatchCreationEndpoint, '/api/pollution/many/', endpoint='pollution_measurement_batch_creation_endpoint')
-pollution_api.add_resource(PollutionStationListEndpoint, '/api/pollution/station/', endpoint='pollution_station_list_endpoint')
-pollution_api.add_resource(PollutionStationCreationEndpoint, '/api/pollution/station/', endpoint='pollution_station_creation_endpoint')
-pollution_api.add_resource(PollutionStationMagnitudeEndpoint, '/api/pollution/station/assign/', endpoint='pollution_station_assign_endpoint')
+measurement_blueprint = Blueprint('measurement_blueprint', __name__)
+measurement_api = Api(measurement_blueprint)
+measurement_api.add_resource(MeasurementListEndpoint, '/api/measurement/', endpoint='measurement_list_endpoint')
+measurement_api.add_resource(MeasurementCreationEndpoint, '/api/measurement/', endpoint='measurement_creation_endpoint')
+measurement_api.add_resource(MeasurementBatchCreationEndpoint, '/api/measurement/many/', endpoint='measurement_batch_creation_endpoint')
+
+measurement_api.add_resource(PollutionStationMagnitudeEndpoint, '/api/pollution/station/assign/', endpoint='pollution_station_assign_endpoint')
+
+# Station endpoints
+station_blueprint = Blueprint('station_blueprint', __name__)
+station_api = Api(station_blueprint)
+station_api.add_resource(StationListEndpoint, '/api/station/', endpoint='tation_list_endpoint')
+station_api.add_resource(StationCreationEndpoint, '/api/station/', endpoint='station_creation_endpoint')
 
 #Magnitude endpoints
 magnitude_blueprint = Blueprint('magnitude_blueprint', __name__)
 magnitude_api = Api(magnitude_blueprint )
-magnitude_api.add_resource(MagnitudeListEndpoint, '/api/measurement/magnitude/', endpoint='measurement_magnitude_list_endpoint')
-magnitude_api.add_resource(MagnitudeCreationEndpoint, '/api/measurement/magnitude/', endpoint='measurement_magnitude_creation_endpoint')
-magnitude_api.add_resource(MagnitudeExistenceEndpoint, '/api/measurement/magnitude/existence', endpoint='measurement_magnitude_existence_endpoint')
+magnitude_api.add_resource(MagnitudeListEndpoint, '/api/magnitude/', endpoint='magnitude_list_endpoint')
+magnitude_api.add_resource(MagnitudeCreationEndpoint, '/api/magnitude/', endpoint='magnitude_creation_endpoint')
+magnitude_api.add_resource(MagnitudeExistenceEndpoint, '/api/magnitude/existence', endpoint='magnitude_existence_endpoint')
 
 # Density endpoints
 density_blueprint = Blueprint('density_blueprint', __name__)

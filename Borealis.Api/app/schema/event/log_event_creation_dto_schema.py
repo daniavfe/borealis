@@ -7,6 +7,6 @@ class LogEventCreationDtoSchema(CamelCasedSchema):
     
     @post_load
     def make(self, data, **kwargs):
-        return EventLogCreationDto(**data)
+        return LogEventCreationDto(**data)
 
 

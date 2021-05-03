@@ -13,6 +13,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Borealis.PollutionParser", 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Borealis.MeteorologyParser", "Borealis.MeteorologyParser\Borealis.MeteorologyParser.pyproj", "{69713CB0-64BC-4510-8712-368A7AE02CA1}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Borealis.Parser", "Borealis.Parser\Borealis.Parser.pyproj", "{481C9B63-35C3-4F7A-A121-54379E3D2094}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,8 @@ Global
 		{182319AB-A9BB-4DD8-A1A7-EDB1B23A5C9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69713CB0-64BC-4510-8712-368A7AE02CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69713CB0-64BC-4510-8712-368A7AE02CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{481C9B63-35C3-4F7A-A121-54379E3D2094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{481C9B63-35C3-4F7A-A121-54379E3D2094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

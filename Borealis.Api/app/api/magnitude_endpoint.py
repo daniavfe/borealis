@@ -15,7 +15,7 @@ class MagnitudeListEndpoint(Resource):
         #Get stations from business
         magnitudes = magnitude_business.get_magnitudes(page, per_page, order_by, order_by_descending)
         #Instance schema
-        pfocollection_schema = get_pfo(PollutionMagnitudeDtoSchema)
+        pfocollection_schema = get_pfo(MagnitudeDtoSchema)
         #Return json data
         return pfocollection_schema.dump(magnitudes, many=False)
 
@@ -23,11 +23,11 @@ class MagnitudeCreationEndpoint(Resource):
     @staticmethod
     def post():
         #Instance schema
-        pollution_magnitude_creation_dto_schema = PollutionMagnitudeCreationDtoSchema()
+        magnitude_creation_dto_schema = MagnitudeCreationDtoSchema()
         #Parse json to dto
-        pollution_magnitude_creation_dto = pollution_magnitude_creation_dto_schema.loads(request.data)
+        magnitude_creation_dto = magnitude_creation_dto_schema.loads(request.data)
         #Create magnitude
-        return magnitude_business.create_magnitude(pollution_magnitude_creation_dto)
+        return magnitude_business.create_magnitude(magnitude_creation_dto)
 
 class MagnitudeExistenceEndpoint(Resource):
     @staticmethod

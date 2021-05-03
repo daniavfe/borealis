@@ -55,7 +55,8 @@ class DensityBusiness:
         data = db.session.query(Neighborhood)
 
         #filter data
-        data = data.filter(Neighborhood.district_id == district_id)
+        if district_id != None:
+            data = data.filter(Neighborhood.district_id == district_id)
 
         #order data
         if(order_by_descending):

@@ -20,8 +20,9 @@ def create_app():
     app.url_map.strict_slashes = False
     
     #Api Blueprints
-    app.register_blueprint(pollution_blueprint)
+    app.register_blueprint(measurement_blueprint)
     app.register_blueprint(magnitude_blueprint)
+    app.register_blueprint(station_blueprint)
     app.register_blueprint(density_blueprint)
     app.register_blueprint(holiday_blueprint)
     app.register_blueprint(weather_blueprint)

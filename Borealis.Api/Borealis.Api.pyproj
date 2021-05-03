@@ -44,8 +44,11 @@
     <Compile Include="app\api\magnitude_endpoint.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\api\pollution_endpoint.py" />
+    <Compile Include="app\api\measurement_endpoint.py" />
     <Compile Include="app\api\query_params_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\api\station_endpoint.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\api\__init__.py" />
@@ -59,7 +62,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\business\magnitude_business.py" />
-    <Compile Include="app\business\pollution_business.py" />
+    <Compile Include="app\business\measurement_business.py" />
+    <Compile Include="app\business\station_business.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\business\__init__.py" />
     <Compile Include="app\common\__init__.py" />
     <Compile Include="app\configuration\development.py" />
@@ -122,27 +128,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\pfo_collection_dto.py" />
-    <Compile Include="app\dto\pollution\pollution_batch_creation_result_dto.py">
+    <Compile Include="app\dto\measurement\measurement_batch_creation_result_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\pollution\pollution_magnitude_creation_dto.py">
+    <Compile Include="app\dto\magnitude\magnitude_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\pollution\pollution_magnitude_dto.py">
+    <Compile Include="app\dto\magnitude\magnitude_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\pollution\pollution_measurement_creation_dto.py">
+    <Compile Include="app\dto\measurement\measurement_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\pollution\pollution_measurement_dto.py">
+    <Compile Include="app\dto\measurement\measurement_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\pollution\pollution_station_magnitude_creation_dto.py" />
-    <Compile Include="app\dto\pollution\pollution_station_creation_dto.py" />
-    <Compile Include="app\dto\pollution\pollution_station_dto.py">
+    <Compile Include="app\dto\measurement\pollution_station_magnitude_creation_dto.py" />
+    <Compile Include="app\dto\station\station_creation_dto.py" />
+    <Compile Include="app\dto\station\station_dto.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\pollution\__init__.py" />
+    <Compile Include="app\dto\measurement\__init__.py" />
+    <Compile Include="app\dto\station\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\dto\traffic\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -167,13 +176,13 @@
     <Compile Include="app\model\holiday_scope.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\model\pollution_magnitude.py" />
+    <Compile Include="app\model\magnitude.py" />
     <Compile Include="app\model\neighborhood.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\model\pollution_measurement.py" />
-    <Compile Include="app\model\pollution_station.py" />
-    <Compile Include="app\model\pollution_station_magnitude.py">
+    <Compile Include="app\model\measurement.py" />
+    <Compile Include="app\model\station.py" />
+    <Compile Include="app\model\station_magnitude.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\model\__init__.py" />
@@ -226,28 +235,31 @@
     <Compile Include="app\schema\magnitude\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_batch_creation_result_dto_schema.py">
+    <Compile Include="app\schema\measurement\measurement_batch_creation_result_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_magnitude_creation_dto_schema.py">
+    <Compile Include="app\schema\magnitude\magnitude_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_station_magnitude_creation_dto_schema.py">
+    <Compile Include="app\schema\measurement\pollution_station_magnitude_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\__init__.py">
+    <Compile Include="app\schema\measurement\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_magnitude_dto_schema.py" />
-    <Compile Include="app\schema\pollution\pollution_measurement_creation_dto_schema.py">
+    <Compile Include="app\schema\magnitude\magnitude_dto_schema.py" />
+    <Compile Include="app\schema\measurement\measurement_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_measurement_dto_schema.py" />
+    <Compile Include="app\schema\measurement\measurement_dto_schema.py" />
     <Compile Include="app\schema\pfo_collection_dto_schema.py" />
-    <Compile Include="app\schema\pollution\pollution_station_creation_dto_schema.py">
+    <Compile Include="app\schema\station\station_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\pollution\pollution_station_dto_schema.py">
+    <Compile Include="app\schema\station\station_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\station\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\traffic\__init__.py">
@@ -275,7 +287,8 @@
     <Folder Include="app\dto\event\" />
     <Folder Include="app\dto\holiday\" />
     <Folder Include="app\dto\magnitude\" />
-    <Folder Include="app\dto\pollution\" />
+    <Folder Include="app\dto\measurement\" />
+    <Folder Include="app\dto\station\" />
     <Folder Include="app\dto\traffic\" />
     <Folder Include="app\dto\weather\" />
     <Folder Include="app\model\" />
@@ -284,7 +297,8 @@
     <Folder Include="app\schema\event\" />
     <Folder Include="app\schema\holiday\" />
     <Folder Include="app\schema\magnitude\" />
-    <Folder Include="app\schema\pollution\" />
+    <Folder Include="app\schema\measurement\" />
+    <Folder Include="app\schema\station\" />
     <Folder Include="app\schema\traffic\" />
     <Folder Include="app\schema\weather\" />
   </ItemGroup>

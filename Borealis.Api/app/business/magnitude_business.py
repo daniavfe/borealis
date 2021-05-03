@@ -1,6 +1,6 @@
 from ..extension import db
 from ..dto import *
-from ..model import PollutionMagnitude
+from ..model import Magnitude
 from sqlalchemy import desc
 import math
 
@@ -10,14 +10,14 @@ class MagnitudeBusiness:
     def get_magnitudes(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            "id": PollutionMagnitude.id,
-            "name": PollutionMagnitude.name,
-            None: PollutionMagnitude.id
+            "id": Magnitude.id,
+            "name": Magnitude.name,
+            None: Magnitude.id
         }
-        order_by_field = order_by_switch.get(order_by, PollutionMagnitude.id)
+        order_by_field = order_by_switch.get(order_by, Magnitude.id)
 
         #get data
-        data = db.session.query(PollutionMagnitude)
+        data = db.session.query(Magnitude)
 
         #filter data
 
@@ -34,15 +34,15 @@ class MagnitudeBusiness:
 
         data = data.offset(per_page*(page-1)).limit(per_page).all()
 
-        mappedData = list(map(lambda x: PollutionMagnitudeDto(x.id, x.name, x.formula, x.measurement_unit), data))
+        mappedData = list(map(lambda x: MagnitudeDto(x.id, x.name, x.formula, x.measurement_unit), data))
         return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
     def create_magnitude(self, magnitude_creation_dto):
         # TODO: Comprobaciones
-        magnitude = PollutionMagnitude(magnitude_creation_dto.id,
-                                                 magnitude_creation_dto.name,
-                                                 magnitude_creation_dto.formula,
-                                                 magnitude_creation_dto.measurement_unit)
+        magnitude = Magnitude(magnitude_creation_dto.id,
+                                    magnitude_creation_dto.name,
+                                    magnitude_creation_dto.formula,
+                                    magnitude_creation_dto.measurement_unit)
         magnitude.save()
         return magnitude.id
 
