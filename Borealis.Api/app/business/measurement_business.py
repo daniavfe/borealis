@@ -53,23 +53,29 @@ class MeasurementBusiness:
 
     def create_measurements_in_batch(self, measurement_creation_dto_list):
         
-        items_not_created_positions = []
-        index = 0
-        for measurement_creation_dto in measurement_creation_dto_list:
-            measurement = Measurement(measurement_creation_dto.town_id,
-                                            measurement_creation_dto.datetime, 
-                                            measurement_creation_dto.station_id, 
-                                            measurement_creation_dto.magnitude_id, 
-                                            measurement_creation_dto.data, 
-                                            measurement_creation_dto.validation_code)
-            try:
-                measurement.save()
-            except exc.SQLAlchemyError:
-                items_not_created_positions.append(index)
+        #items_not_created_positions = []
+        #index = 0
+        #for measurement_creation_dto in measurement_creation_dto_list:
+        #    measurement = Measurement(measurement_creation_dto.town_id,
+        #                                    measurement_creation_dto.datetime, 
+        #                                    measurement_creation_dto.station_id, 
+        #                                    measurement_creation_dto.magnitude_id, 
+        #                                    measurement_creation_dto.data, 
+        #                                    measurement_creation_dto.validation_code)
+        #    try:
+        #        measurement.save()
+        #    except exc.SQLAlchemyError:
+        #        items_not_created_positions.append(index)
 
-            index+=1
+        #    index+=1
 
-        return MeasurementBatchCreationResultDto(items_not_created_positions)
+        #return BatchCreationResultDto(items_not_created_positions)
+
+        data = list(map(lambda x: Measurement(x.town_id,x.datetime, x.station_id, x.magnitude_id, x.data, x.validation_code), measurement_creation_dto_list))
+
+        db.session.add_all(data)
+        db.session.commit()
+        return BatchCreationResultDto([])
 
     def assign_station_magnitude(self, station_magnitude_creation_dto):
         # TODO: Comprobaciones

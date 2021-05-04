@@ -46,6 +46,22 @@ class MagnitudeBusiness:
         magnitude.save()
         return magnitude.id
 
+    def create_magnitudes_in_batch(self, magnitude_creation_dto_list):
+        items_not_created_positions = []
+        index = 0
+        for magnitude_creation_dto in magnitude_creation_dto_list:
+            magnitude = Magnitude(magnitude_creation_dto.id,
+                                    magnitude_creation_dto.name,
+                                    magnitude_creation_dto.formula,
+                                    magnitude_creation_dto.measurement_unit)
+            try:
+                magnitude.save()
+            except exc.SQLAlchemyError:
+                items_not_created_positions.append(index)
+            index+=1
+
+        return BatchCreationResultDto(items_not_created_positions)
+
     # De un listado de ids devuelve aquellas que no existen en base de datos
     def magnitude_existence(self, magnitude_ids):
         db_magnitude_ids = [item.id for item in db.session.query(PollutionMagnitude.id).filter(PollutionMagnitude.id.in_(magnitude_ids)).all()]

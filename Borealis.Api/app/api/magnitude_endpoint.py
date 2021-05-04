@@ -29,6 +29,20 @@ class MagnitudeCreationEndpoint(Resource):
         #Create magnitude
         return magnitude_business.create_magnitude(magnitude_creation_dto)
 
+class MagnitudeBatchCreationEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        magnitude_creation_dto_schema = MagnitudeCreationDtoSchema()
+        #Parse json to dto
+        magnitude_creation_dto_list = magnitude_creation_dto_schema.loads(request.data, many=True)
+        #Create measurement
+        items_not_created = magnitude_business.create_magnitudes_in_batch(magnitude_creation_dto_list)
+        #Instance result schema
+        magnitude_batch_creation_result_dto_schema = BatchCreationResultDtoSchema()
+        #Return json data
+        return magnitude_batch_creation_result_dto_schema.dump(items_not_created, many=False)
+
 class MagnitudeExistenceEndpoint(Resource):
     @staticmethod
     def get():

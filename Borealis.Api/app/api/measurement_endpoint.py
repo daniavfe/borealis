@@ -39,7 +39,7 @@ class MeasurementBatchCreationEndpoint(Resource):
         #Create measurement
         items_not_created = measurement_business.create_measurements_in_batch(measurement_creation_dto_list)
         #Instance result schema
-        measurement_batch_creation_result_dto_schema = MeasurementBatchCreationResultDtoSchema()
+        measurement_batch_creation_result_dto_schema = BatchCreationResultDtoSchema()
         #Return json data
         return measurement_batch_creation_result_dto_schema.dump(items_not_created, many=False)
 

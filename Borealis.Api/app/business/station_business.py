@@ -46,3 +46,22 @@ class StationBusiness:
                                              station_creation_dto.altitude)
         station.save()
         return station.id
+
+    def create_stations_in_batch(self, station_creation_dto_list):
+        items_not_created_positions = []
+        index = 0
+        for station_creation_dto in station_creation_dto_list:
+            station = Station(station_creation_dto.id, 
+                                             station_creation_dto.name, 
+                                             station_creation_dto.address, 
+                                             station_creation_dto.start_date,
+                                             station_creation_dto.end_date,
+                                             station_creation_dto.latitude,
+                                             station_creation_dto.longitude,
+                                             station_creation_dto.altitude)
+            try:
+                station.save()
+            except exc.SQLAlchemyError:
+                items_not_created_positions.append(index)
+            index+=1
+        return BatchCreationResultDto(items_not_created_positions)

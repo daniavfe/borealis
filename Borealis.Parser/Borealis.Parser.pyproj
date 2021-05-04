@@ -23,9 +23,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="common\EventHelper.py">
+    <Compile Include="common\event_helper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="common\measurement_analyzer.py" />
     <Compile Include="common\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -41,15 +42,29 @@
     <Compile Include="density\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="holiday\holiday_downloader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="holiday\holiday_parser.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="meteorology\meteorology_downloader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="meteorology\meteorology_parser.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="meteorology\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="pollution\pollution_downloader.py" />
+    <Compile Include="pollution\pollution_parser.py" />
     <Compile Include="pollution\__init__.py">
       <SubType>Code</SubType>
     </Compile>

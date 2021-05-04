@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+from common import EventHelper
 import requests
 import csv
 import json
@@ -10,8 +11,8 @@ class DensityDownloader():
     def __init__(self, download_path):
         self.__main_page_url__ = 'http://www-2.munimadrid.es/TSE6/control/seleccionDatosBarrio'
         self.__density_data_url__ = 'http://www-2.munimadrid.es/TSE6/control/mostrarDatos'
-
         self.__download_path__ = download_path
+        self.__event_helper__ = EventHelper()
 
     def __get_districts_and_years__(self):
         response = requests.get(self.__main_page_url__)
@@ -60,7 +61,9 @@ class DensityDownloader():
             dict_writer.writeheader()
             dict_writer.writerows(data)
 
-        print(f'file created');
+        file_size = os.path.getsize(file_path)
+        self.__event_helper__.file_download_event(file_path, file_size)
+        print(f'file created {file_path} created');
 
     def download_density_file(self, years):
         district_list, year_list = self.__get_districts_and_years__()

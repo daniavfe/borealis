@@ -1,5 +1,4 @@
 from .measurement_creation_dto_schema import MeasurementCreationDtoSchema
 from .measurement_dto_schema import MeasurementDtoSchema
 from .pollution_station_magnitude_creation_dto_schema import PollutionStationMagnitudeCreationDtoSchema
-from .measurement_batch_creation_result_dto_schema import MeasurementBatchCreationResultDtoSchema
 

@@ -64,5 +64,3 @@ class DensityParser():
                     self.__insert_density__(year, month, district_id, neighborhood_id, value)
                     line_count+= 1
 
-    def __load_multiple(self, path):
-        return

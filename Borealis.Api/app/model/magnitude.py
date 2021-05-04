@@ -4,9 +4,9 @@ from .base_model import BaseModelMixin
 class Magnitude(db.Model, BaseModelMixin):
     __tablename__ = 'magnitudes'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    formula = db.Column(db.String(5), nullable=False)
-    measurement_unit = db.Column(db.String(10), nullable=False)
+    name = db.Column(db.String(100))
+    formula = db.Column(db.String(5))
+    measurement_unit = db.Column(db.String(10))
     
     measurements = db.relationship("Measurement", backref="magnitude")
     #stations = db.relationship('PollutionStationMagnitude',  back_populates="magnitudes")

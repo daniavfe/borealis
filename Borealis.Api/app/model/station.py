@@ -5,8 +5,8 @@ class Station(db.Model, BaseModelMixin):
     __tablename__ = 'stations'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    address = db.Column(db.String(200), nullable=False)
-    start_date = db.Column(db.DateTime, nullable=False)
+    address = db.Column(db.String(200))
+    start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
     latitude = db.Column(db.String(20))
     longitude = db.Column(db.String(20))

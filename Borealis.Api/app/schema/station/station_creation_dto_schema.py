@@ -5,7 +5,7 @@ from ..camel_cased_schema import CamelCasedSchema
 
 class StationCreationDtoSchema(CamelCasedSchema):
     id = fields.Integer()
-    name = fields.String()
+    name = fields.String(missing=None)
     address = fields.String(missing=None)
     start_date = fields.DateTime(missing=None)
     end_date = fields.DateTime(missing=None)
