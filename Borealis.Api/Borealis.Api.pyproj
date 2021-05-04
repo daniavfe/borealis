@@ -121,9 +121,10 @@
     <Compile Include="app\dto\holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\dto\magnitude\magnitude_existence_dto.py">
+    <Compile Include="app\dto\existence_dto.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\dto\magnitude\magnitude_update_dto.py" />
     <Compile Include="app\dto\magnitude\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -144,6 +145,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\measurement\pollution_station_magnitude_creation_dto.py" />
+    <Compile Include="app\dto\station\station_update_dto.py" />
     <Compile Include="app\dto\station\station_creation_dto.py" />
     <Compile Include="app\dto\station\station_dto.py">
       <SubType>Code</SubType>
@@ -229,9 +231,10 @@
     <Compile Include="app\schema\density\district_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\schema\magnitude\magnitude_existence_dto_schema.py">
+    <Compile Include="app\schema\existence_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\schema\magnitude\magnitude_update_dto_schema.py" />
     <Compile Include="app\schema\magnitude\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -253,6 +256,7 @@
     </Compile>
     <Compile Include="app\schema\measurement\measurement_dto_schema.py" />
     <Compile Include="app\schema\pfo_collection_dto_schema.py" />
+    <Compile Include="app\schema\station\station_update_dto_schema.py" />
     <Compile Include="app\schema\station\station_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>

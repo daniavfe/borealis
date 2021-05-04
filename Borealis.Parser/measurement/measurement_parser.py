@@ -6,10 +6,11 @@ import sys
 import os
 import threading
 import math
-from common import MeasurementAnalyzer
+from .measurement_analyzer import MeasurementAnalyzer
 
 
-class PollutionParser():
+
+class MeasurementParser():
 
     def __init__(self, section_size = 50, thread_number = 20):
         self.__base_uri__ = 'http://127.0.0.1:5000/api/'
@@ -31,8 +32,7 @@ class PollutionParser():
     def __insert_measurement__(self, datetime, magnitude_id, station_id, data, validation_code):
         payload = {"datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id,
                    "data": data, "validationCode": validation_code}
-        requests.post(self.__base_uri__+self.__measurement_endpoint__,
-        data=json.dumps(payload))
+        requests.post(self.__base_uri__+self.__measurement_endpoint__,data=json.dumps(payload))
 
     def __insert_accumulated_measurements__(self, measurements):
         #print(f'Inserted many {len(measurements)}')
@@ -64,6 +64,16 @@ class PollutionParser():
     def __create_magnitudes__(self, magnitudes):
         payload = list(map(lambda x: {"id":x}, magnitudes))
         requests.post(self.__base_uri__ + self.__magnitude_endpoint__ + '/many', data=json.dumps(payload))
+
+    def __station_existence__(self, stations):
+        params = '?ids='+'&ids='.join(stations)
+        response = json.loads(requests.get(self.__base_uri__ + self.__station_endpoint__ + '/existence'+params).content)
+        return response['ids'] 
+
+    def __magnitude_existence__(self, magnitudes):
+        params = '?ids='+'&ids='.join(magnitudes)
+        response = json.loads(requests.get(self.__base_uri__ + self.__magnitude_endpoint__ + '/existence'+params).content)
+        return response['ids'] 
 
     def load(self, file_path):
         file = open(file_path, 'r')
@@ -136,8 +146,10 @@ class PollutionParser():
         measurement_analyzer = MeasurementAnalyzer()
         stations, magnitudes = measurement_analyzer.analyze_file(file_path)
 
-        self.__create_stations__(list(stations));
-        self.__create_magnitudes__(list(magnitudes));
+        not_created_stations = self.__station_existence__(list(stations));
+        not_created_magnitudes = self.__magnitude_existence__(list(magnitudes));
+        self.__create_stations__(not_created_stations);
+        self.__create_magnitudes__(not_created_magnitudes);
 
         for index in range(0, self.__thread_number__):
             i = index
@@ -177,9 +189,9 @@ class PollutionParser():
                     for hour in range(0, 24):
                         index = 9 + (hour * 2)
                         data = float(component[index])
-                        validation_code = component[index + 1]
+                        validation_code = component[index + 1].strip()
                         measurement_datetime = date + timedelta(hours=hour + 1)
-                        accumulated_items_to_upload.append(self.__get_insertable_object__(measurement_datetime,magnitude_id,station_id, data, validation_code))
+                        accumulated_items_to_upload.append(self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code))
                 else:
                     town_id = int(line[2:5])
                     station_id = int(line[5:8])

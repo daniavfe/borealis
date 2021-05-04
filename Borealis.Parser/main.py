@@ -2,6 +2,7 @@ from density import *
 from holiday import *
 from meteorology import *
 from pollution import *
+from measurement import *
 from common import *
 
 #Carga inicial de densidades
@@ -34,8 +35,8 @@ from common import *
 #pollution_downloader = PollutionDownloader('https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default', 'data/measurements');
 #pollution_downloader.get_available_files()
 
-pollution_parser = PollutionParser(20, 30)
-pollution_parser.load_with_parallelism('data/measurements/2001/Ene_mo01.txt')
+measurement_parser = MeasurementParser(20, 30)
+measurement_parser.load_with_parallelism('data/measurements/2020/abr_mo20.txt')
 
 #Análisis de measurements
 

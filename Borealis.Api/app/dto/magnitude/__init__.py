@@ -1,3 +1,3 @@
-from .magnitude_existence_dto import MagnitudeExistenceDto
 from .magnitude_creation_dto import MagnitudeCreationDto
+from .magnitude_update_dto import MagnitudeUpdateDto
 from .magnitude_dto import MagnitudeDto

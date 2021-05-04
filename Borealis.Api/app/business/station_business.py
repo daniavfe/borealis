@@ -1,7 +1,7 @@
 from ..extension import db
 from ..dto import *
 from ..model import Station
-from sqlalchemy import desc
+from sqlalchemy import desc, exc
 import math
 
 class StationBusiness:
@@ -47,9 +47,30 @@ class StationBusiness:
         station.save()
         return station.id
 
+    def update_station(self, station_id, station_update_dto):
+        station = db.session.query(Station).filter(Station.id == station_id).one()
+
+        if station_update_dto.name != None:
+            station.name = station_update_dto.name
+        if station_update_dto.address != None:
+            station.address = station_update_dto.address
+        if station_update_dto.start_date != None:
+            station.start_date = station_update_dto.start_date
+        if station_update_dto.end_date != None:
+            station.end_date = station_update_dto.end_date
+        if station_update_dto.latitude != None:
+            station.latitude = station_update_dto.latitude
+        if station_update_dto.longitude != None:
+            station.longitude = station_update_dto.longitude
+        if station_update_dto.longitude != None:
+            station.altitude = station_update_dto.altitude
+
+        station.save()
+
     def create_stations_in_batch(self, station_creation_dto_list):
         items_not_created_positions = []
         index = 0
+
         for station_creation_dto in station_creation_dto_list:
             station = Station(station_creation_dto.id, 
                                              station_creation_dto.name, 
@@ -65,3 +86,8 @@ class StationBusiness:
                 items_not_created_positions.append(index)
             index+=1
         return BatchCreationResultDto(items_not_created_positions)
+
+    def station_existence(self, station_ids):
+        db_station_ids = [item.id for item in db.session.query(Station.id).filter(Station.id.in_(station_ids)).all()]
+        not_included_stations = list(set([int(item) for item in station_ids]).difference(set(db_station_ids)))
+        return ExistenceDto(not_included_stations)

@@ -22,15 +22,18 @@ station_blueprint = Blueprint('station_blueprint', __name__)
 station_api = Api(station_blueprint)
 station_api.add_resource(StationListEndpoint, '/api/station/', endpoint='tation_list_endpoint')
 station_api.add_resource(StationCreationEndpoint, '/api/station/', endpoint='station_creation_endpoint')
+station_api.add_resource(StationUpdateEndpoint, '/api/station/', endpoint='station_update_endpoint')
 station_api.add_resource(StationBatchCreationEndpoint, '/api/station/many/', endpoint='station_batch_creation_endpoint')
+station_api.add_resource(StationExistenceEndpoint, '/api/station/existence/', endpoint='station_existence_endpoint')
 
 #Magnitude endpoints
 magnitude_blueprint = Blueprint('magnitude_blueprint', __name__)
 magnitude_api = Api(magnitude_blueprint )
 magnitude_api.add_resource(MagnitudeListEndpoint, '/api/magnitude/', endpoint='magnitude_list_endpoint')
 magnitude_api.add_resource(MagnitudeCreationEndpoint, '/api/magnitude/', endpoint='magnitude_creation_endpoint')
+magnitude_api.add_resource(MagnitudeUpdateEndpoint, '/api/magnitude/', endpoint='magnitude_update_endpoint')
 magnitude_api.add_resource(MagnitudeBatchCreationEndpoint, '/api/magnitude/many/', endpoint='magnitude_batch_creation_endpoint')
-magnitude_api.add_resource(MagnitudeExistenceEndpoint, '/api/magnitude/existence', endpoint='magnitude_existence_endpoint')
+magnitude_api.add_resource(MagnitudeExistenceEndpoint, '/api/magnitude/existence/', endpoint='magnitude_existence_endpoint')
 
 # Density endpoints
 density_blueprint = Blueprint('density_blueprint', __name__)

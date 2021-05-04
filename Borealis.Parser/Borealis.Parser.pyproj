@@ -26,7 +26,7 @@
     <Compile Include="common\event_helper.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="common\measurement_analyzer.py" />
+    <Compile Include="measurement\measurement_analyzer.py" />
     <Compile Include="common\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -54,17 +54,17 @@
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="meteorology\meteorology_downloader.py">
+    <Compile Include="measurement\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="meteorology\meteorology_parser.py">
+    <Compile Include="meteorology\meteorology_downloader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="meteorology\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pollution\pollution_downloader.py" />
-    <Compile Include="pollution\pollution_parser.py" />
+    <Compile Include="measurement\measurement_parser.py" />
     <Compile Include="pollution\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -73,6 +73,7 @@
     <Folder Include="common\" />
     <Folder Include="density\" />
     <Folder Include="holiday\" />
+    <Folder Include="measurement\" />
     <Folder Include="meteorology\" />
     <Folder Include="pollution\" />
   </ItemGroup>

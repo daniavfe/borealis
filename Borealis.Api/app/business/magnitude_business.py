@@ -1,7 +1,7 @@
 from ..extension import db
 from ..dto import *
 from ..model import Magnitude
-from sqlalchemy import desc
+from sqlalchemy import desc, exc
 import math
 
 class MagnitudeBusiness:
@@ -46,6 +46,18 @@ class MagnitudeBusiness:
         magnitude.save()
         return magnitude.id
 
+    def update_magnitude(self, magnitude_id, magnitude_update_dto):
+        magnitude = db.session.query(Magnitude).filter(Magnitude.id == magnitude_id).one()
+
+        if magnitude_update_dto.name != None:
+            magnitude.name = magnitude_update_dto.name
+        if magnitude_update_dto.formula != None:
+            magnitude.formula = magnitude_update_dto.formula
+        if magnitude_update_dto.measurement_unit != None:
+            magnitude.measurement_unit = magnitude_update_dto.measurement_unit
+
+        magnitude.save()
+
     def create_magnitudes_in_batch(self, magnitude_creation_dto_list):
         items_not_created_positions = []
         index = 0
@@ -64,9 +76,9 @@ class MagnitudeBusiness:
 
     # De un listado de ids devuelve aquellas que no existen en base de datos
     def magnitude_existence(self, magnitude_ids):
-        db_magnitude_ids = [item.id for item in db.session.query(PollutionMagnitude.id).filter(PollutionMagnitude.id.in_(magnitude_ids)).all()]
+        db_magnitude_ids = [item.id for item in db.session.query(Magnitude.id).filter(Magnitude.id.in_(magnitude_ids)).all()]
         not_included_magnitudes = list(set([int(item) for item in magnitude_ids]).difference(set(db_magnitude_ids)))
-        return MagnitudeExistenceDto(not_included_magnitudes)
+        return ExistenceDto(not_included_magnitudes)
 
 
 magnitudeBusiness = MagnitudeBusiness()

@@ -1,3 +1,3 @@
-from .magnitude_existence_dto_schema import MagnitudeExistenceDtoSchema
 from .magnitude_creation_dto_schema import MagnitudeCreationDtoSchema
+from .magnitude_update_dto_schema import MagnitudeUpdateDtoSchema
 from .magnitude_dto_schema import MagnitudeDtoSchema

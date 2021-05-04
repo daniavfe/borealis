@@ -8,3 +8,4 @@ from .weather import *
 from .event import *
 from .pfo_collection_dto import PFOCollectionDto
 from .batch_creation_result_dto import BatchCreationResultDto
+from .existence_dto import ExistenceDto

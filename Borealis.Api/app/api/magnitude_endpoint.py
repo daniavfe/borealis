@@ -29,6 +29,18 @@ class MagnitudeCreationEndpoint(Resource):
         #Create magnitude
         return magnitude_business.create_magnitude(magnitude_creation_dto)
 
+class MagnitudeUpdateEndpoint(Resource):
+    @staticmethod
+    def put():
+        #Get params from url
+        magnitude_id = request.args.getlist('id')
+        #Instance schema
+        magnitude_update_dto_schema = MagnitudeUpdateDtoSchema()
+        #Parse json to dto
+        magnitude_update_dto = magnitude_update_dto_schema.loads(request.data)
+        #Create station
+        return magnitude_business.update_magnitude(magnitude_id, magnitude_update_dto)
+
 class MagnitudeBatchCreationEndpoint(Resource):
     @staticmethod
     def post():
@@ -47,11 +59,11 @@ class MagnitudeExistenceEndpoint(Resource):
     @staticmethod
     def get():
         #Get params from url
-        magnitude_ids = request.args.getlist('magnitude_ids')
+        magnitude_ids = request.args.getlist('ids')
         #Get not found magnitude ids
         magnitude_existence_dto = magnitude_business.magnitude_existence(magnitude_ids)
         #Instance schema
-        magnitude_existence_dto_schema = MagnitudeExistenceDtoSchema()
+        magnitude_existence_dto_schema = ExistenceDtoSchema()
         #Return json data
         return magnitude_existence_dto_schema.dump(magnitude_existence_dto, many=False)
 

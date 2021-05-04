@@ -29,6 +29,18 @@ class StationCreationEndpoint(Resource):
         #Create station
         return station_business.create_station(station_creation_dto)
 
+class StationUpdateEndpoint(Resource):
+    @staticmethod
+    def put():
+        #Get params from url
+        station_id = request.args.getlist('id')
+        #Instance schema
+        station_update_dto_schema = StationUpdateDtoSchema()
+        #Parse json to dto
+        station_update_dto = station_update_dto_schema.loads(request.data)
+        #Create station
+        return station_business.update_station(station_id, station_update_dto)
+
 class StationBatchCreationEndpoint(Resource):
     @staticmethod
     def post():
@@ -42,3 +54,15 @@ class StationBatchCreationEndpoint(Resource):
         batch_creation_result_dto_schema = BatchCreationResultDtoSchema()
         #Return json data
         return batch_creation_result_dto_schema.dump(items_not_created, many=False)
+
+class StationExistenceEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get params from url
+        station_ids = request.args.getlist('ids')
+        #Get not found magnitude ids
+        station_existence_dto = station_business.station_existence(station_ids)
+        #Instance schema
+        station_existence_dto_schema = ExistenceDtoSchema()
+        #Return json data
+        return station_existence_dto_schema.dump(station_existence_dto, many=False)

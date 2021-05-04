@@ -1,2 +1,3 @@
 from .station_creation_dto_schema import StationCreationDtoSchema
+from .station_update_dto_schema import StationUpdateDtoSchema
 from .station_dto_schema import StationDtoSchema
