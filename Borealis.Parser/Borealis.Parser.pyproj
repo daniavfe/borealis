@@ -101,6 +101,9 @@
     </Compile>
     <Compile Include="pollution\pollution_downloader.py" />
     <Compile Include="measurement\measurement_parser.py" />
+    <Compile Include="pollution\pollution_initital_load.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pollution\__init__.py">
       <SubType>Code</SubType>
     </Compile>
