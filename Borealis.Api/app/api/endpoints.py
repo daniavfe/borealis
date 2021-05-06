@@ -6,6 +6,7 @@ from .magnitude_endpoint import *
 from .density_endpoint import *
 from .holiday_endpoint import *
 from .event_endpoint import *
+from .report_endpoint import *
 
 
 # Measurement endpoints
@@ -67,3 +68,8 @@ event_api.add_resource(EventListEndpoint, '/api/event/', endpoint='event_list_en
 event_api.add_resource(LogEventCreationEndpoint, '/api/event/log/', endpoint='log_event_creation_endpoint')
 event_api.add_resource(FileDownloadEventCreationEndpoint, '/api/event/filedownload/', endpoint='file_download_event_creation_endpoint')
 event_api.add_resource(FileUploadEventCreationEndpoint, '/api/event/fileupload/', endpoint='file_upload_event_creation_endpoint')
+
+#Report
+report_blueprint = Blueprint('report_blueprint', __name__)
+report_api = Api(report_blueprint)
+report_api.add_resource(ReportCreationEndpoint, '/api/report/', endpoint='report_endpoint')

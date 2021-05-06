@@ -14,14 +14,14 @@ export class MagnitudeService {
     constructor(private http: HttpClient) { }
 
     public createMagnitudeFromParams(id: number, name: string, formula: string, measurementUnit: string): Observable<number> {
-        return this.http.post<number>('api/pollution/magnitude/', { id: id, name: name, formula: formula, measurementUnit: measurementUnit });
+        return this.http.post<number>('api/magnitude/', { id: id, name: name, formula: formula, measurementUnit: measurementUnit });
     }
     public createMagnitude(magnitude: Magnitude): Observable<number> {
-        return this.http.post<number>('api/pollution/magnitude/', magnitude);
+        return this.http.post<number>('api/magnitude/', magnitude);
     }
 
     public getMagnitudes(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollection<Magnitude>> {
         const params = HttpHelper.createQueryParams({page:page,perPage:perPage,orderBy:orderBy, orderByDescending:orderByDescending});  
-        return this.http.get<PFOCollection<Magnitude>>('api/pollution/magnitude',{params});
+        return this.http.get<PFOCollection<Magnitude>>('api/magnitude',{params});
     }
 }

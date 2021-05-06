@@ -5,6 +5,7 @@ import { DensityComponent } from '../components/density-component/density.compon
 import { EventListComponent } from '../components/event-list-component/event-list.component';
 import { HolidayListComponent } from '../components/holiday-list-component/holiday-list.component';
 import { MagnitudeListComponent } from '../components/magnitude-list-component/magnitude-list.component';
+import { ReportComponent } from '../components/report-component/report.component';
 import { StationListComponent } from '../components/station-list-component/station-list.component';
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'event/list', component: EventListComponent },
     { path: 'holiday/list', component: HolidayListComponent },
     { path: 'density', component: DensityComponent },
+    { path: 'report', component: ReportComponent },
     { path: '', redirectTo: '/magnitude/list', pathMatch: 'full' },
 ];
 

@@ -1,3 +1,4 @@
+from configuration import MeteorologyConfiguration
 from bs4 import BeautifulSoup
 import requests
 import csv
@@ -8,9 +9,9 @@ import os
 
 class MeteorologyDownloader():
 
-    def __init__(self, page_url, download_path):
-        self.__page_url__ = page_url
-        self.__download_path__ = download_path
+    def __init__(self, meteorology_configuration:MeteorologyConfiguration)->None:
+        self.__main_page_url__ :str = meteorology_configuration.main_page_url
+        self.__download_path__ :str= meteorology_configuration.download_path
 
     def __download_file__(self, path, url):
         print(f'Downloading file {url}')
@@ -19,12 +20,17 @@ class MeteorologyDownloader():
         print(f'File {url} dopwnloaded')
 
     def __get_file_list__(self):
-        response = requests.get(self.__page_url__)
+        response = requests.get(self.__main_page_url__)
         soup = BeautifulSoup(response.content, 'html.parser')
         file_list = soup.find(class_="asociada-list")
-        #lista = list(map(lambda x: {'year':x.p.text, 'url':'https://datos.madrid.es/'+x.a['href']}, file_list))
-        lista = list(map(lambda x: {'year':x.p.text, 'url':'https://datos.madrid.es/'+x.find_all('a', href=True)[1]['href']}, file_list))
-        return lista;
+        files = list()
+        for year_section in file_list:
+            year = year_section.p.text
+            for month_section in year_section.ul:
+                month = month_section.p.text
+                file = month_section.find_all('a', href=True)[1]
+                files.append({'year':year, 'month':month, 'url':'https://datos.madrid.es/'+file['href']})
+        return files;
 
     def __unzip_file__(self, path):
         print(f'Unzipping file {path}')
@@ -47,7 +53,7 @@ class MeteorologyDownloader():
         available_files = self.__get_file_list__()     
         for file in available_files:
             download_folder_path = os.path.join(self.__download_path__,  file['year'])
-            download_path = os.path.join(download_folder_path, file['year']+'.txt')
+            download_path = os.path.join(download_folder_path, file['month']+'.txt')
             self.__create_directory__(download_folder_path)
             self.__download_file__(download_path, file['url'])
 

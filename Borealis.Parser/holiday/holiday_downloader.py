@@ -1,3 +1,4 @@
+from configuration import HolidayConfiguration
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import requests
@@ -7,12 +8,12 @@ import os
 
 class HolidayDownloader():
     
-    def __init__(self, page_url, download_path):
-        self.__page_url__ = page_url
-        self.__download_path__ = download_path
+    def __init__(self, holiday_configuration:HolidayConfiguration)->None:
+        self.__main_page_url__ = holiday_configuration.main_page_url
+        self.__download_path__ = holiday_configuration.download_path
 
     def __get_file_list__(self):
-        response = requests.get(self.__page_url__)
+        response = requests.get(self.__main_page_url__)
         soup = BeautifulSoup(response.content, 'html.parser')
         item = soup.find(class_="asociada-list")
         #lista = list(map(lambda x: {'url':'https://datos.madrid.es/'+x.a['href']}, file_list))

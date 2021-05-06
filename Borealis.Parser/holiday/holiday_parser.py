@@ -1,20 +1,14 @@
+from client import ApiClient
 from datetime import datetime, timedelta
 import requests
 import csv
 import json
 
 class HolidayParser():
+    def __init__(self, api_client:ApiClient)->None:
+        self.__api_client__:ApiClient = api_client
 
-    def __init__(self):
-        self.__api_url__ = 'http://127.0.0.1:5000/api/'
-        self.__holiday_endpoint__ = 'holiday'
-
-    def __insert_holiday__(self, date, day_of_week, name, scope):
-        payload = {"date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope}
-        x = f'{self.__api_url__}{self.__holiday_endpoint__}'
-        requests.post(f'{self.__api_url__}{self.__holiday_endpoint__}', data=json.dumps(payload))
-
-    def load_file(self, path):
+    def upload_file(self, path):
         with open(path) as input_file:
             csv_reader = csv.reader(input_file, delimiter=';')
             line_count = 0
@@ -45,6 +39,6 @@ class HolidayParser():
                     scope = scope_switch.get(row[3], '')   
                     date = datetime.strptime(row[0], '%d/%m/%Y').strftime('%Y-%m-%d %H:%M:%S')
                     if(scope != ''):
-                        self.__insert_holiday__(date, day_of_week,row[4], scope)
+                        self.__api_client__.create_holiday(date, day_of_week,row[4], scope)
                     line_count += 1
         print(f'Done')

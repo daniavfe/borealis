@@ -2,6 +2,15 @@
     <li *ngFor="let magnitude of magnitudes">{{magnitude.id}} {{magnitude.name}} {{magnitude.formula}} {{magnitude.measurementUnit}}</li>
 </ul>
 
+<div *ngFor="let magnitude of magnitudes">
+    <input type="number" placeholder="id" [(ngModel)]="magnitude.id" />
+    <input type="text" placeholder="name" [(ngModel)]="magnitude.name" />
+    <input type="text" placeholder="formula" [(ngModel)]="magnitude.formula" />
+    <input type="text" placeholder="measurement unit" [(ngModel)]="magnitude.measurementUnit" />
+    <button (click)="updateMagnitude()"></button>
+</div>
+
+<h2>Crear nuevo</h2>
 <magnitude-form></magnitude-form>
 
 

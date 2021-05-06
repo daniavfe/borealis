@@ -23,7 +23,40 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="client\api_client.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="client\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="common\event_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="configuration\api_configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="configuration\configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="configuration\density_configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="configuration\holiday_configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="configuration\meteorology_configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="configuration\pollution_configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="configuration\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="density\density_initial_load.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="holiday\holiday_initial_load.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="measurement\measurement_analyzer.py" />
@@ -60,6 +93,9 @@
     <Compile Include="meteorology\meteorology_downloader.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="meteorology\meteorology_initial_load.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="meteorology\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -70,7 +106,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="client\" />
     <Folder Include="common\" />
+    <Folder Include="configuration\" />
     <Folder Include="density\" />
     <Folder Include="holiday\" />
     <Folder Include="measurement\" />
@@ -78,6 +116,7 @@
     <Folder Include="pollution\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="configuration.development.json" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>

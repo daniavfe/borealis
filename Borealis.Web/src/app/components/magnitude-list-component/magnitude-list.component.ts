@@ -29,4 +29,8 @@ export class MagnitudeListComponent implements OnInit {
         );
     }
 
+    uploadMagnitude(magnitude):void{
+
+    }
+
 }

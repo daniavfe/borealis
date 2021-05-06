@@ -5,6 +5,7 @@ from .holiday import *
 from .measurement import *
 from .weather import * 
 from .event import *
+from .report import *
 from .pfo_collection_dto_schema import get_pfo
 from .batch_creation_result_dto_schema import BatchCreationResultDtoSchema
 from .existence_dto_schema import ExistenceDtoSchema

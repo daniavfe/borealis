@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { StationService } from 'src/app/services/station.service';
 import { Station } from 'src/app/types/station/station';
+import { StationUpdate } from 'src/app/types/station/stationUpdate';
 
 @Component({
     selector: 'station-list',
@@ -20,7 +21,7 @@ export class StationListComponent implements OnInit {
     }
 
     loadStations(): void {
-        this.stationService.getStations(1, 10, "id", false).subscribe(
+        this.stationService.getStations(1, 50, "id", false).subscribe(
             res => {
                 this.zone.run(
                     () => {
@@ -29,6 +30,13 @@ export class StationListComponent implements OnInit {
                 )
             }
         );
+    }
+
+    updateStation(station):void{
+        const uploadStation = new StationUpdate(station?.name, station?.address, station?.startDate, station?.endDate, station?.latitude, station?.longitude, station?.altitude);
+        this.stationService.updateStation(station.id, uploadStation).subscribe(res =>{
+            console.log("updated");
+        });
     }
 
 }

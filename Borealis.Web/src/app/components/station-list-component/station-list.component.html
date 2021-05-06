@@ -1,7 +1,17 @@
 <div>
-    <ul>
-        <li *ngFor="let station of stations">{{station.name}}</li>
-    </ul>
+    <div *ngFor="let station of stations">
+        <span>{{station.id}}</span>
+        <input type="text" placeholder="name"  [(ngModel)]="station.name">
+        <input type="text" placeholder="address"  [(ngModel)]="station.address">
+        <input type="datetime-local" placeholder="start_date"  [(ngModel)]="station.startDate">
+        <input type="datetime-local" placeholder="end_date"  [(ngModel)]="station.endDate">
+        <input type="text" placeholder="latitude"  [(ngModel)]="station.latitude">
+        <input type="text" placeholder="longitude"  [(ngModel)]="station.longitude">
+        <input type="number" placeholder="altitude"  [(ngModel)]="station.altitude">
 
+        <button (click)="updateStation(station)">Update station</button>
+    </div>
+
+    <h2>Create station</h2>
     <station-form></station-form>
 </div>

@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from operator import itemgetter 
 import requests
 import json
 import sys
@@ -7,75 +6,30 @@ import os
 import threading
 import math
 from .measurement_analyzer import MeasurementAnalyzer
-
-
+from client import ApiClient
 
 class MeasurementParser():
 
-    def __init__(self, section_size = 50, thread_number = 20):
-        self.__base_uri__ = 'http://127.0.0.1:5000/api/'
-        self.__measurement_endpoint__ = 'measurement'
-        self.__station_endpoint__ = 'station'
-        self.__magnitude_endpoint__ = 'magnitude'
-
-        self.__section__index = 0
-        self.__file_content__ = None
-        self.__number_of_sections__ = None
-
-        self.__not_uploaded_lock = threading.Lock()
-        self.__not_uploaded_list = []
-
-        self.__section_lock__ = threading.Lock()
-        self.__section_size__ = section_size
-        self.__thread_number__ = thread_number
-
-    def __insert_measurement__(self, datetime, magnitude_id, station_id, data, validation_code):
-        payload = {"datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id,
-                   "data": data, "validationCode": validation_code}
-        requests.post(self.__base_uri__+self.__measurement_endpoint__,data=json.dumps(payload))
-
-    def __insert_accumulated_measurements__(self, measurements):
-        #print(f'Inserted many {len(measurements)}')
-        response = requests.post(self.__base_uri__ + self.__measurement_endpoint__ + '/many', data=json.dumps(measurements))
-        items_not_created = json.loads(response.content)['itemsNotCreatedPositions']
-
-        if len(items_not_created) > 0:
-            return itemgetter(*items_not_created)(measurements)
+    def __init__(self, api_client:ApiClient) -> None:
+        self.__api_client__ :ApiClient = api_client
         
-        return []
+        
 
-    def __get_insertable_object__(self, town_id, datetime, magnitude_id, station_id, data, validation_code):
+    def __get_insertable_object__(self, town_id:int, datetime:datetime, magnitude_id:int, station_id:int, data:float, validation_code:str):
         return {"townId": town_id, "datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id, "data": data, "validationCode": validation_code}
+    
+    def upload_all_files(self, path:str) -> None:
+        if not os.path.isdir(path):
+            print(f'Path {path} is not a directory')
+            return
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if file.endswith(".txt"):
+                    self.load_with_parallelism(os.path.join(root, file))
+                    print(f'{root} {file}')
 
-    def __write_not_inserted_items__(self, not_inserted_measurements, path):
-        file = open(path, "w")
-        data = json.dump(not_inserted_measurements)
-        file.write(data)
-        file.close()
-
-    def __complete_upload__(self, file, name, year, month):
-        print(f'Upload completed')
-        #insertar evento que terminó la subida de x fichero
-
-    def __create_stations__(self, stations):
-        payload = list(map(lambda x: {"id":x}, stations))
-        requests.post(self.__base_uri__ + self.__station_endpoint__ + '/many', data=json.dumps(payload))
-
-    def __create_magnitudes__(self, magnitudes):
-        payload = list(map(lambda x: {"id":x}, magnitudes))
-        requests.post(self.__base_uri__ + self.__magnitude_endpoint__ + '/many', data=json.dumps(payload))
-
-    def __station_existence__(self, stations):
-        params = '?ids='+'&ids='.join(stations)
-        response = json.loads(requests.get(self.__base_uri__ + self.__station_endpoint__ + '/existence'+params).content)
-        return response['ids'] 
-
-    def __magnitude_existence__(self, magnitudes):
-        params = '?ids='+'&ids='.join(magnitudes)
-        response = json.loads(requests.get(self.__base_uri__ + self.__magnitude_endpoint__ + '/existence'+params).content)
-        return response['ids'] 
-
-    def load(self, file_path):
+    # Deprecated
+    def load(self, file_path:str) -> None:
         file = open(file_path, 'r')
         content = file.readlines()
         number_of_items = len(content)
@@ -130,26 +84,32 @@ class MeasurementParser():
         if len(accumulated_items_to_upload) > 0:
           items_not_uploaded.extend(self.__insert_accumulated_measurements__(accumulated_items_to_upload))
 
-        self.__complete_upload__(file_path, 'name', 2009, "Abril")
+    def load_with_parallelism(self, file_path:str, section_size:int=20, thread_number:int=30)->None:
+        
+        self.__section__index = 0
+        self.__section_lock__ = threading.Lock()
+        self.__section_size__ = section_size
+        self.__thread_number__ = thread_number
 
-    def load_with_parallelism(self, file_path):
         start_date = datetime.now()
         file = open(file_path, 'r')
         self.__file_content__ = file.readlines()
         self.__number_of_sections__ = math.floor(len(self.__file_content__) / self.__section_size__)
 
         size = len(self.__file_content__)
-        threads = [threading.Thread]*self.__thread_number__
+        threads = [threading.Thread] * self.__thread_number__
 
-        #Analizar fichero para sacar las estaciones y magnitudes que se están utilizando
+        #Analizar fichero para sacar las estaciones y magnitudes que se están
+        #utilizando
 
         measurement_analyzer = MeasurementAnalyzer()
         stations, magnitudes = measurement_analyzer.analyze_file(file_path)
 
-        not_created_stations = self.__station_existence__(list(stations));
-        not_created_magnitudes = self.__magnitude_existence__(list(magnitudes));
-        self.__create_stations__(not_created_stations);
-        self.__create_magnitudes__(not_created_magnitudes);
+        not_created_stations = self.__api_client__.station_existence(list(stations))
+        not_created_magnitudes = self.__api_client__.magnitude_existence(list(magnitudes))
+        
+        self.__api_client__.create_stations(not_created_stations)
+        self.__api_client__.create_magnitudes(not_created_magnitudes)
 
         for index in range(0, self.__thread_number__):
             i = index
@@ -160,10 +120,9 @@ class MeasurementParser():
             threads[index].join()
 
         end_date = datetime.now()
-
         print(f'Start date: {start_date}, End date: {end_date}')
   
-    def __process_item__(self, thread_number):
+    def __process_item__(self, thread_number:int)->None:
         print(f"Hilo {thread_number} en marcha")
         content = self.__get_file_section__()
 
@@ -208,26 +167,17 @@ class MeasurementParser():
                         accumulated_items_to_upload.append(self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code))
       
                 if len(accumulated_items_to_upload) >= items_to_upload_threshold:
-                    not_uploaded_items = self.__insert_accumulated_measurements__(accumulated_items_to_upload)
+                    self.__api_client__.create_measurements(accumulated_items_to_upload)
                     accumulated_items_to_upload.clear()
-                    #if(len(not_uploaded_items) > 0):
-                        #self.__section_lock__.acquire()
-                        #self.__not_uploaded_list.extend(not_uploaded_items)
-                        #self.__section_lock__.release()
                     
-                if len(accumulated_items_to_upload) > 0:
-                    not_uploaded_items = self.__insert_accumulated_measurements__(accumulated_items_to_upload)
-                    accumulated_items_to_upload.clear()
-                    #if(len(not_uploaded_items) > 0):
-                       # self.__section_lock__.acquire()
-                       #self.__not_uploaded_list.extend(not_uploaded_items)
-                       # self.__section_lock__.release()
-            content = self.__get_file_section__()
+            if len(accumulated_items_to_upload) > 0:
+                self.__api_client__.create_measurements(accumulated_items_to_upload)
 
+            content = self.__get_file_section__()
         print(f"Hilo {thread_number} terminó")
 
     #devuelve la sección correspondiente al fichero que tiene que procesar
-    def __get_file_section__(self):
+    def __get_file_section__(self)->list:
         self.__section_lock__.acquire()
         if(self.__section__index > self.__number_of_sections__):
             self.__section_lock__.release()
