@@ -4,6 +4,7 @@ from ...dto import TimelineDto
 from ..camel_cased_schema import CamelCasedSchema
 
 class TimelineDtoSchema(CamelCasedSchema):
+    id = fields.Integer()
     type= fields.String()
     life_start = fields.DateTime()
     life_end = fields.DateTime()

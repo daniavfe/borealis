@@ -5,8 +5,7 @@
     <ProjectGuid>481c9b63-35c3-4f7a-a121-54379e3d2094</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>initial_loader.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -67,6 +66,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="initial_loader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="measurement\measurement_analyzer.py" />

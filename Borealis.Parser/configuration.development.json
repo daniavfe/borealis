@@ -8,7 +8,8 @@
     "measurement_endpoint": "/measurement",
     "station_endpoint": "/station",
     "magnitude_endpoint": "/magnitude",
-    "event_endpoint": "/event"
+    "event_endpoint": "/event",
+    "timeline_endpoint": "/timeline"
   },
   "density": {
     "main_page_url": "http://www-2.munimadrid.es/TSE6/control/seleccionDatosBarrio",

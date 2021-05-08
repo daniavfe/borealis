@@ -7,12 +7,14 @@ import { HolidayListComponent } from '../components/holiday-list-component/holid
 import { MagnitudeListComponent } from '../components/magnitude-list-component/magnitude-list.component';
 import { ReportComponent } from '../components/report-component/report.component';
 import { StationListComponent } from '../components/station-list-component/station-list.component';
+import { TimelineListComponent } from '../components/timeline-list-component/timeline-list.component';
 
 const routes: Routes = [
     { path: 'magnitude/list', component: MagnitudeListComponent },
     { path: 'station/list', component: StationListComponent },
     { path: 'event/list', component: EventListComponent },
     { path: 'holiday/list', component: HolidayListComponent },
+    { path: 'timeline/list', component: TimelineListComponent },
     { path: 'density', component: DensityComponent },
     { path: 'report', component: ReportComponent },
     { path: '', redirectTo: '/magnitude/list', pathMatch: 'full' },

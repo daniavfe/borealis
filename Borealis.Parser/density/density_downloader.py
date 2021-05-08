@@ -48,7 +48,7 @@ class DensityDownloader():
         except:
             return []
 
-    def __write_csv_file__(self, data:str[], year:int):
+    def __write_csv_file__(self, data: list, year:int):
         complete_path = os.path.join(self.__download_path__, str(year))
         if not os.path.isdir(complete_path):
             try:

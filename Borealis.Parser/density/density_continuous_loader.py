@@ -14,8 +14,4 @@ class DensityContinuousLoader():
     # Realiza la carga inicial de los datos
     def load(self) -> None:
         self.__logger__.info('Density continuous loader starts');
-        density_downloader = DensityDownloader(self.__configuration__, self.__logger__)
-        density_downloader.download_last_file()
 
-        density_parser = DensityParser(self.__api_client__, self.__logger__)
-        density_parser.upload_all_files('data/density')

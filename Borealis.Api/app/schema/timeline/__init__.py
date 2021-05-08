@@ -1,2 +1,4 @@
 from .timeline_dto_schema import TimelineDtoSchema
 from .timeline_creation_dto_schema import TimelineCreationDtoSchema
+from .timeline_update_dto_schema import TimelineUpdateDtoSchema
+from .last_timeline_dto_schema import LastTimelineDtoSchema

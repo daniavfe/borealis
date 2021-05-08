@@ -172,10 +172,16 @@
     <Compile Include="app\dto\station\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\dto\timeline\last_timeline_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\dto\timeline\timeline_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\timeline\timeline_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\timeline\timeline_update_dto.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\dto\timeline\__init__.py">
@@ -302,6 +308,10 @@
     <Compile Include="app\schema\station\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\schema\timeline\last_timeline_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\timeline\timeline_update_dto_schema.py" />
     <Compile Include="app\schema\timeline\timeline_creation_dto_schema.py">
       <SubType>Code</SubType>
     </Compile>

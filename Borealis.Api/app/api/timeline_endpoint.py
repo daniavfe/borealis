@@ -28,3 +28,27 @@ class TimelineCreationEndpoint(Resource):
         #Create station
         return timeline_business.create_timeline(timeline_creation_dto)
 
+class TimelineUpdateEndpoint(Resource):
+    @staticmethod
+    def put():
+        #Get params from url
+        timeline_id = request.args.get('timelineId')
+        #Instance schema
+        timeline_update_dto_schema = TimelineUpdateDtoSchema()
+        #Parse json to dto
+        timeline_update_dto = timeline_update_dto_schema.loads(request.data)
+        #Create station
+        return timeline_business.update_timeline(timeline_id, timeline_update_dto)
+
+class LastTimelineEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get params from url
+        type = request.args.get('type')
+        #Get holidays from business
+        timeline = timeline_business.get_last_timeline(type)
+        #Instance schema
+        last_timeline_dto_schema = LastTimelineDtoSchema()
+        #Return json data
+        return last_timeline_dto_schema.dump(timeline)
+

@@ -1,5 +1,7 @@
 from configuration import MeteorologyConfiguration
+from measurement import MeasurementAnalyzer
 from common import Logger
+from client import ApiClient
 from bs4 import BeautifulSoup
 import requests
 import csv
@@ -10,15 +12,22 @@ import os
 
 class MeteorologyDownloader():
 
-    def __init__(self, meteorology_configuration:MeteorologyConfiguration, logger:Logger)->None:
+    def __init__(self, meteorology_configuration:MeteorologyConfiguration,api_client:ApiClient, logger:Logger)->None:
         self.__main_page_url__ :str = meteorology_configuration.main_page_url
         self.__download_path__ :str= meteorology_configuration.download_path
+        self.__api_client__ :ApiClient = api_client
         self.__logger__ :Logger = logger
 
-    def __download_file__(self, path, url):
+    def __download_file__(self, path, file_name, url):
         self.__logger__.info(f'Downloading file. Url: {url}')
         response = requests.get(url)
-        open(path, 'wb').write(response.content)
+        complete_path = os.path.join(path,file_name)
+        open(complete_path, 'wb').write(response.content)
+        measurement_analyzer = MeasurementAnalyzer(self.__logger__)
+        stations, magnitudes, first_date, last_date = measurement_analyzer.analyze_file(complete_path)  
+        file_id = self.__api_client__.create_timeline('Density', first_date, last_date, 'Downloaded', file_name)
+        complete_path_with_id= os.path.join(path,f'{file_id}-{file_name}')
+        os.rename(complete_path, complete_path_with_id)
         self.__logger__.info(f'File {url} downloaded.')
 
     def __get_file_list__(self):
@@ -57,8 +66,8 @@ class MeteorologyDownloader():
         available_files = self.__get_file_list__()     
         for file in available_files:
             download_folder_path = os.path.join(self.__download_path__,  file['year'])
-            download_path = os.path.join(download_folder_path, file['month']+'.txt')
+            file_name = f'{file["month"]}.txt'
             self.__create_directory__(download_folder_path)
-            self.__download_file__(download_path, file['url'])
+            self.__download_file__(download_folder_path, file_name, file['url'])
         self.__logger__.info(f'All files downloaded')
 

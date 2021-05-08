@@ -19,6 +19,7 @@ import { StationFormComponent } from './components/station-form-component/statio
 import { EventListComponent } from './components/event-list-component/event-list.component';
 import { HolidayListComponent } from './components/holiday-list-component/holiday-list.component';
 import { ReportComponent } from './components/report-component/report.component';
+import { TimelineListComponent } from './components/timeline-list-component/timeline-list.component';
 
 //Services
 import { DensityService } from './services/density.service';
@@ -27,7 +28,7 @@ import { StationService } from './services/station.service';
 import { HolidayService } from './services/holiday.service';
 import { EventService } from './services/event.service';
 import { ReportService } from './services/report.service';
-
+import { TimelineService } from './services/timeline.service';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ReportService } from './services/report.service';
         EventListComponent,
         HolidayListComponent,
         ReportComponent,
+        TimelineListComponent,
     ],
     imports: [
         BrowserModule,
@@ -56,7 +58,8 @@ import { ReportService } from './services/report.service';
         StationService, 
         HolidayService, 
         EventService,
-        ReportService
+        ReportService,
+        TimelineService
     ],
     bootstrap: [AppComponent]
 })

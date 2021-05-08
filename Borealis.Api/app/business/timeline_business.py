@@ -45,3 +45,16 @@ class TimelineBusiness():
         timeline.save()
         return timeline.id
 
+    def update_timeline(self, timeline_id, timeline_update_dto):
+        timeline = db.session.query(Timeline).filter(Timeline.id == timeline_id).one()
+
+        if timeline_update_dto.status != None:
+            timeline.status = timeline_update_dto.status
+        timeline.save()
+
+    def get_last_timeline(self, type = None):
+        data = db.session.query(Timeline).filter(Timeline.type == type).order_by(desc(Timeline.life_end)).first()
+        if data == None:
+            return LastTimelineDto()
+
+        return LastTimelineDto(data.life_end)

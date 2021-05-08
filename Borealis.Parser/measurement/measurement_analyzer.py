@@ -1,4 +1,5 @@
 from common import Logger
+from datetime import datetime
 import os, glob
 
 class MeasurementAnalyzer():
@@ -34,6 +35,8 @@ class MeasurementAnalyzer():
     def __analyze__(self, path):
         station_ids = set()
         magnitude_ids = set()
+        first_date = None
+        last_date = None
         if not os.path.isfile(path):
             self.__logger__.warning(f'File {path}')
             return
@@ -52,14 +55,27 @@ class MeasurementAnalyzer():
                 station_id = component[2]
                 magnitude_id = component[3]
                 technique_id = component[4]
+                year = int(component[6])
+                month = int(component[7])
+                day = int(component[8])
+                date = datetime(year, month, day)
             else:
                 station_id = line[5:8]
                 magnitude_id = line[8:10]
                 technique_id = line[10:12]
+                year = int("20" + line[14:16])
+                month = int(line[16:18])
+                day = int(line[18:20])
+                date = datetime(year, month, day)
+
+            if  last_date == None or date > last_date:
+                last_date = date
+            if first_date == None or date < first_date:
+                first_date = date
 
             station_ids.add(station_id)
             magnitude_ids.add(magnitude_id)
             number_of_processed_lines += 1
         
         self.__logger__.info(f'Analysis done')
-        return station_ids, magnitude_ids
+        return station_ids, magnitude_ids, first_date, last_date

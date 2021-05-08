@@ -15,6 +15,7 @@ class ApiClient():
         self.__station_endpoint__ :str = api_configuration.station_endpoint
         self.__magnitude_endpoint__ :str = api_configuration.magnitude_endpoint
         self.__event_endpoint__ :str = api_configuration.event_endpoint
+        self.__timeline_endpoint__ :str = api_configuration.timeline_endpoint
 
     def get_existing_districts(self, page: int=1, per_page:int=20) -> list:
         response = requests.get(f'{ self.__base_url__}{self.__district_endpoint__}', params={'page':page, 'perPage':per_page})
@@ -69,6 +70,19 @@ class ApiClient():
             return itemgetter(*items_not_created)(measurements)     
         return []
 
-    def create_measurement(self, datetime:datetime, magnitude_id:int, station_id:int, data:float, validation_code:str)->None:
+    def create_measurement(self, datetime:datetime, magnitude_id:int, station_id:int, data:float, validation_code:str) -> None:
         payload = {"datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id,"data": data, "validationCode": validation_code}
         requests.post(f'{self.__base_url__}{self.__measurement_endpoint__}',data=json.dumps(payload))
+
+    def get_last_timeline(self, type:str) -> datetime:
+        response = json.loads(requests.get(f'{self.__base_url__}{self.__timeline_endpoint__}/last', params={'type':type}).content)
+        return response['lifeEnd']
+    
+    def create_timeline(self, type:str, life_start:datetime, life_end:datetime, status:str, details:str) -> int:
+        payload = {'type':type, 'lifeStart':life_start.strftime('%Y-%m-%d %H:%M:%S'), 'lifeEnd':life_end.strftime('%Y-%m-%d %H:%M:%S'), 'status':status, 'details':details}
+        response = requests.post(f'{self.__base_url__}{self.__timeline_endpoint__}', data=json.dumps(payload))
+        return int(response.content)
+
+    def update_timeline(self, timeline_id:int, status:str) -> None:
+        payload = {'status':status}
+        requests.put(f'{self.__base_url__}{self.__timeline_endpoint__}', params={'timelineId':timeline_id}, data=json.dumps(payload))

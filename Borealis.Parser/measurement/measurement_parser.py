@@ -25,7 +25,9 @@ class MeasurementParser():
         for root, dirs, files in os.walk(path):
             for file in files:
                 if file.endswith(".txt"):
+                    timeline_id = file[0:2]
                     self.load_with_parallelism(os.path.join(root, file))
+                    self.__api_client__.update_timeline(timeline_id, 'Uploaded')
 
     # Deprecated
     def load(self, file_path:str) -> None:
@@ -103,13 +105,10 @@ class MeasurementParser():
         #utilizando
 
         measurement_analyzer = MeasurementAnalyzer(self.__logger__)
-        stations, magnitudes = measurement_analyzer.analyze_file(file_path)
+        stations, magnitudes, first_date, last_date = measurement_analyzer.analyze_file(file_path)
 
         not_created_stations = self.__api_client__.station_existence(list(stations))
         not_created_magnitudes = self.__api_client__.magnitude_existence(list(magnitudes))
-
-        self.__logger__.info(f'Missing stations {",".join(not_created_stations)}')
-        self.__logger__.info(f'Missing magnitudes {",".join(not_created_magnitudes)}')
         
         self.__api_client__.create_stations(not_created_stations)
         self.__api_client__.create_magnitudes(not_created_magnitudes)
