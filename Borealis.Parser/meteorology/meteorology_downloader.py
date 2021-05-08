@@ -25,7 +25,7 @@ class MeteorologyDownloader():
         open(complete_path, 'wb').write(response.content)
         measurement_analyzer = MeasurementAnalyzer(self.__logger__)
         stations, magnitudes, first_date, last_date = measurement_analyzer.analyze_file(complete_path)  
-        file_id = self.__api_client__.create_timeline('Density', first_date, last_date, 'Downloaded', file_name)
+        file_id = self.__api_client__.create_timeline('Meteorology', first_date, last_date, 'Downloaded', file_name)
         complete_path_with_id= os.path.join(path,f'{file_id}-{file_name}')
         os.rename(complete_path, complete_path_with_id)
         self.__logger__.info(f'File {url} downloaded.')

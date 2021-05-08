@@ -56,5 +56,8 @@ class DensityParser():
         for root, dirs, files in os.walk(path):
             for file in files:
                 if file.endswith(".csv"):
+                    timeline_id = file.split('-')[0]
+                    self.__api_client__.update_timeline(timeline_id, 'Uploading')
                     self.upload_file(os.path.join(root, file))
+                    self.__api_client__.update_timeline(timeline_id, 'Uploaded')
 

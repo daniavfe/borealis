@@ -12,7 +12,7 @@ class PollutionInitialLoader():
 
     # Realiza la carga inicial de los datos
     def load(self)->None:
-        pollution_downloader = PollutionDownloader(self.__pollution_configuration__, self.__logger__)
+        pollution_downloader = PollutionDownloader(self.__pollution_configuration__,self.__api_client__, self.__logger__)
         pollution_downloader.get_available_files()
         measurement_parser = MeasurementParser(self.__api_client__, self.__logger__)
         measurement_parser.upload_all_files(self.__pollution_configuration__.download_path)

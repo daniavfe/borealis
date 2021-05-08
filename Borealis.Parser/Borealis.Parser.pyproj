@@ -62,6 +62,9 @@
     <Compile Include="density\density_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="holiday\holiday_analyzer.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="holiday\holiday_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>

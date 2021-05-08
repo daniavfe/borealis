@@ -20,7 +20,7 @@ export class TimelineListComponent implements OnInit {
     }
 
     loadTimelines(): void {
-        this.timelineService.getTimelines(1, 100, "id", false).subscribe(
+        this.timelineService.getTimelines(1, 1000, "id", false).subscribe(
             res => {
                 this.zone.run(
                     () => {

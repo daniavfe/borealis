@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime,date, timedelta
 from common import Logger
 from configuration import DensityConfiguration
+from client import ApiClient
 import requests
 import csv
 import json
@@ -10,10 +11,11 @@ import os
 
 class DensityDownloader():
    
-    def __init__(self, density_configuration:DensityConfiguration, logger:Logger) -> None:
+    def __init__(self, density_configuration:DensityConfiguration, api_client:ApiClient, logger:Logger) -> None:
         self.__main_page_url__ :str = density_configuration.main_page_url
         self.__data_page_url__ :str = density_configuration.data_page_url
         self.__download_path__ :str = density_configuration.download_path
+        self.__api_client__:ApiCLient = api_client
         self.__logger__ :Logger = logger
 
     def __get_districts_and_years__(self):
@@ -58,12 +60,15 @@ class DensityDownloader():
 
         file_path = os.path.join(complete_path, f'{year}.csv')
         keys = data[0].keys()
+
         with open(file_path, 'w', newline='')  as output_file:
             dict_writer = csv.DictWriter(output_file, keys)
             dict_writer.writeheader()
             dict_writer.writerows(data)
 
-        file_size = os.path.getsize(file_path)
+        file_id = self.__api_client__.create_timeline('Density', date(year, 1,1),date(year, 12,31), 'Downloaded', file_path)
+        complete_path_with_id= os.path.join(complete_path,f'{file_id}-{year}.csv')
+        os.rename(file_path, complete_path_with_id)
         self.__logger__.info(f'file created {file_path} created')
 
     def download_density_file(self, years=[], months = []):
@@ -90,7 +95,7 @@ class DensityDownloader():
                     densities = self.__get_density__(year, district, month, zone_list)
                     for density in densities: 
                         month_number = int(month[0:2])                         
-                        final_list.append({'year': year, 'month':month_number, 'district':district[3:], 'zone':density[0], 'value': density[1]})        
+                        final_list.append({'year': year, 'month':month_number, 'district':district[3:], 'zone':density[0], 'value': density[1]}) 
             self.__write_csv_file__(final_list, year)
         self.__logger__.info(f'Density data downloaded')
         

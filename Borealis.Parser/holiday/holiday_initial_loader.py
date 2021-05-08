@@ -14,9 +14,9 @@ class HolidayInitialLoader():
     # Realiza la carga inicial de los datos
     def load(self) -> None:
         self.__logger__.info('Holiday initial loader starts');
-        holiday_downloader = HolidayDownloader(self.__holiday_configuration__, self.__logger__)
-        holiday_downloader.download_calendar()
+        #holiday_downloader = HolidayDownloader(self.__holiday_configuration__, self.__api_client__, self.__logger__)
+        #holiday_downloader.download_calendar()
         holiday_parser = HolidayParser(self.__api_client__, self.__logger__)
-        holiday_parser.upload_file(os.path.join(self.__holiday_configuration__.download_path, 'calendar.csv'))
+        holiday_parser.upload_all_files(self.__holiday_configuration__.download_path)
 
 

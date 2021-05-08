@@ -4,11 +4,24 @@ from datetime import datetime, timedelta
 import requests
 import csv
 import json
+import os
 
 class HolidayParser():
     def __init__(self, api_client:ApiClient, logger:Logger)->None:
         self.__api_client__:ApiClient = api_client
         self.__logger__ :Logger = logger
+
+    def upload_all_files(self, path:str) -> None:
+        if not os.path.isdir(path):
+            self.__logger__.info(f'Path {path} is not a directory')
+            return
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if file.endswith(".csv"):
+                    timeline_id = file.split('-')[0]
+                    self.__api_client__.update_timeline(timeline_id, 'Uploading')
+                    self.upload_file(os.path.join(root, file))
+                    self.__api_client__.update_timeline(timeline_id, 'Uploaded')
 
     def upload_file(self, path):
         self.__logger__.info(f'Uploading {path} file')
