@@ -1,14 +1,17 @@
 from client import ApiClient
+from common import Logger
 from datetime import datetime, timedelta
 import requests
 import csv
 import json
 
 class HolidayParser():
-    def __init__(self, api_client:ApiClient)->None:
+    def __init__(self, api_client:ApiClient, logger:Logger)->None:
         self.__api_client__:ApiClient = api_client
+        self.__logger__ :Logger = logger
 
     def upload_file(self, path):
+        self.__logger__.info(f'Uploading {path} file')
         with open(path) as input_file:
             csv_reader = csv.reader(input_file, delimiter=';')
             line_count = 0
@@ -41,4 +44,4 @@ class HolidayParser():
                     if(scope != ''):
                         self.__api_client__.create_holiday(date, day_of_week,row[4], scope)
                     line_count += 1
-        print(f'Done')
+        self.__logger__.info(f'File {path} upload completed')

@@ -1,3 +1,3 @@
-from .density_initial_load import DensityInitialLoad
+from .density_initial_loader import DensityInitialLoader
 from .density_parser import DensityParser
 from .density_downloader import DensityDownloader

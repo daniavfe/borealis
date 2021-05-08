@@ -1,2 +1,2 @@
 from .meteorology_downloader import MeteorologyDownloader
-from .meteorology_initial_load import MeteorologyInitialLoad
+from .meteorology_initial_loader import MeteorologyInitialLoader

@@ -7,6 +7,7 @@ from .density_endpoint import *
 from .holiday_endpoint import *
 from .event_endpoint import *
 from .report_endpoint import *
+from .timeline_endpoint import *
 
 
 # Measurement endpoints
@@ -73,3 +74,9 @@ event_api.add_resource(FileUploadEventCreationEndpoint, '/api/event/fileupload/'
 report_blueprint = Blueprint('report_blueprint', __name__)
 report_api = Api(report_blueprint)
 report_api.add_resource(ReportCreationEndpoint, '/api/report/', endpoint='report_endpoint')
+
+#Timeline
+timeline_blueprint = Blueprint('timeline_blueprint', __name__)
+timeline_api = Api(timeline_blueprint)
+timeline_api.add_resource(TimelineListEndpoint, '/api/timeline/',endpoint='timeline_list_endpoint')
+timeline_api.add_resource(TimelineCreationEndpoint, '/api/timeline/',endpoint='timeline_creation_endpoint')

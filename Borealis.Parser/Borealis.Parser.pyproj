@@ -5,7 +5,8 @@
     <ProjectGuid>481c9b63-35c3-4f7a-a121-54379e3d2094</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -32,6 +33,9 @@
     <Compile Include="common\event_helper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="common\logger.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="configuration\api_configuration.py">
       <SubType>Code</SubType>
     </Compile>
@@ -53,10 +57,16 @@
     <Compile Include="configuration\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="density\density_initial_load.py">
+    <Compile Include="density\density_continuous_loader.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="holiday\holiday_initial_load.py">
+    <Compile Include="density\density_initial_loader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="holiday\holiday_initial_loader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="measurement\measurement_analyzer.py" />
@@ -84,16 +94,13 @@
     <Compile Include="holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="main.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="measurement\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="meteorology\meteorology_downloader.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="meteorology\meteorology_initial_load.py">
+    <Compile Include="meteorology\meteorology_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="meteorology\__init__.py">
@@ -101,7 +108,7 @@
     </Compile>
     <Compile Include="pollution\pollution_downloader.py" />
     <Compile Include="measurement\measurement_parser.py" />
-    <Compile Include="pollution\pollution_initital_load.py">
+    <Compile Include="pollution\pollution_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pollution\__init__.py">

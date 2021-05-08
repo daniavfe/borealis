@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
-from common import EventHelper
+from common import Logger
 from configuration import DensityConfiguration
 import requests
 import csv
@@ -10,10 +10,11 @@ import os
 
 class DensityDownloader():
    
-    def __init__(self, density_configuration:DensityConfiguration) -> None:
-        self.__main_page_url__ = density_configuration.main_page_url
-        self.__data_page_url__ = density_configuration.data_page_url
-        self.__download_path__ = density_configuration.download_path
+    def __init__(self, density_configuration:DensityConfiguration, logger:Logger) -> None:
+        self.__main_page_url__ :str = density_configuration.main_page_url
+        self.__data_page_url__ :str = density_configuration.data_page_url
+        self.__download_path__ :str = density_configuration.download_path
+        self.__logger__ :Logger = logger
 
     def __get_districts_and_years__(self):
         response = requests.get(self.__main_page_url__)
@@ -47,13 +48,13 @@ class DensityDownloader():
         except:
             return []
 
-    def __write_csv_file__(self, data, year):
+    def __write_csv_file__(self, data:str[], year:int):
         complete_path = os.path.join(self.__download_path__, str(year))
         if not os.path.isdir(complete_path):
             try:
                 os.makedirs(complete_path)
             except:
-                print(f"Error while creating directory: {path}")
+                 self.__logger__.error(f"Error while creating directory: {path}")
 
         file_path = os.path.join(complete_path, f'{year}.csv')
         keys = data[0].keys()
@@ -63,28 +64,33 @@ class DensityDownloader():
             dict_writer.writerows(data)
 
         file_size = os.path.getsize(file_path)
-        print(f'file created {file_path} created')
+        self.__logger__.info(f'file created {file_path} created')
 
-    def download_density_file(self, years = None):
-        district_list, year_list = self.__get_districts_and_years__()
-        if years != None:
+    def download_density_file(self, years=[], months = []):
+        self.__logger__.info(f'Downloading density files: Years: {",".join(years)}. Months: {",".join(months)}')
+        district_list, year_list = self.__get_districts_and_years__()  
+        if years != []:
             selected_year_list = list(set(year_list).intersection(set(years)))
         else:
             selected_year_list = year_list
-
         district_id_list = dict()
         neighborhood_id_list = dict()
+
         for year in selected_year_list:  
             final_list = []
             for district in district_list:
-                print(f'Downloading district: {district}')
-                month_list, zone_list = self.__get_available_months_and_zones__(year, district)      
-                for month in month_list:
+                month_list, zone_list = self.__get_available_months_and_zones__(year, district)                 
+                if months != []:
+                    selected_month_list = list(set(month_list).intersection(set(months)))
+                else:
+                    selected_month_list = month_list
+
+                for month in selected_month_list:
+                    self.__logger__.info(f'Retrieving data from {year} {month} {district}')
                     densities = self.__get_density__(year, district, month, zone_list)
                     for density in densities: 
                         month_number = int(month[0:2])                         
                         final_list.append({'year': year, 'month':month_number, 'district':district[3:], 'zone':density[0], 'value': density[1]})        
             self.__write_csv_file__(final_list, year)
-
-        print(f'Done')
+        self.__logger__.info(f'Density data downloaded')
         

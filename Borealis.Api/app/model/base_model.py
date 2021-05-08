@@ -1,9 +1,12 @@
 from ..extension import db
+from datetime import datetime
 
 
 class BaseModelMixin:
+    creation_date = db.Column(db.DateTime, nullable=True) 
 
     def save(self):
+        self.creation_date = datetime.utcnow()
         db.session.add(self)
         db.session.commit()
 

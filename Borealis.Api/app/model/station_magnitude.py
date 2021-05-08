@@ -2,7 +2,7 @@ from ..extension import db
 from .base_model import BaseModelMixin
 
 class StationMagnitude(db.Model, BaseModelMixin):
-    __tablename__ = 'tations_magnitudes'
+    __tablename__ = 'stations_magnitudes'
     station_id = db.Column(db.Integer, db.ForeignKey('stations.id'), primary_key=True)
     magnitude_id = db.Column(db.Integer, db.ForeignKey('magnitudes.id'), primary_key=True)
 

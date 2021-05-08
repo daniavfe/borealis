@@ -1,3 +1,3 @@
 from .holiday_downloader import HolidayDownloader
 from .holiday_parser import HolidayParser
-from .holiday_initial_load import HolidayInitialLoad
+from .holiday_initial_loader import HolidayInitialLoader

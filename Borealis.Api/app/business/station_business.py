@@ -26,10 +26,10 @@ class StationBusiness:
 
         #page data
         per_page = int(per_page) if (per_page != None and int(per_page) > 0) else 10
-        page_count = math.floor(data.count() / per_page);
+        page_count = math.floor(data.count() / per_page)
         page = int(page) if (page != None and int(page) > 0 and int(page) <= page_count) else 1
 
-        data = data.offset(per_page*(page-1)).limit(per_page).all()
+        data = data.offset(per_page * (page - 1)).limit(per_page).all()
 
         mappedData = list(map(lambda x: StationDto(x.id, x.name, x.address, x.start_date, x.end_date, x.latitude, x.longitude, x.altitude), data))
         return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)

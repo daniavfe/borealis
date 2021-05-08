@@ -1,4 +1,5 @@
 from configuration import MeteorologyConfiguration
+from common import Logger
 from bs4 import BeautifulSoup
 import requests
 import csv
@@ -9,17 +10,19 @@ import os
 
 class MeteorologyDownloader():
 
-    def __init__(self, meteorology_configuration:MeteorologyConfiguration)->None:
+    def __init__(self, meteorology_configuration:MeteorologyConfiguration, logger:Logger)->None:
         self.__main_page_url__ :str = meteorology_configuration.main_page_url
         self.__download_path__ :str= meteorology_configuration.download_path
+        self.__logger__ :Logger = logger
 
     def __download_file__(self, path, url):
-        print(f'Downloading file {url}')
+        self.__logger__.info(f'Downloading file. Url: {url}')
         response = requests.get(url)
         open(path, 'wb').write(response.content)
-        print(f'File {url} dopwnloaded')
+        self.__logger__.info(f'File {url} downloaded.')
 
     def __get_file_list__(self):
+        self.__logger__.info(f'Getting file list from url {self.__main_page_url__}')
         response = requests.get(self.__main_page_url__)
         soup = BeautifulSoup(response.content, 'html.parser')
         file_list = soup.find(class_="asociada-list")
@@ -33,21 +36,22 @@ class MeteorologyDownloader():
         return files;
 
     def __unzip_file__(self, path):
-        print(f'Unzipping file {path}')
+        self.__logger__.info(f'Unzipping file {path}')
         if(os.path.isfile(path)):
             directory_path = os.path.splitext(path)[0]
             with zipfile.ZipFile(path, 'r') as zip_ref:
                 zip_ref.extractall(directory_path)
-            print(f'File {path} unzipped')
+                self.__logger__.info(f'File {path} unzipped')
         else:
-            print(f'File {path} does not exist')
+            elf.__logger__.warning(f'File {path} does not exist')
     
     def __create_directory__(self, path):
         if not os.path.isdir(path):
+            self.__logger__.info(f'Path {self.__download_path__} does not exist. Creating')
             try:
                 os.makedirs(path)
             except:
-                print(f"Error while creating directory: {path}")
+                  self.__logger__.error(f'Error while creating {self.__download_path__}')
 
     def get_available_files(self):
         available_files = self.__get_file_list__()     
@@ -56,4 +60,5 @@ class MeteorologyDownloader():
             download_path = os.path.join(download_folder_path, file['month']+'.txt')
             self.__create_directory__(download_folder_path)
             self.__download_file__(download_path, file['url'])
+        self.__logger__.info(f'All files downloaded')
 

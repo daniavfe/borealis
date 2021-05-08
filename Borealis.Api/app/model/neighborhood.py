@@ -11,6 +11,7 @@ class Neighborhood(db.Model, BaseModelMixin):
     
     #relationships
     densities = db.relationship("Density", backref="neighborhood")
+    stations = db.relationship("Station", back_populates="neighborhood", uselist=False)
 
     def __init__(self, name, surface, district_id):
         self.name = name

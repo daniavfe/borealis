@@ -7,3 +7,4 @@ from .neighborhood import Neighborhood
 from .density import Density
 from .holiday import Holiday
 from .event import Event
+from .timeline import Timeline

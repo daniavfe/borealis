@@ -1,9 +1,14 @@
+from common import Logger
 import os, glob
 
 class MeasurementAnalyzer():
+
+    def __init__(self, logger:Logger):
+        self.__logger__ = logger
+
     def analyze_all_files_in_directory(self, path):
         if not os.path.isdir(path):
-            print(f'Path {path} is not a directory')
+            self.__logger__.warning(f'Path {path} is not a directory')
             return
          
         total_station_ids = set()
@@ -16,13 +21,13 @@ class MeasurementAnalyzer():
                     total_station_ids.update(station_ids)
                     total_magnitude_ids.update(magnitude_ids)
                     print(f'{root} {file}')
-        print(f'stations: {sorted(total_station_ids)}')
-        print(f'magnitudes: {sorted(total_magnitude_ids)}')
+        self.__logger__.info(f'stations: {sorted(total_station_ids)}')
+        elf.__logger__.info(f'magnitudes: {sorted(total_magnitude_ids)}')
         return total_station_ids, total_magnitude_ids
 
     def analyze_file(self, path):
         if not os.path.isfile(path):
-            print(f'File {path} is not valid')
+            elf.__logger__.error(f'File {path} is not valid')
             return
         return self.__analyze__(path)
     
@@ -30,7 +35,7 @@ class MeasurementAnalyzer():
         station_ids = set()
         magnitude_ids = set()
         if not os.path.isfile(path):
-            print(f'File {path}')
+            self.__logger__.warning(f'File {path}')
             return
 
         file = open(path, 'r')
@@ -38,7 +43,7 @@ class MeasurementAnalyzer():
         number_of_lines = len(content)
         number_of_processed_lines = 0
         
-        print(f'Analyzing {path}')
+        self.__logger__.info(f'Analyzing {path}')
         for line in content:
             station_id = -1
             magnitude_id = -1
@@ -56,5 +61,5 @@ class MeasurementAnalyzer():
             magnitude_ids.add(magnitude_id)
             number_of_processed_lines += 1
         
-        print(f'Analysis done')
+        self.__logger__.info(f'Analysis done')
         return station_ids, magnitude_ids

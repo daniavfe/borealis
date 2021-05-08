@@ -54,6 +54,9 @@
     <Compile Include="app\api\station_endpoint.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\api\timeline_endpoint.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\api\__init__.py" />
     <Compile Include="app\business\density_business.py">
       <SubType>Code</SubType>
@@ -70,6 +73,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\business\station_business.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\business\timeline_business.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\business\__init__.py" />
@@ -166,6 +172,15 @@
     <Compile Include="app\dto\station\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\dto\timeline\timeline_creation_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\timeline\timeline_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\timeline\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\dto\traffic\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -197,6 +212,9 @@
     <Compile Include="app\model\measurement.py" />
     <Compile Include="app\model\station.py" />
     <Compile Include="app\model\station_magnitude.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\timeline.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\model\__init__.py" />
@@ -284,6 +302,15 @@
     <Compile Include="app\schema\station\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\schema\timeline\timeline_creation_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\timeline\timeline_dto_schema.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\schema\timeline\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\schema\weather\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -309,6 +336,7 @@
     <Folder Include="app\dto\measurement\" />
     <Folder Include="app\dto\report\" />
     <Folder Include="app\dto\station\" />
+    <Folder Include="app\dto\timeline\" />
     <Folder Include="app\dto\traffic\" />
     <Folder Include="app\dto\weather\" />
     <Folder Include="app\model\" />
@@ -320,6 +348,7 @@
     <Folder Include="app\schema\measurement\" />
     <Folder Include="app\schema\report\" />
     <Folder Include="app\schema\station\" />
+    <Folder Include="app\schema\timeline\" />
     <Folder Include="app\schema\weather\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from common import Logger
 import requests
 import json
 import sys
@@ -10,23 +11,21 @@ from client import ApiClient
 
 class MeasurementParser():
 
-    def __init__(self, api_client:ApiClient) -> None:
+    def __init__(self, api_client:ApiClient, logger:Logger) -> None:
         self.__api_client__ :ApiClient = api_client
+        self.__logger__ :Logger= logger
         
-        
-
     def __get_insertable_object__(self, town_id:int, datetime:datetime, magnitude_id:int, station_id:int, data:float, validation_code:str):
         return {"townId": town_id, "datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id, "data": data, "validationCode": validation_code}
     
     def upload_all_files(self, path:str) -> None:
         if not os.path.isdir(path):
-            print(f'Path {path} is not a directory')
+            self.__logger__.info(f'Path {path} is not a directory')
             return
         for root, dirs, files in os.walk(path):
             for file in files:
                 if file.endswith(".txt"):
                     self.load_with_parallelism(os.path.join(root, file))
-                    print(f'{root} {file}')
 
     # Deprecated
     def load(self, file_path:str) -> None:
@@ -79,7 +78,7 @@ class MeasurementParser():
             if len(accumulated_items_to_upload) >= items_to_upload_threshold:
                 items_not_uploaded.extend(self.__insert_accumulated_measurements__(accumulated_items_to_upload))
                 accumulated_items_to_upload.clear()
-                print(f'Progress: {number_of_processedItems *100/number_of_items} %')
+                self.__logger__.info(f'Progress: {number_of_processedItems *100/number_of_items} %')
 
         if len(accumulated_items_to_upload) > 0:
           items_not_uploaded.extend(self.__insert_accumulated_measurements__(accumulated_items_to_upload))
@@ -99,14 +98,18 @@ class MeasurementParser():
         size = len(self.__file_content__)
         threads = [threading.Thread] * self.__thread_number__
 
+        self.__logger__.info(f'Uploading file {file_path}.Size: {size}. Section size: {self.__section_size__}. Nº of sections: {self.__number_of_sections__}. Thread number: {self.__thread_number__}')
         #Analizar fichero para sacar las estaciones y magnitudes que se están
         #utilizando
 
-        measurement_analyzer = MeasurementAnalyzer()
+        measurement_analyzer = MeasurementAnalyzer(self.__logger__)
         stations, magnitudes = measurement_analyzer.analyze_file(file_path)
 
         not_created_stations = self.__api_client__.station_existence(list(stations))
         not_created_magnitudes = self.__api_client__.magnitude_existence(list(magnitudes))
+
+        self.__logger__.info(f'Missing stations {",".join(not_created_stations)}')
+        self.__logger__.info(f'Missing magnitudes {",".join(not_created_magnitudes)}')
         
         self.__api_client__.create_stations(not_created_stations)
         self.__api_client__.create_magnitudes(not_created_magnitudes)
@@ -120,10 +123,9 @@ class MeasurementParser():
             threads[index].join()
 
         end_date = datetime.now()
-        print(f'Start date: {start_date}, End date: {end_date}')
   
     def __process_item__(self, thread_number:int)->None:
-        print(f"Hilo {thread_number} en marcha")
+        self.__logger__.debug(f"Hilo {thread_number} en marcha")
         content = self.__get_file_section__()
 
         items_to_upload_threshold = 100
@@ -174,7 +176,7 @@ class MeasurementParser():
                 self.__api_client__.create_measurements(accumulated_items_to_upload)
 
             content = self.__get_file_section__()
-        print(f"Hilo {thread_number} terminó")
+        self.__logger__.debug(f"Hilo {thread_number} terminó")
 
     #devuelve la sección correspondiente al fichero que tiene que procesar
     def __get_file_section__(self)->list:
@@ -191,7 +193,7 @@ class MeasurementParser():
         else:     
             end_element_index = posible_end_element_index
 
-        print(f'start: {start_element_index}, end:{end_element_index}')
+        self.__logger__.debug(f'start: {start_element_index}, end:{end_element_index}')
 
         self.__section__index += 1
 
