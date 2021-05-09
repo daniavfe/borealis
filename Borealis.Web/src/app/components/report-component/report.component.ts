@@ -14,7 +14,7 @@ export class ReportComponent implements OnInit {
     }
 
     downloadReport(): void {
-        this.reportService.getCsv().subscribe(
+        this.reportService.getReport().subscribe(
             res => {
                 var blob = this.dataURItoBlob(res.file);
                 let url = window.URL.createObjectURL(blob);

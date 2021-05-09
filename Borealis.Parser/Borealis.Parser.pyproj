@@ -53,6 +53,9 @@
     <Compile Include="configuration\pollution_configuration.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="configuration\traffic_configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="configuration\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -72,6 +75,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="measurement\measurement_parser.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="measurement\helper.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="measurement\measurement_analyzer.py" />
@@ -99,6 +108,9 @@
     <Compile Include="holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="measurement\text_pollution_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="measurement\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -111,12 +123,22 @@
     <Compile Include="meteorology\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="pollution\community_pollution_downloader.py" />
     <Compile Include="pollution\pollution_downloader.py" />
-    <Compile Include="measurement\measurement_parser.py" />
+    <Compile Include="measurement\old_measurement_parser.py" />
     <Compile Include="pollution\pollution_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pollution\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="traffic\traffic_initial_loader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="traffic\traffic_point_downloader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="traffic\__init__.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -129,6 +151,7 @@
     <Folder Include="measurement\" />
     <Folder Include="meteorology\" />
     <Folder Include="pollution\" />
+    <Folder Include="traffic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="configuration.development.json" />

@@ -33,7 +33,7 @@ class MagnitudeUpdateEndpoint(Resource):
     @staticmethod
     def put():
         #Get params from url
-        magnitude_id = request.args.getlist('id')
+        magnitude_id = request.args.get('id')
         #Instance schema
         magnitude_update_dto_schema = MagnitudeUpdateDtoSchema()
         #Parse json to dto

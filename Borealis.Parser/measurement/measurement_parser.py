@@ -1,22 +1,17 @@
-from datetime import datetime, timedelta
-from common import Logger
-import requests
-import json
-import sys
-import os
-import threading
-import math
-from .measurement_analyzer import MeasurementAnalyzer
 from client import ApiClient
+from common import Logger
+from .helper import Helper
+from datetime import datetime
+import threading
+import os
+import math
 
 class MeasurementParser():
-
-    def __init__(self, api_client:ApiClient, logger:Logger) -> None:
+  
+    def __init__(self, api_client:ApiClient, logger:Logger, helper:Helper) -> None:
         self.__api_client__ :ApiClient = api_client
-        self.__logger__ :Logger= logger
-        
-    def __get_insertable_object__(self, town_id:int, datetime:datetime, magnitude_id:int, station_id:int, data:float, validation_code:str):
-        return {"townId": town_id, "datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id, "data": data, "validationCode": validation_code}
+        self.__logger__ :Logger = logger
+        self.__measurement_helper__ : Helper = helper
     
     def upload_all_files(self, path:str) -> None:
         if not os.path.isdir(path):
@@ -24,162 +19,87 @@ class MeasurementParser():
             return
         for root, dirs, files in os.walk(path):
             for file in files:
-                if file.endswith(".txt"):
+                if file.endswith(self.__measurement_helper__.get_extension()):
                     timeline_id = file.split('-')[0]
                     self.__api_client__.update_timeline(timeline_id, 'Uploading')
                     self.load_with_parallelism(os.path.join(root, file))
                     self.__api_client__.update_timeline(timeline_id, 'Uploaded')
 
-    # Deprecated
-    def load(self, file_path:str) -> None:
-        file = open(file_path, 'r')
-        content = file.readlines()
-        number_of_items = len(content)
-        number_of_processedItems = 0
- 
-        station_id = -1
-        magnitude_id = -1
-        year = -1
-        month = -1
-        day = -1
-
-        items_to_upload_threshold = 500
-        accumulated_items_to_upload = []
-        items_not_uploaded = []
-
-        for line in content:
-            if line[2] == ',':
-                component = line.split(',')
-                station_id = int(component[2])
-                magnitude_id = int(component[3])
-                year = int(component[6])
-                month = int(component[7])
-                day = int(component[8])
-                date = datetime(year, month, day)
-                for hour in range(0, 24):
-                    index = 9 + (hour * 2)
-                    data = float(component[index])
-                    validation_code = component[index + 1]
-                    measurement_datetime = date + timedelta(hours=hour + 1)
-                    accumulated_items_to_upload.append(self.__get_insertable_object__(measurement_datetime,magnitude_id,station_id, data, validation_code))
-            else:
-                station_id = int(line[5:8])
-                magnitude_id = int(line[8:10])
-                year = int("20" + line[14:16])
-                month = int(line[16:18])
-                day = int(line[18:20])
-                date = datetime(year, month, day)
-                for hour in range(0, 24):
-                    index = 20 + (hour * 6)
-                    data = float(line[index: index + 5])
-                    validation_code = line[index + 5:index + 6]
-                    measurement_datetime = date + timedelta(hours=hour + 1)
-                    accumulated_items_to_upload.append(self.__get_insertable_object__(measurement_datetime,magnitude_id,station_id, data, validation_code))
-
-            
-            number_of_processedItems += 1
-            if len(accumulated_items_to_upload) >= items_to_upload_threshold:
-                items_not_uploaded.extend(self.__insert_accumulated_measurements__(accumulated_items_to_upload))
-                accumulated_items_to_upload.clear()
-                self.__logger__.info(f'Progress: {number_of_processedItems *100/number_of_items} %')
-
-        if len(accumulated_items_to_upload) > 0:
-          items_not_uploaded.extend(self.__insert_accumulated_measurements__(accumulated_items_to_upload))
-
-    def load_with_parallelism(self, file_path:str, section_size:int=20, thread_number:int=30)->None:
-        
+    def load_with_parallelism(self, file_path:str, section_size:int=20, thread_number:int=30) -> None:
+        # Index initialization
         self.__section__index = 0
+        # Mutex for index
         self.__section_lock__ = threading.Lock()
+        # Size of section to process by each tread
         self.__section_size__ = section_size
+        # Number of threads
         self.__thread_number__ = thread_number
+        # Processing start date
+        start_date = datetime.utcnow()
 
-        start_date = datetime.now()
-        file = open(file_path, 'r')
-        self.__file_content__ = file.readlines()
+        # Get usable file content
+        self.__file_content__ = self.__measurement_helper__.get_usable_file_content(file_path)
+
+        # Obtain the number of sections by section size
         self.__number_of_sections__ = math.floor(len(self.__file_content__) / self.__section_size__)
 
+        # Get file length
         size = len(self.__file_content__)
+
+        # Print thread information
+        self.__logger__.info(f'Uploading file {file_path}.Size: {size}. Section size: {self.__section_size__}. Nº of sections: {self.__number_of_sections__}. Thread number: {self.__thread_number__}')
+       
+
+        #Before start to upload we call this function
+        self.__measurement_helper__.pre_upload(file_path)
+        
+        # Inititalize thread data structure
         threads = [threading.Thread] * self.__thread_number__
 
-        self.__logger__.info(f'Uploading file {file_path}.Size: {size}. Section size: {self.__section_size__}. Nº of sections: {self.__number_of_sections__}. Thread number: {self.__thread_number__}')
-        #Analizar fichero para sacar las estaciones y magnitudes que se están
-        #utilizando
-
-        measurement_analyzer = MeasurementAnalyzer(self.__logger__)
-        stations, magnitudes, first_date, last_date = measurement_analyzer.analyze_file(file_path)
-
-        not_created_stations = self.__api_client__.station_existence(list(stations))
-        not_created_magnitudes = self.__api_client__.magnitude_existence(list(magnitudes))
-        
-        self.__api_client__.create_stations(not_created_stations)
-        self.__api_client__.create_magnitudes(not_created_magnitudes)
-
+        # Inititalize and start threads
         for index in range(0, self.__thread_number__):
             i = index
             threads[index] = threading.Thread(target = self.__process_item__, args = [i])
             threads[index].start()
 
+        # Wait for all threads to end
         for index in range(0, self.__thread_number__):
             threads[index].join()
-
-        end_date = datetime.now()
+        
+        # Processing end date
+        end_date = datetime.utcnow()
   
-    def __process_item__(self, thread_number:int)->None:
-        self.__logger__.debug(f"Hilo {thread_number} en marcha")
-        content = self.__get_file_section__()
+    def __process_item__(self, thread_number:int) -> None:
+        self.__logger__.debug(f"Tread {thread_number} started")
 
+        # Get the section of file to be proccesed by this thread
+        section_content = self.__get_section_content__()
+
+        # Threshold to upload data
         items_to_upload_threshold = 100
-        accumulated_items_to_upload = []
+        items_to_upload = []
 
-        while(content != None):      
-            for line in content:
-                station_id = -1
-                magnitude_id = -1
-                year = -1
-                month = -1
-                day = -1
-                if line[2] == ',':
-                    component = line.split(',')
-                    town_id = int(component[1])
-                    station_id = int(component[2])
-                    magnitude_id = int(component[3])
-                    year = int(component[6])
-                    month = int(component[7])
-                    day = int(component[8])
-                    date = datetime(year, month, day)
-                    for hour in range(0, 24):
-                        index = 9 + (hour * 2)
-                        data = float(component[index])
-                        validation_code = component[index + 1].strip()
-                        measurement_datetime = date + timedelta(hours=hour + 1)
-                        accumulated_items_to_upload.append(self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code))
-                else:
-                    town_id = int(line[2:5])
-                    station_id = int(line[5:8])
-                    magnitude_id = int(line[8:10])
-                    year = int("20" + line[14:16])
-                    month = int(line[16:18])
-                    day = int(line[18:20])
-                    date = datetime(year, month, day)
-                    for hour in range(0, 24):
-                        index = 20 + (hour * 6)
-                        data = float(line[index: index + 5])
-                        validation_code = line[index + 5:index + 6]
-                        measurement_datetime = date + timedelta(hours=hour + 1)
-                        accumulated_items_to_upload.append(self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code))
+        # Main loop, while content is provided, process it
+        while(section_content != None):      
+            for row in section_content:
+                # Get data for uploading
+                data = self.__measurement_helper__.get_data_content(row)
+                items_to_upload.extend(data)
       
-                if len(accumulated_items_to_upload) >= items_to_upload_threshold:
-                    self.__api_client__.create_measurements(accumulated_items_to_upload)
-                    accumulated_items_to_upload.clear()
-                    
-            if len(accumulated_items_to_upload) > 0:
-                self.__api_client__.create_measurements(accumulated_items_to_upload)
+                # If threshold has been overcome, upload it
+                if len(items_to_upload) >= items_to_upload_threshold:
+                    self.__measurement_helper__.upload_data(items_to_upload)
+                    items_to_upload.clear()
+             
+            # If items left in colelction, upload them
+            if len(items_to_upload) > 0:
+                self.__measurement_helper__.upload_data(items_to_upload)
 
-            content = self.__get_file_section__()
-        self.__logger__.debug(f"Hilo {thread_number} terminó")
+            section_content = self.__get_section_content__()
+        self.__logger__.debug(f"Thread {thread_number} finished")
 
     #devuelve la sección correspondiente al fichero que tiene que procesar
-    def __get_file_section__(self)->list:
+    def __get_section_content__(self) -> list:
         self.__section_lock__.acquire()
         if(self.__section__index > self.__number_of_sections__):
             self.__section_lock__.release()
@@ -200,4 +120,5 @@ class MeasurementParser():
         self.__section_lock__.release()
 
         return self.__file_content__[start_element_index:end_element_index]
-        
+
+

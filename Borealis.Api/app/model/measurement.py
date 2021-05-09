@@ -6,12 +6,15 @@ class Measurement(db.Model, BaseModelMixin):
     __tablename__ = 'measurements'
     town_id = db.Column(db.Integer, primary_key=True)
     datetime = db.Column(db.DateTime, primary_key=True)
-    magnitude_id = db.Column(db.Integer, db.ForeignKey('magnitudes.id'), primary_key=True)
-    station_id = db.Column(db.Integer, db.ForeignKey("stations.id"), primary_key=True)
     data = db.Column(db.Float, nullable=False)
     validation_code = db.Column(db.String(1), nullable=False)
     
-    
+    station_id = db.Column(db.Integer, db.ForeignKey("stations.id"), primary_key=True)
+    station = db.relationship("Station", back_populates="measurements")
+
+    magnitude_id = db.Column(db.Integer, db.ForeignKey('magnitudes.id'), primary_key=True)
+    magnitude = db.relationship("Magnitude", back_populates="measurements")
+
     def __init__(self, town_id, datetime, station_id, magnitude_id, data, validation_code):
         self.town_id = town_id
         self.datetime = datetime

@@ -1,5 +1,5 @@
 from .pollution_downloader import PollutionDownloader
-from measurement import MeasurementParser
+from measurement import MeasurementParser, TextPollutionHelper
 from configuration import PollutionConfiguration
 from client import ApiClient
 from common import Logger
@@ -14,8 +14,10 @@ class PollutionInitialLoader():
     def load(self)->None:
         pollution_downloader = PollutionDownloader(self.__pollution_configuration__,self.__api_client__, self.__logger__)
         pollution_downloader.get_available_files()
-        measurement_parser = MeasurementParser(self.__api_client__, self.__logger__)
+        helper = TextPollutionHelper(self.__api_client__, self.__logger__)
+        measurement_parser = MeasurementParser(self.__api_client__, self.__logger__, helper)
         measurement_parser.upload_all_files(self.__pollution_configuration__.download_path)
+
 
 
 

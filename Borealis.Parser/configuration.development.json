@@ -26,6 +26,14 @@
   },
   "pollution": {
     "main_page_url": "https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default",
-    "download_path": "data\\pollution"
+    "community_main_page_url": "https://datos.comunidad.madrid/catalogo/dataset/calidad_aire_datos_historico",
+    "download_path": "data/pollution",
+    "community_download_path": "data/pollution/community"
+
+  },
+  "traffic": {
+    "point_page_url": "https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=ee941ce6ba6d3410VgnVCM1000000b205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD",
+    "measurement_page_url": "",
+    "download_path": "data/traffic"
   }
 }

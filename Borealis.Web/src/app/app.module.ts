@@ -29,6 +29,7 @@ import { HolidayService } from './services/holiday.service';
 import { EventService } from './services/event.service';
 import { ReportService } from './services/report.service';
 import { TimelineService } from './services/timeline.service';
+import { SelectorComponent } from './components/selector/selector.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { TimelineService } from './services/timeline.service';
         HolidayListComponent,
         ReportComponent,
         TimelineListComponent,
+        SelectorComponent,
     ],
     imports: [
         BrowserModule,

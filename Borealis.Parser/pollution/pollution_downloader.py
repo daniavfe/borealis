@@ -55,8 +55,8 @@ class PollutionDownloader():
                 if file.endswith(".txt"):
                       measurement_analyzer = MeasurementAnalyzer(self.__logger__)
                       file_path = os.path.join(root, file)
-                      stations, magnitudes, first_date, last_date = measurement_analyzer.analyze_file(file_path)  
-                      file_id = self.__api_client__.create_timeline('Pollution', first_date, last_date, 'Downloaded', file_path)
+                      measurement_analyzer.analyze_file(file_path)  
+                      file_id = self.__api_client__.create_timeline('Pollution', measurement_analyzer.first_date, measurement_analyzer.last_date, 'Downloaded', file_path)
                       file_path_with_id = os.path.join(folder_path,f'{file_id}-{file}')
                       os.rename(file_path, file_path_with_id)
 

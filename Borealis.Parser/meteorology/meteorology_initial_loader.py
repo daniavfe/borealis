@@ -1,5 +1,5 @@
 from .meteorology_downloader import MeteorologyDownloader
-from measurement import MeasurementParser
+from measurement import MeasurementParser, TextPollutionHelper
 from configuration import MeteorologyConfiguration
 from client import ApiClient
 from common import Logger
@@ -14,8 +14,9 @@ class MeteorologyInitialLoader():
     def load(self) -> None:
         self.__logger__.info('Meteorology initial loader starts')
         meteorology_downloader = MeteorologyDownloader(self.__meteorology_configuration__, self.__api_client__, self.__logger__)
-        #meteorology_downloader.get_available_files()
-        measurement_parser = MeasurementParser(self.__api_client__, self.__logger__)
+        meteorology_downloader.get_available_files()
+        helper = TextPollutionHelper(self.__api_client__, self.__logger__)
+        measurement_parser = MeasurementParser(self.__api_client__, self.__logger__, helper)
         measurement_parser.upload_all_files(self.__meteorology_configuration__.download_path)
 
     

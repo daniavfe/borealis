@@ -3,6 +3,7 @@ from density import DensityInitialLoader
 from holiday import HolidayInitialLoader
 from meteorology import MeteorologyInitialLoader
 from pollution import PollutionInitialLoader
+from traffic import TrafficInitialLoader
 from common import Logger
 from client import ApiClient
 import json
@@ -17,17 +18,18 @@ api_client :ApiClient = ApiClient(configuration.api)
 logger :Logger = Logger()
 
 #Carga inicial de densidades
-#density_initial_loader :DensityInitialLoader= DensityInitialLoader(configuration.density, api_client, logger)
-#density_initial_loader.load()
+density_initial_loader :DensityInitialLoader = DensityInitialLoader(configuration.density, api_client, logger)
+density_initial_loader.load()
 
 #Carga inicial de vacaciones
-holiday_initital_loader :HolidayInitialLoader= HolidayInitialLoader(configuration.holiday, api_client, logger)
-holiday_initital_loader.load()
+#holiday_initital_loader :HolidayInitialLoader =
+#HolidayInitialLoader(configuration.holiday, api_client, logger)
+#holiday_initital_loader.load()
 
 #Carga inicial de datos meteorológicos
-#meteorology_initital_loader:MeteorologyInitialLoader = MeteorologyInitialLoader(configuration.meteorology, api_client, logger)
+#meteorology_initital_loader :MeteorologyInitialLoader = MeteorologyInitialLoader(configuration.meteorology, api_client, logger)
 #meteorology_initital_loader.load()
 
 #Carga inicial de calidad del aire
-#pollution_initital_loader = PollutionInitialLoader(configuration.pollution, api_client, logger)
+#pollution_initital_loader = PollutionInitialLoader(configuration.pollution,api_client, logger)
 #pollution_initital_loader.load()

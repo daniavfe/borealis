@@ -33,7 +33,7 @@ class StationUpdateEndpoint(Resource):
     @staticmethod
     def put():
         #Get params from url
-        station_id = request.args.getlist('id')
+        station_id = request.args.get('id')
         #Instance schema
         station_update_dto_schema = StationUpdateDtoSchema()
         #Parse json to dto

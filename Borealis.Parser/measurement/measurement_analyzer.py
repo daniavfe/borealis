@@ -1,11 +1,16 @@
 from common import Logger
 from datetime import datetime
-import os, glob
+import os
+import glob
 
 class MeasurementAnalyzer():
 
     def __init__(self, logger:Logger):
         self.__logger__ = logger
+        self.stations :set = set()
+        self.magnitudes :set = set()
+        self.first_date :datetime = None
+        self.last_date :datetime = None
 
     def analyze_all_files_in_directory(self, path):
         if not os.path.isdir(path):
@@ -18,7 +23,7 @@ class MeasurementAnalyzer():
         for root, dirs, files in os.walk(path):
             for file in files:
                 if file.endswith(".txt"):
-                    station_ids, magnitude_ids= self.analyze_file(os.path.join(root, file))
+                    station_ids, magnitude_ids = self.analyze_file(os.path.join(root, file))
                     total_station_ids.update(station_ids)
                     total_magnitude_ids.update(magnitude_ids)
                     print(f'{root} {file}')
@@ -33,10 +38,6 @@ class MeasurementAnalyzer():
         return self.__analyze__(path)
     
     def __analyze__(self, path):
-        station_ids = set()
-        magnitude_ids = set()
-        first_date = None
-        last_date = None
         if not os.path.isfile(path):
             self.__logger__.warning(f'File {path}')
             return
@@ -44,38 +45,41 @@ class MeasurementAnalyzer():
         file = open(path, 'r')
         content = file.readlines()
         number_of_lines = len(content)
-        number_of_processed_lines = 0
         
         self.__logger__.info(f'Analyzing {path}')
-        for line in content:
-            station_id = -1
-            magnitude_id = -1
-            if line[2] == ',':
-                component = line.split(',')
-                station_id = component[2]
-                magnitude_id = component[3]
-                technique_id = component[4]
-                year = int(component[6])
-                month = int(component[7])
-                day = int(component[8])
-                date = datetime(year, month, day)
+        for row in content:
+            if row[2] == ',':
+               station_id, magnitude_id, date = self.__get_from_comma_separated_content__(row)
             else:
-                station_id = line[5:8]
-                magnitude_id = line[8:10]
-                technique_id = line[10:12]
-                year = int("20" + line[14:16])
-                month = int(line[16:18])
-                day = int(line[18:20])
-                date = datetime(year, month, day)
+               station_id, magnitude_id, date = self.__get_from_text_content__(row)
 
-            if  last_date == None or date > last_date:
-                last_date = date
-            if first_date == None or date < first_date:
-                first_date = date
+            if self.last_date == None or date > self.last_date:
+                self.last_date = date
+            if self.first_date == None or date < self.first_date:
+                self.first_date = date
 
-            station_ids.add(station_id)
-            magnitude_ids.add(magnitude_id)
-            number_of_processed_lines += 1
+            self.stations.add(station_id)
+            self.magnitudes.add(magnitude_id)
         
         self.__logger__.info(f'Analysis done')
-        return station_ids, magnitude_ids, first_date, last_date
+
+    def __get_from_comma_separated_content__(self, row:str) -> (int, int, datetime):
+        component = row.split(',')
+        station_id = component[2]
+        magnitude_id = component[3]
+        technique_id = component[4]
+        year = int(component[6])
+        month = int(component[7])
+        day = int(component[8])
+        date = datetime(year, month, day)
+        return station_id, magnitude_id, date
+
+    def __get_from_text_content__(self, row:str) -> (int, int, datetime):
+        station_id = row[5:8]
+        magnitude_id = row[8:10]
+        technique_id = row[10:12]
+        year = int("20" + row[14:16])
+        month = int(row[16:18])
+        day = int(row[18:20])
+        date = datetime(year, month, day)
+        return station_id, magnitude_id, date

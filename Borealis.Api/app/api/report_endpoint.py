@@ -10,7 +10,15 @@ report_business = ReportBusiness()
 class ReportCreationEndpoint(Resource):
     @staticmethod
     def get():
-        report_dto = report_business.create_report()      
+        #Get url params
+        year = request.args.get('year')
+        months = request.args.getlist('months')
+        station_ids = request.args.getlist('stationIds')
+        magnitude_ids = request.args.getlist('magnitudeIds')
+        #get report from business
+        report_dto = report_business.create_report(year, months, station_ids, magnitude_ids)      
+        #Instance schema
         report_dto_schema = ReportDtoSchema()
+        #Return json data
         return report_dto_schema.dump(report_dto)
 

@@ -12,12 +12,12 @@ class Station(db.Model, BaseModelMixin):
     longitude = db.Column(db.String(20))
     altitude = db.Column(db.Integer)
     
-    measurements = db.relationship("Measurement", backref="station")
     neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=True)
     neighborhood = db.relationship("Neighborhood", back_populates="stations")
 
-    #magnitudes = db.relationship('PollutionStationMagnitude', back_populates="stations")
+    measurements = db.relationship("Measurement", back_populates="station")
     
+
     def __init__(self, id, name, address, start_date, end_date, latitude, longitude, altitude):
         self.id = id
         self.name = name

@@ -8,9 +8,8 @@ class Magnitude(db.Model, BaseModelMixin):
     formula = db.Column(db.String(5))
     measurement_unit = db.Column(db.String(10))
     
-    measurements = db.relationship("Measurement", backref="magnitude")
-    #stations = db.relationship('PollutionStationMagnitude',  back_populates="magnitudes")
-
+    measurements = db.relationship("Measurement", back_populates="magnitude")
+    
     def __init__(self, id, name, formula, measurement_unit):
         self.id = id
         self.name = name
