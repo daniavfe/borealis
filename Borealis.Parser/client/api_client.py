@@ -52,6 +52,13 @@ class ApiClient():
         payload = {"date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope}
         requests.post(f'{self.__base_url__}{self.__holiday_endpoint__}', data=json.dumps(payload))
 
+    def create_holidays(self, holidays:list) -> list:
+        response = requests.post(f'{self.__base_url__}{self.__holiday_endpoint__}/many', data=json.dumps(holidays))
+        items_not_created = json.loads(response.content)['itemsNotCreatedPositions']
+        if len(items_not_created) > 0:
+            return itemgetter(*items_not_created)(measurements)     
+        return []
+
     def create_stations(self, stations:list) -> None:
         payload = list(map(lambda x: {"id":x}, stations))
         requests.post(f'{self.__base_url__ }{self.__station_endpoint__}/many', data=json.dumps(payload))

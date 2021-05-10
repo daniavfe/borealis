@@ -59,14 +59,14 @@
     <Compile Include="configuration\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="density\density_continuous_loader.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="density\density_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="density\density_helper.py" />
     <Compile Include="holiday\holiday_analyzer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="holiday\holiday_helper.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="holiday\holiday_initial_loader.py">
