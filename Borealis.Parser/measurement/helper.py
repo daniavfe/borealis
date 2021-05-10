@@ -9,6 +9,12 @@ class Helper():
     def get_extension(self):
         raise Exception('Not implemented method')
 
+    def get_section_size(self):
+        raise Exception('Not implemented method')
+
+    def get_thread_number(self):
+        raise Exception('Not implemented method')
+
     def get_usable_file_content(self, file_path:str):
         raise Exception('Not implemented method')
 

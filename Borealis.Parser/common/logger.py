@@ -2,7 +2,7 @@ import logging
 
 class Logger():
     def __init__(self):
-        logging.basicConfig(level=logging.INFO, filename='logs.log')
+        logging.basicConfig(level=logging.DEBUG, filename='logs.log')
 
     def debug(self, message:str)->None:
         logging.debug(message)

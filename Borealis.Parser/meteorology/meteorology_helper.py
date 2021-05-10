@@ -13,6 +13,12 @@ class MeteorologyHelper(Helper):
     def get_extension(self) -> str:
         return '.txt'
 
+    def get_section_size(self):
+        return 20
+
+    def get_thread_number(self):
+        return 30
+
     def get_usable_file_content(self, file_path:str) -> list:
         # Check file exists
         if not os.path.isfile(file_path):

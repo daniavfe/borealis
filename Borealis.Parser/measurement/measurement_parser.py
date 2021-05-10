@@ -25,15 +25,15 @@ class MeasurementParser():
                     self.load_with_parallelism(os.path.join(root, file))
                     self.__api_client__.update_timeline(timeline_id, 'Uploaded')
 
-    def load_with_parallelism(self, file_path:str, section_size:int=20, thread_number:int=30) -> None:
+    def load_with_parallelism(self, file_path:str) -> None:
         # Index initialization
         self.__section__index = 0
         # Mutex for index
         self.__section_lock__ = threading.Lock()
         # Size of section to process by each tread
-        self.__section_size__ = section_size
+        self.__section_size__ = self.__measurement_helper__.get_section_size()
         # Number of threads
-        self.__thread_number__ = thread_number
+        self.__thread_number__ = self.__measurement_helper__.get_thread_number()
         # Processing start date
         start_date = datetime.utcnow()
 
@@ -94,6 +94,7 @@ class MeasurementParser():
             # If items left in colelction, upload them
             if len(items_to_upload) > 0:
                 self.__measurement_helper__.upload_data(items_to_upload)
+                items_to_upload.clear()
 
             section_content = self.__get_section_content__()
         self.__logger__.debug(f"Thread {thread_number} finished")
@@ -116,7 +117,7 @@ class MeasurementParser():
         self.__logger__.debug(f'start: {start_element_index}, end:{end_element_index}')
 
         self.__section__index += 1
-
+        self.__logger__.debug(f"Section requested index: {self.__section__index}")
         self.__section_lock__.release()
 
         return self.__file_content__[start_element_index:end_element_index]

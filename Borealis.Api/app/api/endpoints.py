@@ -46,6 +46,7 @@ density_api.add_resource(DensityNeighborhoodListEndpoint, '/api/density/neighbor
 density_api.add_resource(DensityNeighborhoodCreationEndpoint, '/api/density/neighborhood/', endpoint='neighborhood_creation_endpoint')
 density_api.add_resource(DensityListEndpoint, '/api/density/', endpoint='density_list_endpoint') 
 density_api.add_resource(DensityCreationEndpoint, '/api/density/', endpoint='density_creation_endpoint')
+density_api.add_resource(DensityBatchCreationEndpoint, '/api/density/many/', endpoint='density_batch_creation_endpoint')
 density_api.add_resource(DensityDataEndpoint, '/api/density/data/', endpoint='density_data_endpoint')
 
 # Holiday endpoints

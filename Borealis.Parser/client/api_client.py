@@ -20,20 +20,20 @@ class ApiClient():
     def get_existing_districts(self, page: int=1, per_page:int=20) -> list:
         response = requests.get(f'{ self.__base_url__}{self.__district_endpoint__}', params={'page':page, 'perPage':per_page})
         data = json.loads(response.content)
-        return {item['name']:item['id'] for item in data['items']}
+        return {item['id'] for item in data['items']}
 
     def get_existing_neighborhoods(self,  page: int=1, per_page:int=20) -> list:
         response = requests.get(f'{ self.__base_url__}{self.__neighborhood_endpoint__}', params={'page':page, 'perPage':per_page})
         data = json.loads(response.content)
-        return {item['name']:item['id'] for item in data['items']}
+        return {item['id'] for item in data['items']}
 
-    def create_district(self, name:str, surface:float) -> int:
-        payload = {'name': name, 'surface':surface}
+    def create_district(self, id:int, name:str, surface:float) -> int:
+        payload = {'id':id,'name': name, 'surface':surface}
         response = requests.post(f'{ self.__base_url__}{self.__district_endpoint__}', data=json.dumps(payload))
         return int(response.content)
 
-    def create_neighborhood(self, district_id:int, name:str, surface:float) -> int:
-        payload = {'districtId':district_id, 'name':name, 'surface':surface}
+    def create_neighborhood(self ,id:int, district_id:int, name:str, surface:float) -> int:
+        payload = {'id':id,'districtId':district_id, 'name':name, 'surface':surface}
         response = requests.post(f'{ self.__base_url__}{self.__neighborhood_endpoint__}', data=json.dumps(payload))
         return int(response.content)
 
@@ -41,6 +41,13 @@ class ApiClient():
         payload = {'districtId':district_id, 'neighborhoodId':neighborhood_id, 'year':year, 'month':month, 'value':value}
         requests.post(f'{self.__base_url__}{self.__density_endpoint__}', data=json.dumps(payload))
    
+    def create_densities(self, densities:list) -> list:
+        response = requests.post(f'{self.__base_url__}{self.__density_endpoint__}/many', data=json.dumps(densities))
+        items_not_created = json.loads(response.content)['itemsNotCreatedPositions']
+        if len(items_not_created) > 0:
+            return itemgetter(*items_not_created)(measurements)     
+        return []
+
     def create_holiday(self, date:datetime, day_of_week:int, name:str, scope:str):
         payload = {"date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope}
         requests.post(f'{self.__base_url__}{self.__holiday_endpoint__}', data=json.dumps(payload))

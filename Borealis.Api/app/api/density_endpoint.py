@@ -74,6 +74,20 @@ class DensityCreationEndpoint(Resource):
         #Create density
         density_business.create_density(density_creation_dto)
 
+class DensityBatchCreationEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        density_creation_dto_schema = DensityCreationDtoSchema()
+        #Parse json to dto
+        density_creation_dto_list = density_creation_dto_schema.loads(request.data, many=True)
+        #Create measurement
+        items_not_created = density_business.create_densities_in_batch(density_creation_dto_list)
+        #Instance result schema
+        density_batch_creation_result_dto_schema = BatchCreationResultDtoSchema()
+        #Return json data
+        return density_batch_creation_result_dto_schema.dump(items_not_created, many=False)
+
 class DensityDataEndpoint(Resource):
     @staticmethod
     def get():

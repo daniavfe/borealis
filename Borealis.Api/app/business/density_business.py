@@ -39,7 +39,7 @@ class DensityBusiness:
 
     def create_district(self, district_creation_dto):
         # TODO: Comprobaciones
-        district = District(district_creation_dto.name, district_creation_dto.surface)
+        district = District(district_creation_dto.id, district_creation_dto.name, district_creation_dto.surface)
         district.save()
         return district.id
 
@@ -76,7 +76,7 @@ class DensityBusiness:
 
     def create_neighborhood(self, neighborhood_creation_dto):
          # TODO: Comprobaciones
-        neightborhood = Neighborhood(neighborhood_creation_dto.name, neighborhood_creation_dto.surface, neighborhood_creation_dto.district_id)
+        neightborhood = Neighborhood(neighborhood_creation_dto.id, neighborhood_creation_dto.name, neighborhood_creation_dto.surface, neighborhood_creation_dto.district_id)
         neightborhood.save()
         return neightborhood.id
 
@@ -112,6 +112,14 @@ class DensityBusiness:
          # TODO: Comprobaciones
         density = Density(density_creation_dto.district_id, density_creation_dto.neighborhood_id, density_creation_dto.year, density_creation_dto.month, density_creation_dto.value)
         density.save()
+
+    def create_densities_in_batch(self, density_creation_dto_list):
+       
+        data = list(map(lambda x: Density(x.district_id, x.neighborhood_id, x.year, x.month, x.value), density_creation_dto_list))
+
+        db.session.add_all(data)
+        db.session.commit()
+        return BatchCreationResultDto([])
 
     def get_density_data(self, years, districts, neighborhoods, months):
 

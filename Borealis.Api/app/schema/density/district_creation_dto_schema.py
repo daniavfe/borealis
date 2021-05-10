@@ -5,6 +5,7 @@ from ..camel_cased_schema import CamelCasedSchema
 
 
 class DistrictCreationDtoSchema(CamelCasedSchema):
+    id = fields.Integer()
     name = fields.String()
     surface = fields.Float()
 
