@@ -65,6 +65,7 @@
     <Compile Include="density\density_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="density\density_helper.py" />
     <Compile Include="holiday\holiday_analyzer.py">
       <SubType>Code</SubType>
     </Compile>
@@ -87,9 +88,6 @@
     <Compile Include="common\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="density\legacy_density.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="density\density_downloader.py">
       <SubType>Code</SubType>
     </Compile>
@@ -108,7 +106,8 @@
     <Compile Include="holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="measurement\text_pollution_helper.py">
+    <Compile Include="meteorology\meteorology_helper.py" />
+    <Compile Include="pollution\pollution_helper.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="measurement\__init__.py">

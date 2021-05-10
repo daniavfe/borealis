@@ -1,2 +1,3 @@
 from .pollution_downloader import PollutionDownloader
 from .pollution_initial_loader import PollutionInitialLoader
+from .pollution_helper import PollutionHelper

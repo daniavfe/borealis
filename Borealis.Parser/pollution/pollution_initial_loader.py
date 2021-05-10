@@ -1,8 +1,10 @@
-from .pollution_downloader import PollutionDownloader
-from measurement import MeasurementParser, TextPollutionHelper
+from measurement import MeasurementParser
 from configuration import PollutionConfiguration
 from client import ApiClient
 from common import Logger
+from .pollution_downloader import PollutionDownloader
+from .pollution_helper import PollutionHelper
+
 
 class PollutionInitialLoader():
     def __init__(self, pollution_configuration:PollutionConfiguration, api_client:ApiClient, logger:Logger) -> None:

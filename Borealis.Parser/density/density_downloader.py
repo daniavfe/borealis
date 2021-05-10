@@ -62,7 +62,7 @@ class DensityDownloader():
         keys = data[0].keys()
 
         with open(file_path, 'w', newline='')  as output_file:
-            dict_writer = csv.DictWriter(output_file, keys)
+            dict_writer = csv.DictWriter(output_file, keys,  delimiter=';')
             dict_writer.writeheader()
             dict_writer.writerows(data)
 
@@ -84,7 +84,8 @@ class DensityDownloader():
         for year in selected_year_list:  
             final_list = []
             for district in district_list:
-                month_list, zone_list = self.__get_available_months_and_zones__(year, district)                 
+                month_list, zone_list = self.__get_available_months_and_zones__(year, district)   
+                zone_list_set ={x[6:]:x[:5] for x in zone_list}
                 if months != []:
                     selected_month_list = list(set(month_list).intersection(set(months)))
                 else:
@@ -95,7 +96,7 @@ class DensityDownloader():
                     densities = self.__get_density__(year, district, month, zone_list)
                     for density in densities: 
                         month_number = int(month[0:2])                         
-                        final_list.append({'year': year, 'month':month_number, 'district':district[3:], 'zone':density[0], 'value': density[1]}) 
+                        final_list.append({'year': year, 'month':month_number,'districtId':district[1:3], 'district':district[3:], 'neighborhoodId':zone_list_set[density[0]], 'neighborhood':density[0], 'value': density[1]}) 
             self.__write_csv_file__(final_list, year)
         self.__logger__.info(f'Density data downloaded')
         
