@@ -9,7 +9,8 @@
     "station_endpoint": "/station",
     "magnitude_endpoint": "/magnitude",
     "event_endpoint": "/event",
-    "timeline_endpoint": "/timeline"
+    "timeline_endpoint": "/timeline",
+    "town_endpoint": "/town"
   },
   "density": {
     "main_page_url": "http://www-2.munimadrid.es/TSE6/control/seleccionDatosBarrio",
@@ -22,7 +23,9 @@
   },
   "meteorology": {
     "main_page_url": "https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=fa8357cec5efa610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default",
-    "download_path": "data/meteorology"
+    "community_main_page_url": "https://datos.comunidad.madrid/catalogo/dataset/calidad_aire_datos_meteo_historico",
+    "download_path": "data/meteorology",
+    "community_download_path": "data/meteorology/community"
   },
   "pollution": {
     "main_page_url": "https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=f3c0f7d512273410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default",

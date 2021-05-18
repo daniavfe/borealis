@@ -10,11 +10,12 @@ class Station(db.Model, BaseModelMixin):
     end_date = db.Column(db.DateTime)
     latitude = db.Column(db.String(20))
     longitude = db.Column(db.String(20))
-    altitude = db.Column(db.Integer)
-    
+    altitude = db.Column(db.Integer)  
+    town_id = db.Column(db.Integer, db.ForeignKey('towns.town_id'), nullable=True)
     neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=True)
+    #Navigation properties
+    town = db.relationship("Town", back_populates="stations")
     neighborhood = db.relationship("Neighborhood", back_populates="stations")
-
     measurements = db.relationship("Measurement", back_populates="station")
     
 

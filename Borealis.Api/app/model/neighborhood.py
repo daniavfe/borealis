@@ -8,10 +8,10 @@ class Neighborhood(db.Model, BaseModelMixin):
     name = db.Column(db.String(100), unique=True)
     surface = db.Column(db.Float) 
     district_id = db.Column(db.Integer, db.ForeignKey('districts.id'), nullable=False)
-    
-    #relationships
-    densities = db.relationship("Density", backref="neighborhood")
-    stations = db.relationship("Station", back_populates="neighborhood", uselist=False)
+    #Navigation properties
+    district = db.relationship("District", back_populates="neighborhoods")
+    densities = db.relationship("Density", back_populates="neighborhood")
+    stations = db.relationship("Station", back_populates="neighborhood")
 
     def __init__(self, id, name, surface, district_id):
         self.id = id

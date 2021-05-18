@@ -29,3 +29,17 @@ class HolidayCreationEndpoint(Resource):
         holiday_creation_dto = holiday_creation_dto_schema.loads(request.data)
         #Create holiday
         holiday_business.create_holiday(holiday_creation_dto)
+
+class HolidayBatchCreationEndpoint(Resource):
+    @staticmethod
+    def post():
+        #Instance schema
+        holiday_creation_dto_schema = HolidayCreationDtoSchema()
+        #Parse json to dto
+        holiday_creation_dto_list = holiday_creation_dto_schema.loads(request.data, many=True)
+        #Create measurement
+        items_not_created = holiday_business.create_holidays_in_batch(holiday_creation_dto_list)
+        #Instance result schema
+        holiday_batch_creation_result_dto_schema = BatchCreationResultDtoSchema()
+        #Return json data
+        return holiday_batch_creation_result_dto_schema.dump(items_not_created, many=False)

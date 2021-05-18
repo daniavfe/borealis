@@ -7,7 +7,7 @@ class Magnitude(db.Model, BaseModelMixin):
     name = db.Column(db.String(100))
     formula = db.Column(db.String(5))
     measurement_unit = db.Column(db.String(10))
-    
+    #Navigation properties
     measurements = db.relationship("Measurement", back_populates="magnitude")
     
     def __init__(self, id, name, formula, measurement_unit):

@@ -78,6 +78,7 @@
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="measurement\measurement_csv_analyzer.py" />
     <Compile Include="measurement\measurement_parser.py">
       <SubType>Code</SubType>
     </Compile>
@@ -106,7 +107,12 @@
     <Compile Include="holiday\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="meteorology\community_meteorology_downloader.py" />
+    <Compile Include="meteorology\community_meteorology_helper.py" />
     <Compile Include="meteorology\meteorology_helper.py" />
+    <Compile Include="pollution\community_pollution_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pollution\pollution_helper.py">
       <SubType>Code</SubType>
     </Compile>

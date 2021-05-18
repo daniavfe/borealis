@@ -14,8 +14,8 @@ class DensityInitialLoader():
     # Realiza la carga inicial de los datos
     def load(self) -> None:
         #self.__logger__.info('Density initial loader starts')
-        #density_downloader = DensityDownloader(self.__density_configuration__, self.__api_client__, self.__logger__)
-        #density_downloader.download_density_file()
+        density_downloader = DensityDownloader(self.__density_configuration__, self.__api_client__, self.__logger__)
+        density_downloader.download_density_file()
         helper = DensityHelper(self.__api_client__, self.__logger__)
         measurement_parser = MeasurementParser(self.__api_client__, self.__logger__, helper)
         measurement_parser.upload_all_files(self.__density_configuration__.download_path)

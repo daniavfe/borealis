@@ -7,10 +7,11 @@ class District(db.Model, BaseModelMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
     surface = db.Column(db.Float)
-    
-    #relationships
-    neighborhoods = db.relationship("Neighborhood", backref="district")
-    densities = db.relationship("Density", backref="district")
+    town_id = db.Column(db.Integer, db.ForeignKey('towns.town_id'), nullable=False)
+    #Navigation properties
+    town = db.relationship("Town", back_populates="districts")
+    neighborhoods = db.relationship("Neighborhood", back_populates="district")
+    densities = db.relationship("Density", back_populates="district")
 
 
     def __init__(self, id, name, surface):

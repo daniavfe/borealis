@@ -46,14 +46,17 @@ class PollutionHelper(Helper):
         # Get data from analyzer
         stations :list = measurement_analyzer.stations
         magnitudes :list = measurement_analyzer.magnitudes
+        towns:list = measurement_analyzer.towns
         first_date :datetime = measurement_analyzer.first_date
         last_date :datetime = measurement_analyzer.last_date
 
-        # Check the existence of stations and magnitudes
+        # Check the existence of towns, stations and magnitudes
+        missing_towns = self.__api_client__.town_existence(list(towns))
         missing_stations = self.__api_client__.station_existence(list(stations))
         missing_magnitudes = self.__api_client__.magnitude_existence(list(magnitudes))
 
-        # Create missing station and magnitudes
+        # Create missing towns, station and magnitudes
+        self.__api_client__.create_towns(missing_towns)
         self.__api_client__.create_stations(missing_stations)
         self.__api_client__.create_magnitudes(missing_magnitudes)
 

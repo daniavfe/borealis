@@ -9,7 +9,8 @@ class ApiConfiguration():
         station_endpoint:str, 
         magnitude_endpoint:str,
         event_endpoint:str,
-        timeline_endpoint:str) -> None:
+        timeline_endpoint:str,
+        town_endpoint:str) -> None:
 
         self.base_url :str = base_url 
         self.district_endpoint :str = district_endpoint
@@ -21,5 +22,6 @@ class ApiConfiguration():
         self.magnitude_endpoint :str = magnitude_endpoint
         self.event_endpoint :str = event_endpoint
         self.timeline_endpoint:str = timeline_endpoint
+        self.town_endpoint:str = town_endpoint
 
 

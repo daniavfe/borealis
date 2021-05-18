@@ -1,0 +1,2 @@
+from .town_dto_schema import TownDtoSchema
+from .town_creation_dto_schema import TownCreationDtoSchema

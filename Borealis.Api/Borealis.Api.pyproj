@@ -78,6 +78,9 @@
     <Compile Include="app\business\timeline_business.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\business\town_business.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\business\__init__.py" />
     <Compile Include="app\common\__init__.py" />
     <Compile Include="app\configuration\development.py" />
@@ -187,6 +190,13 @@
     <Compile Include="app\dto\timeline\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\dto\town\town_creation_dto.py" />
+    <Compile Include="app\dto\town\town_dto.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\dto\town\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\dto\traffic\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -221,6 +231,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\model\timeline.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\model\town.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\model\__init__.py" />
@@ -321,10 +334,18 @@
     <Compile Include="app\schema\timeline\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\schema\town\town_creation_dto_schema.py" />
+    <Compile Include="app\schema\town\town_dto_schema.py" />
+    <Compile Include="app\schema\town\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\schema\weather\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\schema\__init__.py" />
+    <Compile Include="app\api\town_endpoint.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\__init__.py" />
     <Compile Include="main.py" />
   </ItemGroup>
@@ -347,6 +368,7 @@
     <Folder Include="app\dto\report\" />
     <Folder Include="app\dto\station\" />
     <Folder Include="app\dto\timeline\" />
+    <Folder Include="app\dto\town\" />
     <Folder Include="app\dto\traffic\" />
     <Folder Include="app\dto\weather\" />
     <Folder Include="app\model\" />
@@ -359,6 +381,7 @@
     <Folder Include="app\schema\report\" />
     <Folder Include="app\schema\station\" />
     <Folder Include="app\schema\timeline\" />
+    <Folder Include="app\schema\town\" />
     <Folder Include="app\schema\weather\" />
   </ItemGroup>
   <ItemGroup>

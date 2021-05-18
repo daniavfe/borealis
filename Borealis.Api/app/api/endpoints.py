@@ -8,6 +8,7 @@ from .holiday_endpoint import *
 from .event_endpoint import *
 from .report_endpoint import *
 from .timeline_endpoint import *
+from .town_endpoint import *
 
 
 # Measurement endpoints
@@ -54,14 +55,15 @@ holiday_blueprint = Blueprint('holiday_blueprint', __name__)
 holiday_api = Api(holiday_blueprint)
 holiday_api.add_resource(HolidayListEndpoint, '/api/holiday/', endpoint='holiday_list_endpoint')
 holiday_api.add_resource(HolidayCreationEndpoint, '/api/holiday/', endpoint='holiday_creation_endpoint')
+holiday_api.add_resource(HolidayBatchCreationEndpoint, '/api/holiday/many/', endpoint='holiday_batch_creation_endpoint')
 
-#Weather
-weather_blueprint = Blueprint('weather_blueprint', __name__)
-weather_api = Api(holiday_blueprint)
-
-#Traffic
-traffic_blueprint = Blueprint('traffic_blueprint', __name__)
-traffic_api = Api(holiday_blueprint)
+#Town
+town_blueprint = Blueprint('town_blueprint', __name__)
+town_api = Api(town_blueprint)
+town_api.add_resource(TownListEndpoint, '/api/town/', endpoint='town_list_endpoint')
+town_api.add_resource(TownCreationEndpoint, '/api/town/', endpoint='town_creation_endpoint')
+town_api.add_resource(TownBatchCreationEndpoint, '/api/town/many/', endpoint='town_batch_creation_endpoint')
+town_api.add_resource(TownExistenceEndpoint, '/api/town/existence/', endpoint='town_existence_endpoint')
 
 #Event
 event_blueprint = Blueprint('event_blueprint', __name__)

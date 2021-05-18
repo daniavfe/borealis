@@ -16,6 +16,7 @@ class ApiClient():
         self.__magnitude_endpoint__ :str = api_configuration.magnitude_endpoint
         self.__event_endpoint__ :str = api_configuration.event_endpoint
         self.__timeline_endpoint__ :str = api_configuration.timeline_endpoint
+        self.__town_endpoint__ :str = api_configuration.town_endpoint
 
     def get_existing_districts(self, page: int=1, per_page:int=20) -> list:
         response = requests.get(f'{ self.__base_url__}{self.__district_endpoint__}', params={'page':page, 'perPage':per_page})
@@ -59,6 +60,10 @@ class ApiClient():
             return itemgetter(*items_not_created)(measurements)     
         return []
 
+    def create_towns(self, towns:list) -> None:
+        payload = list(map(lambda x: {"townId":x}, towns))
+        requests.post(f'{self.__base_url__ }{self.__town_endpoint__}/many', data=json.dumps(payload))
+
     def create_stations(self, stations:list) -> None:
         payload = list(map(lambda x: {"id":x}, stations))
         requests.post(f'{self.__base_url__ }{self.__station_endpoint__}/many', data=json.dumps(payload))
@@ -66,6 +71,11 @@ class ApiClient():
     def create_magnitudes(self, magnitudes:list) -> None:
         payload = list(map(lambda x: {"id":x}, magnitudes))
         requests.post(f'{self.__base_url__}{self.__magnitude_endpoint__}/many', data=json.dumps(payload))
+
+    def town_existence(self, towns:list) -> list:
+        params = '?ids=' + '&ids='.join(towns)
+        response = json.loads(requests.get(f'{self.__base_url__}{self.__town_endpoint__}/existence{params}').content)
+        return response['ids'] 
 
     def station_existence(self, stations:list) -> list:
         params = '?ids=' + '&ids='.join(stations)

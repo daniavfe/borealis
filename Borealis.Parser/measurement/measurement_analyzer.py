@@ -9,6 +9,7 @@ class MeasurementAnalyzer():
         self.__logger__ = logger
         self.stations :set = set()
         self.magnitudes :set = set()
+        self.towns:set = set()
         self.first_date :datetime = None
         self.last_date :datetime = None
 
@@ -49,15 +50,16 @@ class MeasurementAnalyzer():
         self.__logger__.info(f'Analyzing {path}')
         for row in content:
             if row[2] == ',':
-               station_id, magnitude_id, date = self.__get_from_comma_separated_content__(row)
+               town_id, station_id, magnitude_id, date = self.__get_from_comma_separated_content__(row)
             else:
-               station_id, magnitude_id, date = self.__get_from_text_content__(row)
+               town_id, station_id, magnitude_id, date = self.__get_from_text_content__(row)
 
             if self.last_date == None or date > self.last_date:
                 self.last_date = date
             if self.first_date == None or date < self.first_date:
                 self.first_date = date
 
+            self.towns.add(town_id)
             self.stations.add(station_id)
             self.magnitudes.add(magnitude_id)
         
@@ -65,6 +67,7 @@ class MeasurementAnalyzer():
 
     def __get_from_comma_separated_content__(self, row:str) -> (int, int, datetime):
         component = row.split(',')
+        town_id = component[1]
         station_id = component[2]
         magnitude_id = component[3]
         technique_id = component[4]
@@ -72,9 +75,10 @@ class MeasurementAnalyzer():
         month = int(component[7])
         day = int(component[8])
         date = datetime(year, month, day)
-        return station_id, magnitude_id, date
+        return town_id, station_id, magnitude_id, date
 
     def __get_from_text_content__(self, row:str) -> (int, int, datetime):
+        town_id = int(row[2:5])
         station_id = row[5:8]
         magnitude_id = row[8:10]
         technique_id = row[10:12]
@@ -82,4 +86,4 @@ class MeasurementAnalyzer():
         month = int(row[16:18])
         day = int(row[18:20])
         date = datetime(year, month, day)
-        return station_id, magnitude_id, date
+        return town_id, station_id, magnitude_id, date

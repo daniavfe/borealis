@@ -1,7 +1,7 @@
 from configuration import PollutionConfiguration
 from common import Logger
 from client import ApiClient
-from measurement import CsvMeasurementAnalyzer
+from measurement import MeasurementCsvAnalyzer
 from bs4 import BeautifulSoup
 import requests
 import csv
@@ -54,10 +54,10 @@ class CommunityPollutionDownloader():
         for root, dirs, files in os.walk(folder_path):
             for file in files:
                 if file.endswith(".csv"):
-                      measurement_analyzer = CsvMeasurementAnalyzer(self.__logger__)
+                      measurement_analyzer = MeasurementCsvAnalyzer(self.__logger__)
                       file_path = os.path.join(root, file)
-                      stations, magnitudes, first_date, last_date = measurement_analyzer.analyze_file(file_path)  
-                      file_id = self.__api_client__.create_timeline('CommunityPollution', first_date, last_date, 'Downloaded', file_path)
+                      measurement_analyzer.analyze_file(file_path)  
+                      file_id = self.__api_client__.create_timeline('CommunityPollution', measurement_analyzer.first_date, measurement_analyzer.last_date, 'Downloaded', file_path)
                       file_path_with_id = os.path.join(folder_path,f'{file_id}-{file}')
                       os.rename(file_path, file_path_with_id)
 

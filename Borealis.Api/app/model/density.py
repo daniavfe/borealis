@@ -4,11 +4,16 @@ from .base_model import BaseModelMixin
 
 class Density(db.Model, BaseModelMixin):
     __tablename__ = 'densities'
-    district_id = db.Column(db.Integer, db.ForeignKey('districts.id'), nullable=False, primary_key=True)
-    neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=False, primary_key=True)
+    town_id = db.Column(db.Integer, db.ForeignKey("towns.town_id"), primary_key=True)
+    district_id = db.Column(db.Integer, db.ForeignKey('districts.id'), nullable=True)
+    neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=True)
     year = db.Column(db.Integer, primary_key=True)
     month = db.Column(db.Integer, primary_key=True)
     value = db.Column(db.Integer)
+    #Navigation properties
+    town = db.relationship("Town", back_populates="densities")
+    district = db.relationship("District", back_populates="densities")
+    neighborhood = db.relationship("Neighborhood", back_populates="densities")
 
 
     def __init__(self, district_id, neighborhood_id, year, month, value):

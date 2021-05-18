@@ -15,7 +15,7 @@ class HolidayHelper():
         return '.csv'
 
     def get_section_size(self):
-        return 200
+        return 20
 
     def get_thread_number(self):
         return 20
@@ -50,16 +50,19 @@ class HolidayHelper():
         if row[0] == '':
             return[]
 
-        day_of_week = day_of_week_switch.get(row[1], None)
+        day_of_week = day_of_week_switch.get(row[1], '')
 
-        scope = scope_switch.get(row[3], None)   
+        scope = scope_switch.get(row[3], None)  
+        if scope == None:
+            return []
+
         date = datetime.strptime(row[0], '%d/%m/%Y').strftime('%Y-%m-%d %H:%M:%S')
         name = row[4]
         return self.__get_insertable_object__(date, day_of_week,name, scope)
 
     def upload_data(self, items_to_upload:list) -> None:
         # Upload items to API
-        #self.__api_client__.create_holidays(items_to_upload)
+        self.__api_client__.create_holidays(items_to_upload)
         return
 
     def pre_upload(self, file_path:str) -> None:

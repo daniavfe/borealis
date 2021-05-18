@@ -20,6 +20,7 @@ import { EventListComponent } from './components/event-list-component/event-list
 import { HolidayListComponent } from './components/holiday-list-component/holiday-list.component';
 import { ReportComponent } from './components/report-component/report.component';
 import { TimelineListComponent } from './components/timeline-list-component/timeline-list.component';
+import { SelectorComponent } from './components/selector-component/selector.component';
 
 //Services
 import { DensityService } from './services/density.service';
@@ -29,7 +30,7 @@ import { HolidayService } from './services/holiday.service';
 import { EventService } from './services/event.service';
 import { ReportService } from './services/report.service';
 import { TimelineService } from './services/timeline.service';
-import { SelectorComponent } from './components/selector/selector.component';
+
 
 
 @NgModule({

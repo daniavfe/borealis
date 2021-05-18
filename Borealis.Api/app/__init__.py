@@ -25,9 +25,8 @@ def create_app():
     app.register_blueprint(station_blueprint)
     app.register_blueprint(density_blueprint)
     app.register_blueprint(holiday_blueprint)
-    app.register_blueprint(weather_blueprint)
-    app.register_blueprint(traffic_blueprint)
     app.register_blueprint(event_blueprint)
     app.register_blueprint(report_blueprint)
     app.register_blueprint(timeline_blueprint)
+    app.register_blueprint(town_blueprint)
     return app
