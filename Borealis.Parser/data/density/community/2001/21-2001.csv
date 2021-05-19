@@ -1,0 +1,180 @@
+year;townId;name;value
+2001;1; La Acebeda;56
+2001;2;Ajalvir;2386
+2001;3;Alameda del Valle;193
+2001;4; El Álamo;4932
+2001;5;Alcalá de Henares;172418
+2001;6;Alcobendas;92537
+2001;7;Alcorcón;147787
+2001;8;Aldea del Fresno;1503
+2001;9;Algete;15360
+2001;10;Alpedrete;8121
+2001;11;Ambite;302
+2001;12;Anchuelo;579
+2001;13;Aranjuez;40113
+2001;14;Arganda del Rey;32157
+2001;15;Arroyomolinos;4700
+2001;16; El Atazar;92
+2001;17;Batres;920
+2001;18;Becerril de la Sierra;3571
+2001;19;Belmonte de Tajo;1158
+2001;21; El Berrueco;334
+2001;20;Berzosa del Lozoya;131
+2001;22;Boadilla del Monte;23654
+2001;23; El Boalo;3447
+2001;24;Braojos;161
+2001;25;Brea de Tajo;448
+2001;26;Brunete;5414
+2001;27;Buitrago del Lozoya;1565
+2001;28;Bustarviejo;1528
+2001;29;Cabanillas de la Sierra;473
+2001;30; La Cabrera;1827
+2001;31;Cadalso de los Vidrios;2311
+2001;32;Camarma de Esteruelas;2543
+2001;33;Campo Real;2839
+2001;34;Canencia;404
+2001;35;Carabaña;1180
+2001;36;Casarrubuelos;875
+2001;37;Cenicientos;1835
+2001;38;Cercedilla;5826
+2001;39;Cervera de Buitrago;88
+2001;51;Chapinería;1439
+2001;52;Chinchón;4270
+2001;40;Ciempozuelos;14170
+2001;41;Cobeña;3060
+2001;46;Collado Mediano;4766
+2001;47;Collado Villalba;44872
+2001;43;Colmenar de Oreja;5548
+2001;42;Colmenar del Arroyo;913
+2001;45;Colmenar Viejo;34194
+2001;44;Colmenarejo;4968
+2001;48;Corpa;418
+2001;49;Coslada;78774
+2001;50;Cubas de la Sagra;1793
+2001;53;Daganzo de Arriba;4208
+2001;54; El Escorial;11209
+2001;55;Estremera;1049
+2001;56;Fresnedillas de la Oliva;855
+2001;57;Fresno de Torote;722
+2001;58;Fuenlabrada;178221
+2001;59;Fuente el Saz de Jarama;4369
+2001;60;Fuentidueña de Tajo;1471
+2001;61;Galapagar;23693
+2001;62;Garganta de los Montes;317
+2001;63;Gargantilla del Lozoya y Pinilla de Buitrago;245
+2001;64;Gascones;114
+2001;65;Getafe;150532
+2001;66;Griñón;5040
+2001;67;Guadalix de la Sierra;3394
+2001;68;Guadarrama;10275
+2001;69; La Hiruela;77
+2001;70;Horcajo de la Sierra-Aoslos;146
+2001;71;Horcajuelo de la Sierra;108
+2001;72;Hoyo de Manzanares;6013
+2001;73;Humanes de Madrid;9937
+2001;74;Leganés;173426
+2001;75;Loeches;3176
+2001;76;Lozoya;459
+2001;901;Lozoyuela-Navas-Sieteiglesias;680
+2001;78;Madarcos;23
+2001;79;Madrid;2957058
+2001;80;Majadahonda;49137
+2001;82;Manzanares el Real;4292
+2001;83;Meco;6923
+2001;84;Mejorada del Campo;16565
+2001;85;Miraflores de la Sierra;3854
+2001;86; El Molar;3898
+2001;87; Los Molinos;3497
+2001;88;Montejo de la Sierra;318
+2001;89;Moraleja de Enmedio;3195
+2001;90;Moralzarzal;6134
+2001;91;Morata de Tajuña;5485
+2001;92;Móstoles;197062
+2001;93;Navacerrada;1913
+2001;94;Navalafuente;588
+2001;95;Navalagamella;1200
+2001;96;Navalcarnero;14256
+2001;97;Navarredonda y San Mamés;106
+2001;99;Navas del Rey;1746
+2001;100;Nuevo Baztán;3677
+2001;101;Olmeda de las Fuentes;146
+2001;102;Orusco de Tajuña;644
+2001;104;Paracuellos de Jarama;6334
+2001;106;Parla;77157
+2001;107;Patones;366
+2001;108;Pedrezuela;1613
+2001;109;Pelayos de la Presa;1422
+2001;110;Perales de Tajuña;2089
+2001;111;Pezuela de las Torres;491
+2001;112;Pinilla del Valle;155
+2001;113;Pinto;30114
+2001;114;Piñuécar-Gandullas;140
+2001;115;Pozuelo de Alarcón;68470
+2001;116;Pozuelo del Rey;181
+2001;117;Prádena del Rincón;103
+2001;118;Puebla de la Sierra;96
+2001;902;Puentes Viejas;407
+2001;119;Quijorna;1194
+2001;120;Rascafría;1637
+2001;121;Redueña;188
+2001;122;Ribatejada;390
+2001;123;Rivas-Vaciamadrid;32228
+2001;124;Robledillo de la Jara;93
+2001;125;Robledo de Chavela;2439
+2001;126;Robregordo;88
+2001;127; Las Rozas de Madrid;59002
+2001;128;Rozas de Puerto Real;273
+2001;129;San Agustín del Guadalix;6333
+2001;130;San Fernando de Henares;35089
+2001;131;San Lorenzo de El Escorial;12455
+2001;132;San Martín de la Vega;11415
+2001;133;San Martín de Valdeiglesias;6191
+2001;134;San Sebastián de los Reyes;59646
+2001;135;Santa María de la Alameda;702
+2001;136;Santorcaz;583
+2001;137; Los Santos de la Humosa;930
+2001;138; La Serna del Monte;115
+2001;140;Serranillos del Valle;901
+2001;141;Sevilla la Nueva;4054
+2001;143;Somosierra;98
+2001;144;Soto del Real;5850
+2001;145;Talamanca de Jarama;1547
+2001;146;Tielmes;2003
+2001;147;Titulcia;934
+2001;148;Torrejón de Ardoz;97546
+2001;149;Torrejón de la Calzada;4462
+2001;150;Torrejón de Velasco;2085
+2001;151;Torrelaguna;2898
+2001;152;Torrelodones;14717
+2001;153;Torremocha de Jarama;351
+2001;154;Torres de la Alameda;4541
+2001;903;Tres Cantos;36598
+2001;155;Valdaracete;604
+2001;156;Valdeavero;636
+2001;157;Valdelaguna;573
+2001;158;Valdemanco;517
+2001;159;Valdemaqueda;595
+2001;160;Valdemorillo;6482
+2001;161;Valdemoro;30986
+2001;162;Valdeolmos-Alalpardo;1804
+2001;163;Valdepiélagos;306
+2001;164;Valdetorres de Jarama;2131
+2001;165;Valdilecha;1930
+2001;166;Valverde de Alcalá;309
+2001;167;Velilla de San Antonio;7447
+2001;168; El Vellón;1190
+2001;169;Venturada;919
+2001;171;Villa del Prado;4106
+2001;170;Villaconejos;2946
+2001;172;Villalbilla;4595
+2001;173;Villamanrique de Tajo;614
+2001;174;Villamanta;1663
+2001;175;Villamantilla;337
+2001;176;Villanueva de la Cañada;11429
+2001;178;Villanueva de Perales;550
+2001;177;Villanueva del Pardillo;5296
+2001;179;Villar del Olmo;1517
+2001;180;Villarejo de Salvanés;5753
+2001;181;Villaviciosa de Odón;20832
+2001;182;Villavieja del Lozoya;185
+2001;183;Zarzalejo;1061

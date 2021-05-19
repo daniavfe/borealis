@@ -26,9 +26,9 @@ logger :Logger = Logger()
 #holiday_initital_loader.load()
 
 ##Carga inicial de datos meteorológicos
-#meteorology_initital_loader :MeteorologyInitialLoader = MeteorologyInitialLoader(configuration.meteorology, api_client, logger)
-#meteorology_initital_loader.load()
+meteorology_initital_loader :MeteorologyInitialLoader = MeteorologyInitialLoader(configuration.meteorology, api_client, logger)
+meteorology_initital_loader.load()
 
 #Carga inicial de calidad del aire
-pollution_initital_loader = PollutionInitialLoader(configuration.pollution,api_client, logger)
-pollution_initital_loader.load()
+#pollution_initital_loader = PollutionInitialLoader(configuration.pollution,api_client, logger)
+#pollution_initital_loader.load()

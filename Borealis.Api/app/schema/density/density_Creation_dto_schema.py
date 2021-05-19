@@ -4,10 +4,11 @@ from ..camel_cased_schema import CamelCasedSchema
 
 
 class DensityCreationDtoSchema(CamelCasedSchema):
+    town_id = fields.Integer()
     district_id = fields.Integer()
     neighborhood_id = fields.Integer()
     year = fields.Integer()
-    month = fields.Integer()
+    month = fields.Integer(missing=None)
     value = fields.Integer()
 
     @post_load

@@ -30,7 +30,7 @@ class DensityHelper(Helper):
             return list(reader)[1:]
 
     def get_data_content(self, row:str) -> list:
-        return self.__get_insertable_object__(row[0], row[1], row[2], row[4], row[6])
+        return self.__get_insertable_object__(row[0], row[1], row[2], row[3], row[5], row[7])
 
     def upload_data(self, items_to_upload:list) -> None:
         # Upload items to API
@@ -43,16 +43,16 @@ class DensityHelper(Helper):
             reader = list(csv.reader(csv_file, delimiter=';'))[1:]
             district_list = self.__api_client__.get_existing_districts(1, 1000)
             neighborhood_list = self.__api_client__.get_existing_neighborhoods(1, 1000)
-
             for row in reader:
-                district_id = int(row[2])
-                district_name = row[3]                                   
-                neighborhood_id = int(row[4])
-                neighborhood_name = row[5]
+                town_id = int(row[2])
+                district_id = int(row[3])
+                district_name = row[4]                                   
+                neighborhood_id = int(row[5])
+                neighborhood_name = row[6]
 
                 if not district_id in district_list:
                     self.__logger__.info(f'District {district_name} not found. Creating')
-                    self.__api_client__.create_district(district_id, district_name, 0.0)
+                    self.__api_client__.create_district(district_id,town_id, district_name, 0.0)
                     district_list.add(district_id)
                     self.__logger__.info(f'District {district_name} created with id {district_id}')
 
@@ -65,5 +65,5 @@ class DensityHelper(Helper):
         return
 
 
-    def __get_insertable_object__(self, year:int, month:int, district_id:int, neighborhood_id:int, value:float):
-        return [{'year': year, 'month': month,'districtId': district_id, 'neighborhoodId': neighborhood_id, 'value': value}]
+    def __get_insertable_object__(self, year:int, month:int, town_id:int,  district_id:int, neighborhood_id:int, value:float):
+        return [{'year': year, 'month': month,'townId':town_id, 'districtId': district_id, 'neighborhoodId': neighborhood_id, 'value': value}]

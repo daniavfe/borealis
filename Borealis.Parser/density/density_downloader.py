@@ -96,7 +96,7 @@ class DensityDownloader():
                     densities = self.__get_density__(year, district, month, zone_list)
                     for density in densities: 
                         month_number = int(month[0:2])                         
-                        final_list.append({'year': year, 'month':month_number,'districtId':int(district[:3]), 'district':district[3:], 'neighborhoodId':int(zone_list_set[density[0]]), 'neighborhood':density[0], 'value': density[1]}) 
+                        final_list.append({'year': year, 'month':month_number,'town_id':79,'districtId':int(district[:3]), 'district':district[3:], 'neighborhoodId':int(zone_list_set[density[0]]), 'neighborhood':density[0], 'value': density[1]}) 
             self.__write_csv_file__(final_list, year)
         self.__logger__.info(f'Density data downloaded')
         

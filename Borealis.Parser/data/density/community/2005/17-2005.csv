@@ -1,0 +1,180 @@
+year;townId;name;value
+2005;1; La Acebeda;60
+2005;2;Ajalvir;3062
+2005;3;Alameda del Valle;241
+2005;4; El Álamo;6613
+2005;5;Alcalá de Henares;197804
+2005;6;Alcobendas;103149
+2005;7;Alcorcón;162524
+2005;8;Aldea del Fresno;2031
+2005;9;Algete;17558
+2005;10;Alpedrete;10989
+2005;11;Ambite;382
+2005;12;Anchuelo;777
+2005;13;Aranjuez;43926
+2005;14;Arganda del Rey;41411
+2005;15;Arroyomolinos;8246
+2005;16; El Atazar;113
+2005;17;Batres;1373
+2005;18;Becerril de la Sierra;4596
+2005;19;Belmonte de Tajo;1196
+2005;21; El Berrueco;532
+2005;20;Berzosa del Lozoya;181
+2005;22;Boadilla del Monte;35588
+2005;23; El Boalo;5204
+2005;24;Braojos;187
+2005;25;Brea de Tajo;460
+2005;26;Brunete;8096
+2005;27;Buitrago del Lozoya;1856
+2005;28;Bustarviejo;1810
+2005;29;Cabanillas de la Sierra;631
+2005;30; La Cabrera;2218
+2005;31;Cadalso de los Vidrios;2689
+2005;32;Camarma de Esteruelas;4816
+2005;33;Campo Real;3769
+2005;34;Canencia;454
+2005;35;Carabaña;1481
+2005;36;Casarrubuelos;2141
+2005;37;Cenicientos;1944
+2005;38;Cercedilla;6698
+2005;39;Cervera de Buitrago;134
+2005;51;Chapinería;1790
+2005;52;Chinchón;4868
+2005;40;Ciempozuelos;17769
+2005;41;Cobeña;4018
+2005;46;Collado Mediano;5832
+2005;47;Collado Villalba;52445
+2005;43;Colmenar de Oreja;6898
+2005;42;Colmenar del Arroyo;1167
+2005;45;Colmenar Viejo;39579
+2005;44;Colmenarejo;7048
+2005;48;Corpa;500
+2005;49;Coslada;82894
+2005;50;Cubas de la Sagra;2851
+2005;53;Daganzo de Arriba;6889
+2005;54; El Escorial;13768
+2005;55;Estremera;1280
+2005;56;Fresnedillas de la Oliva;1144
+2005;57;Fresno de Torote;1483
+2005;58;Fuenlabrada;195131
+2005;59;Fuente el Saz de Jarama;5605
+2005;60;Fuentidueña de Tajo;1765
+2005;61;Galapagar;29218
+2005;62;Garganta de los Montes;400
+2005;63;Gargantilla del Lozoya y Pinilla de Buitrago;346
+2005;64;Gascones;151
+2005;65;Getafe;157397
+2005;66;Griñón;7664
+2005;67;Guadalix de la Sierra;4963
+2005;68;Guadarrama;13032
+2005;69; La Hiruela;79
+2005;70;Horcajo de la Sierra-Aoslos;167
+2005;71;Horcajuelo de la Sierra;112
+2005;72;Hoyo de Manzanares;7166
+2005;73;Humanes de Madrid;14406
+2005;74;Leganés;181248
+2005;75;Loeches;4793
+2005;76;Lozoya;602
+2005;901;Lozoyuela-Navas-Sieteiglesias;918
+2005;78;Madarcos;38
+2005;79;Madrid;3155359
+2005;80;Majadahonda;61788
+2005;82;Manzanares el Real;6140
+2005;83;Meco;10774
+2005;84;Mejorada del Campo;20245
+2005;85;Miraflores de la Sierra;5055
+2005;86; El Molar;5133
+2005;87; Los Molinos;4215
+2005;88;Montejo de la Sierra;322
+2005;89;Moraleja de Enmedio;4231
+2005;90;Moralzarzal;9973
+2005;91;Morata de Tajuña;6231
+2005;92;Móstoles;204463
+2005;93;Navacerrada;2381
+2005;94;Navalafuente;768
+2005;95;Navalagamella;1816
+2005;96;Navalcarnero;17183
+2005;97;Navarredonda y San Mamés;138
+2005;99;Navas del Rey;2315
+2005;100;Nuevo Baztán;5439
+2005;101;Olmeda de las Fuentes;205
+2005;102;Orusco de Tajuña;738
+2005;104;Paracuellos de Jarama;7568
+2005;106;Parla;91024
+2005;107;Patones;430
+2005;108;Pedrezuela;2589
+2005;109;Pelayos de la Presa;2075
+2005;110;Perales de Tajuña;2472
+2005;111;Pezuela de las Torres;516
+2005;112;Pinilla del Valle;153
+2005;113;Pinto;37559
+2005;114;Piñuécar-Gandullas;182
+2005;115;Pozuelo de Alarcón;78083
+2005;116;Pozuelo del Rey;324
+2005;117;Prádena del Rincón;105
+2005;118;Puebla de la Sierra;104
+2005;902;Puentes Viejas;447
+2005;119;Quijorna;2067
+2005;120;Rascafría;1557
+2005;121;Redueña;219
+2005;122;Ribatejada;446
+2005;123;Rivas-Vaciamadrid;49696
+2005;124;Robledillo de la Jara;120
+2005;125;Robledo de Chavela;3199
+2005;126;Robregordo;69
+2005;127; Las Rozas de Madrid;71937
+2005;128;Rozas de Puerto Real;357
+2005;129;San Agustín del Guadalix;8240
+2005;130;San Fernando de Henares;39966
+2005;131;San Lorenzo de El Escorial;15364
+2005;132;San Martín de la Vega;15069
+2005;133;San Martín de Valdeiglesias;7059
+2005;134;San Sebastián de los Reyes;65767
+2005;135;Santa María de la Alameda;958
+2005;136;Santorcaz;715
+2005;137; Los Santos de la Humosa;1400
+2005;138; La Serna del Monte;111
+2005;140;Serranillos del Valle;2787
+2005;141;Sevilla la Nueva;6357
+2005;143;Somosierra;116
+2005;144;Soto del Real;7615
+2005;145;Talamanca de Jarama;2027
+2005;146;Tielmes;2433
+2005;147;Titulcia;948
+2005;148;Torrejón de Ardoz;109483
+2005;149;Torrejón de la Calzada;5505
+2005;150;Torrejón de Velasco;3167
+2005;151;Torrelaguna;3921
+2005;152;Torrelodones;19399
+2005;153;Torremocha de Jarama;560
+2005;154;Torres de la Alameda;5900
+2005;903;Tres Cantos;39198
+2005;155;Valdaracete;619
+2005;156;Valdeavero;806
+2005;157;Valdelaguna;734
+2005;158;Valdemanco;783
+2005;159;Valdemaqueda;785
+2005;160;Valdemorillo;9301
+2005;161;Valdemoro;44136
+2005;162;Valdeolmos-Alalpardo;2240
+2005;163;Valdepiélagos;392
+2005;164;Valdetorres de Jarama;3135
+2005;165;Valdilecha;2355
+2005;166;Valverde de Alcalá;374
+2005;167;Velilla de San Antonio;9332
+2005;168; El Vellón;1285
+2005;169;Venturada;1304
+2005;171;Villa del Prado;5450
+2005;170;Villaconejos;2979
+2005;172;Villalbilla;7546
+2005;173;Villamanrique de Tajo;711
+2005;174;Villamanta;2033
+2005;175;Villamantilla;543
+2005;176;Villanueva de la Cañada;14084
+2005;178;Villanueva de Perales;1024
+2005;177;Villanueva del Pardillo;10721
+2005;179;Villar del Olmo;1849
+2005;180;Villarejo de Salvanés;6479
+2005;181;Villaviciosa de Odón;24963
+2005;182;Villavieja del Lozoya;193
+2005;183;Zarzalejo;1348

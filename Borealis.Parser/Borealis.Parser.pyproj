@@ -59,6 +59,10 @@
     <Compile Include="configuration\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="density\community_density_downloader.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="density\community_density_helper.py" />
     <Compile Include="density\density_initial_loader.py">
       <SubType>Code</SubType>
     </Compile>
@@ -66,6 +70,7 @@
     <Compile Include="holiday\holiday_analyzer.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="holiday\community_holiday_downloader.py" />
     <Compile Include="holiday\holiday_helper.py">
       <SubType>Code</SubType>
     </Compile>

@@ -34,12 +34,12 @@ class DensityBusiness:
 
         data = data.offset(per_page*(page-1)).limit(per_page).all()
 
-        mappedData = list(map(lambda x: DistrictDto(x.id, x.name, x.surface), data))
+        mappedData = list(map(lambda x: DistrictDto(x.id, x.town_id, x.name, x.surface), data))
         return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
     def create_district(self, district_creation_dto):
         # TODO: Comprobaciones
-        district = District(district_creation_dto.id, district_creation_dto.name, district_creation_dto.surface)
+        district = District(district_creation_dto.id, district_creation_dto.town_id, district_creation_dto.name, district_creation_dto.surface)
         district.save()
         return district.id
 
@@ -110,12 +110,12 @@ class DensityBusiness:
 
     def create_density(self, density_creation_dto):
          # TODO: Comprobaciones
-        density = Density(density_creation_dto.district_id, density_creation_dto.neighborhood_id, density_creation_dto.year, density_creation_dto.month, density_creation_dto.value)
+        density = Density(density_creation_dto.town_id, density_creation_dto.district_id, density_creation_dto.neighborhood_id, density_creation_dto.year, density_creation_dto.month, density_creation_dto.value)
         density.save()
 
     def create_densities_in_batch(self, density_creation_dto_list):
        
-        data = list(map(lambda x: Density(x.district_id, x.neighborhood_id, x.year, x.month, x.value), density_creation_dto_list))
+        data = list(map(lambda x: Density(x.town_id, x.district_id, x.neighborhood_id, x.year, x.month, x.value), density_creation_dto_list))
 
         db.session.add_all(data)
         db.session.commit()

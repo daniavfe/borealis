@@ -1,0 +1,180 @@
+year;townId;name;value
+2013;1; La Acebeda;67
+2013;2;Ajalvir;4261
+2013;3;Alameda del Valle;248
+2013;4; El Álamo;8845
+2013;5;Alcalá de Henares;204823
+2013;6;Alcobendas;112196
+2013;7;Alcorcón;169773
+2013;8;Aldea del Fresno;2574
+2013;9;Algete;20136
+2013;10;Alpedrete;13996
+2013;11;Ambite;586
+2013;12;Anchuelo;1209
+2013;13;Aranjuez;57728
+2013;14;Arganda del Rey;55981
+2013;15;Arroyomolinos;24313
+2013;16; El Atazar;103
+2013;17;Batres;1558
+2013;18;Becerril de la Sierra;5388
+2013;19;Belmonte de Tajo;1591
+2013;21; El Berrueco;633
+2013;20;Berzosa del Lozoya;214
+2013;22;Boadilla del Monte;47587
+2013;23; El Boalo;7050
+2013;24;Braojos;210
+2013;25;Brea de Tajo;563
+2013;26;Brunete;10075
+2013;27;Buitrago del Lozoya;1964
+2013;28;Bustarviejo;2372
+2013;29;Cabanillas de la Sierra;743
+2013;30; La Cabrera;2613
+2013;31;Cadalso de los Vidrios;2915
+2013;32;Camarma de Esteruelas;6995
+2013;33;Campo Real;5715
+2013;34;Canencia;483
+2013;35;Carabaña;2017
+2013;36;Casarrubuelos;3361
+2013;37;Cenicientos;2091
+2013;38;Cercedilla;6890
+2013;39;Cervera de Buitrago;180
+2013;51;Chapinería;2194
+2013;52;Chinchón;5428
+2013;40;Ciempozuelos;23950
+2013;41;Cobeña;6984
+2013;46;Collado Mediano;6746
+2013;47;Collado Villalba;62684
+2013;43;Colmenar de Oreja;8424
+2013;42;Colmenar del Arroyo;1581
+2013;45;Colmenar Viejo;46955
+2013;44;Colmenarejo;8919
+2013;48;Corpa;658
+2013;49;Coslada;91425
+2013;50;Cubas de la Sagra;5525
+2013;53;Daganzo de Arriba;9793
+2013;54; El Escorial;15197
+2013;55;Estremera;1468
+2013;56;Fresnedillas de la Oliva;1577
+2013;57;Fresno de Torote;2043
+2013;58;Fuenlabrada;197520
+2013;59;Fuente el Saz de Jarama;6324
+2013;60;Fuentidueña de Tajo;2108
+2013;61;Galapagar;32523
+2013;62;Garganta de los Montes;393
+2013;63;Gargantilla del Lozoya y Pinilla de Buitrago;368
+2013;64;Gascones;176
+2013;65;Getafe;172526
+2013;66;Griñón;9873
+2013;67;Guadalix de la Sierra;6071
+2013;68;Guadarrama;15712
+2013;69; La Hiruela;51
+2013;70;Horcajo de la Sierra-Aoslos;169
+2013;71;Horcajuelo de la Sierra;86
+2013;72;Hoyo de Manzanares;7872
+2013;73;Humanes de Madrid;19248
+2013;74;Leganés;186995
+2013;75;Loeches;8078
+2013;76;Lozoya;625
+2013;901;Lozoyuela-Navas-Sieteiglesias;1216
+2013;78;Madarcos;55
+2013;79;Madrid;3207247
+2013;80;Majadahonda;70386
+2013;82;Manzanares el Real;8053
+2013;83;Meco;12925
+2013;84;Mejorada del Campo;23048
+2013;85;Miraflores de la Sierra;5907
+2013;86; El Molar;8365
+2013;87; Los Molinos;4485
+2013;88;Montejo de la Sierra;359
+2013;89;Moraleja de Enmedio;4937
+2013;90;Moralzarzal;12168
+2013;91;Morata de Tajuña;7553
+2013;92;Móstoles;206451
+2013;93;Navacerrada;2863
+2013;94;Navalafuente;1223
+2013;95;Navalagamella;2436
+2013;96;Navalcarnero;26085
+2013;97;Navarredonda y San Mamés;128
+2013;99;Navas del Rey;2684
+2013;100;Nuevo Baztán;6299
+2013;101;Olmeda de las Fuentes;340
+2013;102;Orusco de Tajuña;1308
+2013;104;Paracuellos de Jarama;21128
+2013;106;Parla;125634
+2013;107;Patones;502
+2013;108;Pedrezuela;5082
+2013;109;Pelayos de la Presa;2537
+2013;110;Perales de Tajuña;2990
+2013;111;Pezuela de las Torres;798
+2013;112;Pinilla del Valle;210
+2013;113;Pinto;46870
+2013;114;Piñuécar-Gandullas;176
+2013;115;Pozuelo de Alarcón;84474
+2013;116;Pozuelo del Rey;1052
+2013;117;Prádena del Rincón;126
+2013;118;Puebla de la Sierra;96
+2013;902;Puentes Viejas;648
+2013;119;Quijorna;3190
+2013;120;Rascafría;1893
+2013;121;Redueña;284
+2013;122;Ribatejada;696
+2013;123;Rivas-Vaciamadrid;78133
+2013;124;Robledillo de la Jara;102
+2013;125;Robledo de Chavela;4137
+2013;126;Robregordo;60
+2013;127; Las Rozas de Madrid;91806
+2013;128;Rozas de Puerto Real;484
+2013;129;San Agustín del Guadalix;12955
+2013;130;San Fernando de Henares;41226
+2013;131;San Lorenzo de El Escorial;18495
+2013;132;San Martín de la Vega;19672
+2013;133;San Martín de Valdeiglesias;8524
+2013;134;San Sebastián de los Reyes;82090
+2013;135;Santa María de la Alameda;1214
+2013;136;Santorcaz;845
+2013;137; Los Santos de la Humosa;2421
+2013;138; La Serna del Monte;93
+2013;140;Serranillos del Valle;3816
+2013;141;Sevilla la Nueva;8925
+2013;143;Somosierra;82
+2013;144;Soto del Real;8519
+2013;145;Talamanca de Jarama;3211
+2013;146;Tielmes;2658
+2013;147;Titulcia;1237
+2013;148;Torrejón de Ardoz;123761
+2013;149;Torrejón de la Calzada;7743
+2013;150;Torrejón de Velasco;4177
+2013;151;Torrelaguna;4861
+2013;152;Torrelodones;22782
+2013;153;Torremocha de Jarama;892
+2013;154;Torres de la Alameda;7899
+2013;903;Tres Cantos;41896
+2013;155;Valdaracete;669
+2013;156;Valdeavero;1494
+2013;157;Valdelaguna;871
+2013;158;Valdemanco;958
+2013;159;Valdemaqueda;882
+2013;160;Valdemorillo;11988
+2013;161;Valdemoro;71578
+2013;162;Valdeolmos-Alalpardo;3633
+2013;163;Valdepiélagos;574
+2013;164;Valdetorres de Jarama;4176
+2013;165;Valdilecha;2910
+2013;166;Valverde de Alcalá;453
+2013;167;Velilla de San Antonio;12246
+2013;168; El Vellón;1824
+2013;169;Venturada;1968
+2013;171;Villa del Prado;6502
+2013;170;Villaconejos;3495
+2013;172;Villalbilla;11643
+2013;173;Villamanrique de Tajo;798
+2013;174;Villamanta;2514
+2013;175;Villamantilla;1238
+2013;176;Villanueva de la Cañada;18734
+2013;178;Villanueva de Perales;1458
+2013;177;Villanueva del Pardillo;16690
+2013;179;Villar del Olmo;2115
+2013;180;Villarejo de Salvanés;7389
+2013;181;Villaviciosa de Odón;26982
+2013;182;Villavieja del Lozoya;277
+2013;183;Zarzalejo;1553

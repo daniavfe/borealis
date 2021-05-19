@@ -1,0 +1,180 @@
+year;townId;name;value
+2020;1; La Acebeda;68
+2020;2;Ajalvir;4721
+2020;3;Alameda del Valle;204
+2020;4; El Álamo;9862
+2020;5;Alcalá de Henares;197562
+2020;6;Alcobendas;118417
+2020;7;Alcorcón;172384
+2020;8;Aldea del Fresno;2973
+2020;9;Algete;20864
+2020;10;Alpedrete;14839
+2020;11;Ambite;609
+2020;12;Anchuelo;1286
+2020;13;Aranjuez;60332
+2020;14;Arganda del Rey;56678
+2020;15;Arroyomolinos;32935
+2020;16; El Atazar;90
+2020;17;Batres;1750
+2020;18;Becerril de la Sierra;5875
+2020;19;Belmonte de Tajo;1683
+2020;21; El Berrueco;777
+2020;20;Berzosa del Lozoya;222
+2020;22;Boadilla del Monte;56734
+2020;23; El Boalo;7663
+2020;24;Braojos;206
+2020;25;Brea de Tajo;506
+2020;26;Brunete;10760
+2020;27;Buitrago del Lozoya;1959
+2020;28;Bustarviejo;2522
+2020;29;Cabanillas de la Sierra;785
+2020;30; La Cabrera;2736
+2020;31;Cadalso de los Vidrios;3047
+2020;32;Camarma de Esteruelas;7437
+2020;33;Campo Real;6420
+2020;34;Canencia;447
+2020;35;Carabaña;2081
+2020;36;Casarrubuelos;3845
+2020;37;Cenicientos;2038
+2020;38;Cercedilla;7205
+2020;39;Cervera de Buitrago;162
+2020;51;Chapinería;2414
+2020;52;Chinchón;5413
+2020;40;Ciempozuelos;25104
+2020;41;Cobeña;7486
+2020;46;Collado Mediano;7105
+2020;47;Collado Villalba;64378
+2020;43;Colmenar de Oreja;8154
+2020;42;Colmenar del Arroyo;1785
+2020;45;Colmenar Viejo;51938
+2020;44;Colmenarejo;9230
+2020;48;Corpa;723
+2020;49;Coslada;81391
+2020;50;Cubas de la Sagra;6539
+2020;53;Daganzo de Arriba;10337
+2020;54; El Escorial;16365
+2020;55;Estremera;1334
+2020;56;Fresnedillas de la Oliva;1651
+2020;57;Fresno de Torote;2299
+2020;58;Fuenlabrada;194514
+2020;59;Fuente el Saz de Jarama;6807
+2020;60;Fuentidueña de Tajo;2136
+2020;61;Galapagar;34497
+2020;62;Garganta de los Montes;377
+2020;63;Gargantilla del Lozoya y Pinilla de Buitrago;309
+2020;64;Gascones;176
+2020;65;Getafe;185180
+2020;66;Griñón;10435
+2020;67;Guadalix de la Sierra;6440
+2020;68;Guadarrama;16560
+2020;69; La Hiruela;65
+2020;70;Horcajo de la Sierra-Aoslos;152
+2020;71;Horcajuelo de la Sierra;89
+2020;72;Hoyo de Manzanares;8529
+2020;73;Humanes de Madrid;19701
+2020;74;Leganés;191114
+2020;75;Loeches;8897
+2020;76;Lozoya;580
+2020;901;Lozoyuela-Navas-Sieteiglesias;1340
+2020;78;Madarcos;49
+2020;79;Madrid;3334730
+2020;80;Majadahonda;72155
+2020;82;Manzanares el Real;8936
+2020;83;Meco;14670
+2020;84;Mejorada del Campo;23639
+2020;85;Miraflores de la Sierra;6362
+2020;86; El Molar;9287
+2020;87; Los Molinos;4433
+2020;88;Montejo de la Sierra;364
+2020;89;Moraleja de Enmedio;5200
+2020;90;Moralzarzal;13334
+2020;91;Morata de Tajuña;7847
+2020;92;Móstoles;210309
+2020;93;Navacerrada;3091
+2020;94;Navalafuente;1511
+2020;95;Navalagamella;2637
+2020;96;Navalcarnero;29985
+2020;97;Navarredonda y San Mamés;129
+2020;99;Navas del Rey;2966
+2020;100;Nuevo Baztán;6454
+2020;101;Olmeda de las Fuentes;346
+2020;102;Orusco de Tajuña;1295
+2020;104;Paracuellos de Jarama;25917
+2020;106;Parla;133482
+2020;107;Patones;539
+2020;108;Pedrezuela;6150
+2020;109;Pelayos de la Presa;2676
+2020;110;Perales de Tajuña;2990
+2020;111;Pezuela de las Torres;867
+2020;112;Pinilla del Valle;190
+2020;113;Pinto;53325
+2020;114;Piñuécar-Gandullas;179
+2020;115;Pozuelo de Alarcón;87165
+2020;116;Pozuelo del Rey;1172
+2020;117;Prádena del Rincón;125
+2020;118;Puebla de la Sierra;73
+2020;902;Puentes Viejas;699
+2020;119;Quijorna;3541
+2020;120;Rascafría;1725
+2020;121;Redueña;270
+2020;122;Ribatejada;801
+2020;123;Rivas-Vaciamadrid;90973
+2020;124;Robledillo de la Jara;95
+2020;125;Robledo de Chavela;4364
+2020;126;Robregordo;65
+2020;127; Las Rozas de Madrid;96113
+2020;128;Rozas de Puerto Real;555
+2020;129;San Agustín del Guadalix;13466
+2020;130;San Fernando de Henares;39566
+2020;131;San Lorenzo de El Escorial;18532
+2020;132;San Martín de la Vega;19633
+2020;133;San Martín de Valdeiglesias;8679
+2020;134;San Sebastián de los Reyes;91224
+2020;135;Santa María de la Alameda;1321
+2020;136;Santorcaz;899
+2020;137; Los Santos de la Humosa;2694
+2020;138; La Serna del Monte;87
+2020;140;Serranillos del Valle;4291
+2020;141;Sevilla la Nueva;9393
+2020;143;Somosierra;87
+2020;144;Soto del Real;8981
+2020;145;Talamanca de Jarama;4012
+2020;146;Tielmes;2736
+2020;147;Titulcia;1341
+2020;148;Torrejón de Ardoz;132853
+2020;149;Torrejón de la Calzada;9194
+2020;150;Torrejón de Velasco;4386
+2020;151;Torrelaguna;4854
+2020;152;Torrelodones;23902
+2020;153;Torremocha de Jarama;1075
+2020;154;Torres de la Alameda;7833
+2020;903;Tres Cantos;48326
+2020;155;Valdaracete;605
+2020;156;Valdeavero;1591
+2020;157;Valdelaguna;979
+2020;158;Valdemanco;963
+2020;159;Valdemaqueda;775
+2020;160;Valdemorillo;12772
+2020;161;Valdemoro;77270
+2020;162;Valdeolmos-Alalpardo;4232
+2020;163;Valdepiélagos;614
+2020;164;Valdetorres de Jarama;4581
+2020;165;Valdilecha;2982
+2020;166;Valverde de Alcalá;498
+2020;167;Velilla de San Antonio;12380
+2020;168; El Vellón;2004
+2020;169;Venturada;2241
+2020;171;Villa del Prado;6661
+2020;170;Villaconejos;3422
+2020;172;Villalbilla;14392
+2020;173;Villamanrique de Tajo;707
+2020;174;Villamanta;2605
+2020;175;Villamantilla;1482
+2020;176;Villanueva de la Cañada;22115
+2020;178;Villanueva de Perales;1592
+2020;177;Villanueva del Pardillo;17396
+2020;179;Villar del Olmo;2079
+2020;180;Villarejo de Salvanés;7433
+2020;181;Villaviciosa de Odón;28148
+2020;182;Villavieja del Lozoya;262
+2020;183;Zarzalejo;1734

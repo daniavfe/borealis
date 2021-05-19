@@ -28,8 +28,13 @@ class ApiClient():
         data = json.loads(response.content)
         return {item['id'] for item in data['items']}
 
-    def create_district(self, id:int, name:str, surface:float) -> int:
-        payload = {'id':id,'name': name, 'surface':surface}
+    def get_existing_towns(self, page:int=1, per_page:int=20)->list:
+        response = requests.get(f'{ self.__base_url__}{self.__town_endpoint__}', params={'page':page, 'perPage':per_page})
+        data = json.loads(response.content)
+        return {item['townId'] for item in data['items']}
+
+    def create_district(self, id:int, town_id:int, name:str, surface:float) -> int:
+        payload = {'id':id,'townId':town_id,'name': name, 'surface':surface}
         response = requests.post(f'{ self.__base_url__}{self.__district_endpoint__}', data=json.dumps(payload))
         return int(response.content)
 
@@ -38,8 +43,8 @@ class ApiClient():
         response = requests.post(f'{ self.__base_url__}{self.__neighborhood_endpoint__}', data=json.dumps(payload))
         return int(response.content)
 
-    def create_density(self, year:int, month:int, district_id:int, neighborhood_id:int, value:float) -> None:
-        payload = {'districtId':district_id, 'neighborhoodId':neighborhood_id, 'year':year, 'month':month, 'value':value}
+    def create_density(self, year:int, month:int, district_id:int, town_id:int, neighborhood_id:int, value:float) -> None:
+        payload = {'townId':town_id, 'districtId':district_id, 'neighborhoodId':neighborhood_id, 'year':year, 'month':month, 'value':value}
         requests.post(f'{self.__base_url__}{self.__density_endpoint__}', data=json.dumps(payload))
    
     def create_densities(self, densities:list) -> list:
@@ -59,6 +64,10 @@ class ApiClient():
         if len(items_not_created) > 0:
             return itemgetter(*items_not_created)(measurements)     
         return []
+
+    def create_town(self, town_id:int, name:str):
+        payload = {"townId":town_id, "name":name}
+        requests.post(f'{self.__base_url__}{self.__town_endpoint__}', data=json.dumps(payload))
 
     def create_towns(self, towns:list) -> None:
         payload = list(map(lambda x: {"townId":x}, towns))

@@ -1,0 +1,180 @@
+year;townId;name;value
+2017;1; La Acebeda;66
+2017;2;Ajalvir;4455
+2017;3;Alameda del Valle;199
+2017;4; El Álamo;9149
+2017;5;Alcalá de Henares;194310
+2017;6;Alcobendas;114864
+2017;7;Alcorcón;168141
+2017;8;Aldea del Fresno;2616
+2017;9;Algete;20419
+2017;10;Alpedrete;14240
+2017;11;Ambite;677
+2017;12;Anchuelo;1238
+2017;13;Aranjuez;58213
+2017;14;Arganda del Rey;53821
+2017;15;Arroyomolinos;29128
+2017;16; El Atazar;97
+2017;17;Batres;1610
+2017;18;Becerril de la Sierra;5457
+2017;19;Belmonte de Tajo;1628
+2017;21; El Berrueco;743
+2017;20;Berzosa del Lozoya;203
+2017;22;Boadilla del Monte;51463
+2017;23; El Boalo;7358
+2017;24;Braojos;208
+2017;25;Brea de Tajo;539
+2017;26;Brunete;10373
+2017;27;Buitrago del Lozoya;1854
+2017;28;Bustarviejo;2399
+2017;29;Cabanillas de la Sierra;712
+2017;30; La Cabrera;2570
+2017;31;Cadalso de los Vidrios;3053
+2017;32;Camarma de Esteruelas;7084
+2017;33;Campo Real;5995
+2017;34;Canencia;448
+2017;35;Carabaña;1940
+2017;36;Casarrubuelos;3650
+2017;37;Cenicientos;1984
+2017;38;Cercedilla;6853
+2017;39;Cervera de Buitrago;156
+2017;51;Chapinería;2225
+2017;52;Chinchón;5240
+2017;40;Ciempozuelos;23737
+2017;41;Cobeña;7163
+2017;46;Collado Mediano;6666
+2017;47;Collado Villalba;62152
+2017;43;Colmenar de Oreja;7810
+2017;42;Colmenar del Arroyo;1632
+2017;45;Colmenar Viejo;48614
+2017;44;Colmenarejo;9015
+2017;48;Corpa;684
+2017;49;Coslada;83011
+2017;50;Cubas de la Sagra;6112
+2017;53;Daganzo de Arriba;10082
+2017;54; El Escorial;15562
+2017;55;Estremera;1261
+2017;56;Fresnedillas de la Oliva;1550
+2017;57;Fresno de Torote;2115
+2017;58;Fuenlabrada;194669
+2017;59;Fuente el Saz de Jarama;6424
+2017;60;Fuentidueña de Tajo;1980
+2017;61;Galapagar;32903
+2017;62;Garganta de los Montes;331
+2017;63;Gargantilla del Lozoya y Pinilla de Buitrago;315
+2017;64;Gascones;176
+2017;65;Getafe;178288
+2017;66;Griñón;10060
+2017;67;Guadalix de la Sierra;6049
+2017;68;Guadarrama;15620
+2017;69; La Hiruela;52
+2017;70;Horcajo de la Sierra-Aoslos;142
+2017;71;Horcajuelo de la Sierra;88
+2017;72;Hoyo de Manzanares;8032
+2017;73;Humanes de Madrid;19607
+2017;74;Leganés;187720
+2017;75;Loeches;8525
+2017;76;Lozoya;559
+2017;901;Lozoyuela-Navas-Sieteiglesias;1237
+2017;78;Madarcos;46
+2017;79;Madrid;3182981
+2017;80;Majadahonda;71299
+2017;82;Manzanares el Real;8500
+2017;83;Meco;13570
+2017;84;Mejorada del Campo;22948
+2017;85;Miraflores de la Sierra;5817
+2017;86; El Molar;8491
+2017;87; Los Molinos;4345
+2017;88;Montejo de la Sierra;356
+2017;89;Moraleja de Enmedio;4870
+2017;90;Moralzarzal;12496
+2017;91;Morata de Tajuña;7482
+2017;92;Móstoles;206589
+2017;93;Navacerrada;2894
+2017;94;Navalafuente;1340
+2017;95;Navalagamella;2443
+2017;96;Navalcarnero;27570
+2017;97;Navarredonda y San Mamés;131
+2017;99;Navas del Rey;2751
+2017;100;Nuevo Baztán;6091
+2017;101;Olmeda de las Fuentes;332
+2017;102;Orusco de Tajuña;1218
+2017;104;Paracuellos de Jarama;23905
+2017;106;Parla;125898
+2017;107;Patones;553
+2017;108;Pedrezuela;5613
+2017;109;Pelayos de la Presa;2468
+2017;110;Perales de Tajuña;2817
+2017;111;Pezuela de las Torres;816
+2017;112;Pinilla del Valle;185
+2017;113;Pinto;50442
+2017;114;Piñuécar-Gandullas;183
+2017;115;Pozuelo de Alarcón;85605
+2017;116;Pozuelo del Rey;1099
+2017;117;Prádena del Rincón;132
+2017;118;Puebla de la Sierra;61
+2017;902;Puentes Viejas;632
+2017;119;Quijorna;3282
+2017;120;Rascafría;1672
+2017;121;Redueña;248
+2017;122;Ribatejada;702
+2017;123;Rivas-Vaciamadrid;83767
+2017;124;Robledillo de la Jara;87
+2017;125;Robledo de Chavela;4073
+2017;126;Robregordo;44
+2017;127; Las Rozas de Madrid;95071
+2017;128;Rozas de Puerto Real;534
+2017;129;San Agustín del Guadalix;13103
+2017;130;San Fernando de Henares;39681
+2017;131;San Lorenzo de El Escorial;18024
+2017;132;San Martín de la Vega;18824
+2017;133;San Martín de Valdeiglesias;8298
+2017;134;San Sebastián de los Reyes;86707
+2017;135;Santa María de la Alameda;1163
+2017;136;Santorcaz;856
+2017;137; Los Santos de la Humosa;2486
+2017;138; La Serna del Monte;73
+2017;140;Serranillos del Valle;3967
+2017;141;Sevilla la Nueva;9093
+2017;143;Somosierra;77
+2017;144;Soto del Real;8607
+2017;145;Talamanca de Jarama;3573
+2017;146;Tielmes;2610
+2017;147;Titulcia;1274
+2017;148;Torrejón de Ardoz;128013
+2017;149;Torrejón de la Calzada;8418
+2017;150;Torrejón de Velasco;4261
+2017;151;Torrelaguna;4712
+2017;152;Torrelodones;23128
+2017;153;Torremocha de Jarama;942
+2017;154;Torres de la Alameda;7825
+2017;903;Tres Cantos;46046
+2017;155;Valdaracete;643
+2017;156;Valdeavero;1450
+2017;157;Valdelaguna;867
+2017;158;Valdemanco;916
+2017;159;Valdemaqueda;768
+2017;160;Valdemorillo;12300
+2017;161;Valdemoro;73976
+2017;162;Valdeolmos-Alalpardo;3906
+2017;163;Valdepiélagos;587
+2017;164;Valdetorres de Jarama;4316
+2017;165;Valdilecha;2755
+2017;166;Valverde de Alcalá;427
+2017;167;Velilla de San Antonio;12111
+2017;168; El Vellón;1834
+2017;169;Venturada;2032
+2017;171;Villa del Prado;6337
+2017;170;Villaconejos;3350
+2017;172;Villalbilla;13038
+2017;173;Villamanrique de Tajo;694
+2017;174;Villamanta;2491
+2017;175;Villamantilla;1382
+2017;176;Villanueva de la Cañada;20320
+2017;178;Villanueva de Perales;1519
+2017;177;Villanueva del Pardillo;17025
+2017;179;Villar del Olmo;1997
+2017;180;Villarejo de Salvanés;7245
+2017;181;Villaviciosa de Odón;27504
+2017;182;Villavieja del Lozoya;267
+2017;183;Zarzalejo;1596

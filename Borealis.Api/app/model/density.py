@@ -5,8 +5,8 @@ from .base_model import BaseModelMixin
 class Density(db.Model, BaseModelMixin):
     __tablename__ = 'densities'
     town_id = db.Column(db.Integer, db.ForeignKey("towns.town_id"), primary_key=True)
-    district_id = db.Column(db.Integer, db.ForeignKey('districts.id'), nullable=True)
-    neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=True)
+    district_id = db.Column(db.Integer, db.ForeignKey('districts.id'), primary_key=True)
+    neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'),primary_key=True)
     year = db.Column(db.Integer, primary_key=True)
     month = db.Column(db.Integer, primary_key=True)
     value = db.Column(db.Integer)
@@ -16,7 +16,8 @@ class Density(db.Model, BaseModelMixin):
     neighborhood = db.relationship("Neighborhood", back_populates="densities")
 
 
-    def __init__(self, district_id, neighborhood_id, year, month, value):
+    def __init__(self,town_id, district_id, neighborhood_id, year, month, value):
+        self.town_id = town_id
         self.district_id = district_id
         self.neighborhood_id = neighborhood_id
         self.year = year

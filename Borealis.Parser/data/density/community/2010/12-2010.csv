@@ -1,0 +1,180 @@
+year;townId;name;value
+2010;1; La Acebeda;59
+2010;2;Ajalvir;3909
+2010;3;Alameda del Valle;239
+2010;4; El Álamo;8079
+2010;5;Alcalá de Henares;204120
+2010;6;Alcobendas;110080
+2010;7;Alcorcón;168299
+2010;8;Aldea del Fresno;2483
+2010;9;Algete;20481
+2010;10;Alpedrete;13163
+2010;11;Ambite;556
+2010;12;Anchuelo;1083
+2010;13;Aranjuez;55054
+2010;14;Arganda del Rey;53135
+2010;15;Arroyomolinos;16207
+2010;16; El Atazar;102
+2010;17;Batres;1488
+2010;18;Becerril de la Sierra;5159
+2010;19;Belmonte de Tajo;1488
+2010;21; El Berrueco;605
+2010;20;Berzosa del Lozoya;208
+2010;22;Boadilla del Monte;44709
+2010;23; El Boalo;6638
+2010;24;Braojos;191
+2010;25;Brea de Tajo;556
+2010;26;Brunete;9814
+2010;27;Buitrago del Lozoya;2068
+2010;28;Bustarviejo;2125
+2010;29;Cabanillas de la Sierra;743
+2010;30; La Cabrera;2490
+2010;31;Cadalso de los Vidrios;2944
+2010;32;Camarma de Esteruelas;6610
+2010;33;Campo Real;5278
+2010;34;Canencia;504
+2010;35;Carabaña;1991
+2010;36;Casarrubuelos;3150
+2010;37;Cenicientos;2102
+2010;38;Cercedilla;7089
+2010;39;Cervera de Buitrago;181
+2010;51;Chapinería;2134
+2010;52;Chinchón;5344
+2010;40;Ciempozuelos;22656
+2010;41;Cobeña;6164
+2010;46;Collado Mediano;6527
+2010;47;Collado Villalba;59900
+2010;43;Colmenar de Oreja;8397
+2010;42;Colmenar del Arroyo;1446
+2010;45;Colmenar Viejo;44437
+2010;44;Colmenarejo;8525
+2010;48;Corpa;593
+2010;49;Coslada;91218
+2010;50;Cubas de la Sagra;4743
+2010;53;Daganzo de Arriba;8989
+2010;54; El Escorial;15108
+2010;55;Estremera;1508
+2010;56;Fresnedillas de la Oliva;1507
+2010;57;Fresno de Torote;2063
+2010;58;Fuenlabrada;198973
+2010;59;Fuente el Saz de Jarama;6320
+2010;60;Fuentidueña de Tajo;2095
+2010;61;Galapagar;32393
+2010;62;Garganta de los Montes;386
+2010;63;Gargantilla del Lozoya y Pinilla de Buitrago;393
+2010;64;Gascones;163
+2010;65;Getafe;169130
+2010;66;Griñón;9546
+2010;67;Guadalix de la Sierra;5877
+2010;68;Guadarrama;15155
+2010;69; La Hiruela;66
+2010;70;Horcajo de la Sierra-Aoslos;171
+2010;71;Horcajuelo de la Sierra;95
+2010;72;Hoyo de Manzanares;7600
+2010;73;Humanes de Madrid;18541
+2010;74;Leganés;187227
+2010;75;Loeches;7267
+2010;76;Lozoya;670
+2010;901;Lozoyuela-Navas-Sieteiglesias;1082
+2010;78;Madarcos;49
+2010;79;Madrid;3273049
+2010;80;Majadahonda;69439
+2010;82;Manzanares el Real;7450
+2010;83;Meco;12580
+2010;84;Mejorada del Campo;22812
+2010;85;Miraflores de la Sierra;5934
+2010;86; El Molar;7645
+2010;87; Los Molinos;4565
+2010;88;Montejo de la Sierra;364
+2010;89;Moraleja de Enmedio;4852
+2010;90;Moralzarzal;11801
+2010;91;Morata de Tajuña;7382
+2010;92;Móstoles;206015
+2010;93;Navacerrada;2765
+2010;94;Navalafuente;1169
+2010;95;Navalagamella;2383
+2010;96;Navalcarnero;23115
+2010;97;Navarredonda y San Mamés;140
+2010;99;Navas del Rey;2609
+2010;100;Nuevo Baztán;6286
+2010;101;Olmeda de las Fuentes;308
+2010;102;Orusco de Tajuña;1198
+2010;104;Paracuellos de Jarama;16219
+2010;106;Parla;120182
+2010;107;Patones;494
+2010;108;Pedrezuela;4482
+2010;109;Pelayos de la Presa;2544
+2010;110;Perales de Tajuña;2894
+2010;111;Pezuela de las Torres;813
+2010;112;Pinilla del Valle;209
+2010;113;Pinto;44524
+2010;114;Piñuécar-Gandullas;176
+2010;115;Pozuelo de Alarcón;82804
+2010;116;Pozuelo del Rey;895
+2010;117;Prádena del Rincón;127
+2010;118;Puebla de la Sierra;111
+2010;902;Puentes Viejas;649
+2010;119;Quijorna;2850
+2010;120;Rascafría;2004
+2010;121;Redueña;278
+2010;122;Ribatejada;656
+2010;123;Rivas-Vaciamadrid;70840
+2010;124;Robledillo de la Jara;94
+2010;125;Robledo de Chavela;3876
+2010;126;Robregordo;61
+2010;127; Las Rozas de Madrid;88065
+2010;128;Rozas de Puerto Real;446
+2010;129;San Agustín del Guadalix;11885
+2010;130;San Fernando de Henares;41384
+2010;131;San Lorenzo de El Escorial;18352
+2010;132;San Martín de la Vega;18863
+2010;133;San Martín de Valdeiglesias;8190
+2010;134;San Sebastián de los Reyes;78157
+2010;135;Santa María de la Alameda;1164
+2010;136;Santorcaz;822
+2010;137; Los Santos de la Humosa;2165
+2010;138; La Serna del Monte;99
+2010;140;Serranillos del Valle;3440
+2010;141;Sevilla la Nueva;8578
+2010;143;Somosierra;105
+2010;144;Soto del Real;8434
+2010;145;Talamanca de Jarama;2927
+2010;146;Tielmes;2581
+2010;147;Titulcia;1179
+2010;148;Torrejón de Ardoz;118441
+2010;149;Torrejón de la Calzada;6904
+2010;150;Torrejón de Velasco;4091
+2010;151;Torrelaguna;4928
+2010;152;Torrelodones;22117
+2010;153;Torremocha de Jarama;795
+2010;154;Torres de la Alameda;7896
+2010;903;Tres Cantos;41147
+2010;155;Valdaracete;686
+2010;156;Valdeavero;1319
+2010;157;Valdelaguna;887
+2010;158;Valdemanco;952
+2010;159;Valdemaqueda;856
+2010;160;Valdemorillo;11210
+2010;161;Valdemoro;65922
+2010;162;Valdeolmos-Alalpardo;3176
+2010;163;Valdepiélagos;503
+2010;164;Valdetorres de Jarama;4042
+2010;165;Valdilecha;2828
+2010;166;Valverde de Alcalá;449
+2010;167;Velilla de San Antonio;11668
+2010;168; El Vellón;1702
+2010;169;Venturada;1741
+2010;171;Villa del Prado;6462
+2010;170;Villaconejos;3482
+2010;172;Villalbilla;9819
+2010;173;Villamanrique de Tajo;795
+2010;174;Villamanta;2480
+2010;175;Villamantilla;952
+2010;176;Villanueva de la Cañada;17271
+2010;178;Villanueva de Perales;1403
+2010;177;Villanueva del Pardillo;15609
+2010;179;Villar del Olmo;2150
+2010;180;Villarejo de Salvanés;7394
+2010;181;Villaviciosa de Odón;26725
+2010;182;Villavieja del Lozoya;254
+2010;183;Zarzalejo;1511
