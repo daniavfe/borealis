@@ -22,3 +22,19 @@ class ReportCreationEndpoint(Resource):
         #Return json data
         return report_dto_schema.dump(report_dto)
 
+class TownReportCreationEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get url params
+        year = request.args.get('year')
+        months = request.args.getlist('months')
+        station_ids = request.args.getlist('stationIds')
+        granularity = request.args.get('granularity')
+        magnitude_ids = request.args.getlist('magnitudeIds')
+        #get report from business
+        report_dto = report_business.create_town_report(year, months,granularity, station_ids, magnitude_ids)      
+        #Instance schema
+        report_dto_schema = ReportDtoSchema()
+        #Return json data
+        return report_dto_schema.dump(report_dto)
+

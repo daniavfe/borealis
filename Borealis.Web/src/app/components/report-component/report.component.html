@@ -1,5 +1,35 @@
 
 <div>
+    <!--Year selector-->
+    <select>
+        <option value="2021">2021</option>
+        <option value="2021">2020</option>
+        <option value="2021">2019</option>
+    </select>
+
+    <!--Month selector-->
+    <select>
+        <option value="1">Todo el año</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <!--Data available-->
+    <div>
+        <input type="checkbox"/><label>Pollution</label>
+        <input type="checkbox"/><label>Meteorology</label>
+        <input type="checkbox"/><label>Density</label>
+        <input type="checkbox"/><label>Holidays</label>
+    </div>
+
+    <!-- Data for town -->
+    <div>
+        <input type="checkbox"/><label>Madrid</label>
+        <input type="checkbox"/><label>Móstoles</label>
+        <input type="checkbox"/><label>Fuenlabrada</label>
+    </div>
+    
     <button (click)="downloadReport()">Descargar informe</button>
 </div>
 

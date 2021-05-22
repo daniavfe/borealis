@@ -77,6 +77,7 @@ event_api.add_resource(FileUploadEventCreationEndpoint, '/api/event/fileupload/'
 report_blueprint = Blueprint('report_blueprint', __name__)
 report_api = Api(report_blueprint)
 report_api.add_resource(ReportCreationEndpoint, '/api/report/', endpoint='report_endpoint')
+report_api.add_resource(TownReportCreationEndpoint, '/api/report/town', endpoint='town_report_endpoint')
 
 #Timeline
 timeline_blueprint = Blueprint('timeline_blueprint', __name__)

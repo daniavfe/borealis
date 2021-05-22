@@ -16,11 +16,11 @@ class MeteorologyInitialLoader():
     # Realiza la carga inicial de los datos
     def load(self) -> None:
         self.__logger__.info('Meteorology initial loader starts')
-        meteorology_downloader = MeteorologyDownloader(self.__meteorology_configuration__, self.__api_client__, self.__logger__)
-        meteorology_downloader.get_available_files()
-        helper = MeteorologyHelper(self.__api_client__, self.__logger__)
-        measurement_parser = MeasurementParser(self.__api_client__, self.__logger__, helper)
-        measurement_parser.upload_all_files(self.__meteorology_configuration__.download_path)
+        #meteorology_downloader = MeteorologyDownloader(self.__meteorology_configuration__, self.__api_client__, self.__logger__)
+        #meteorology_downloader.get_available_files()
+        #helper = MeteorologyHelper(self.__api_client__, self.__logger__)
+        #measurement_parser = MeasurementParser(self.__api_client__, self.__logger__, helper)
+        #measurement_parser.upload_all_files(self.__meteorology_configuration__.download_path)
 
         #Comunidad
         community_meteorology_downloader: CommunityMeteorologyDownloader = CommunityMeteorologyDownloader(self.__meteorology_configuration__,self.__api_client__, self.__logger__)

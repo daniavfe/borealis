@@ -1,8 +1,9 @@
 from ..extension import db
 from ..model import Holiday
 from ..dto import *
-from sqlalchemy import desc
+from sqlalchemy import desc, tuple_, exc
 import math
+from datetime import datetime
 
 class HolidayBusiness:
 
@@ -37,14 +38,24 @@ class HolidayBusiness:
 
     def create_holiday(self, holiday_creation_dto):
         # TODO: Comprobaciones
-        holiday = Holiday(holiday_creation_dto.date, holiday_creation_dto.day_of_week, holiday_creation_dto.name,holiday_creation_dto.scope)
+        holiday = Holiday(holiday_creation_dto.town_id, holiday_creation_dto.date, holiday_creation_dto.day_of_week, holiday_creation_dto.name,holiday_creation_dto.scope)
         holiday.save()
 
     def create_holidays_in_batch(self, holiday_creation_dto_list):
-        data = list(map(lambda x: Holiday(x.date, x.day_of_week, x.name,x.scope), holiday_creation_dto_list))
+        data = list(map(lambda x: Holiday(x.town_id, x.date, x.day_of_week,x.name, x.scope), holiday_creation_dto_list))
 
-        db.session.add_all(data)
-        db.session.commit()
+        try:
+            db.session.add_all(data)
+            db.session.commit()
+        except exc.IntegrityError:
+            db.session.rollback()
+            keys = list(map(lambda x: (x.town_id, x.date), data))
+            existing_items = set(db.session.query(Holiday.town_id, Holiday.date).filter(tuple_(Holiday.town_id, Holiday.date).in_(keys)).all())
+            not_existing_items = set(keys).difference(set(existing_items))
+            data = [item for item in data if (item.town_id, item.date) in not_existing_items]
+            db.session.add_all(data)
+            db.session.commit()
 
+            
         return BatchCreationResultDto([])
 

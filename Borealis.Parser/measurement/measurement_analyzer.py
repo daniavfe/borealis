@@ -78,7 +78,7 @@ class MeasurementAnalyzer():
         return town_id, station_id, magnitude_id, date
 
     def __get_from_text_content__(self, row:str) -> (int, int, datetime):
-        town_id = int(row[2:5])
+        town_id = row[2:5]
         station_id = row[5:8]
         magnitude_id = row[8:10]
         technique_id = row[10:12]

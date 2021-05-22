@@ -12,7 +12,8 @@ class Holiday(db.Model, BaseModelMixin):
     #Navigation properties
     town = db.relationship("Town", back_populates="holidays")
 
-    def __init__(self, date, day_of_week, name, scope):
+    def __init__(self,town_id, date, day_of_week, name, scope):
+        self.town_id = town_id
         self.date = date
         self.day_of_week = day_of_week
         self.name = name

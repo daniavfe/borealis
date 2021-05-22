@@ -77,23 +77,26 @@ class MeasurementParser():
 
         # Threshold to upload data
         items_to_upload_threshold = 100
-        items_to_upload = []
+        items_to_upload = dict()
 
         # Main loop, while content is provided, process it
         while(section_content != None):      
             for row in section_content:
                 # Get data for uploading
                 data = self.__measurement_helper__.get_data_content(row)
-                items_to_upload.extend(data)
+
+                #Check no repeated key in keys 
+                if data:             
+                    items_to_upload.update(data)
       
                 # If threshold has been overcome, upload it
                 if len(items_to_upload) >= items_to_upload_threshold:
-                    self.__measurement_helper__.upload_data(items_to_upload)
+                    self.__measurement_helper__.upload_data(list(items_to_upload.values()))
                     items_to_upload.clear()
              
             # If items left in colelction, upload them
             if len(items_to_upload) > 0:
-                self.__measurement_helper__.upload_data(items_to_upload)
+                self.__measurement_helper__.upload_data(list(items_to_upload.values()))
                 items_to_upload.clear()
 
             section_content = self.__get_section_content__()

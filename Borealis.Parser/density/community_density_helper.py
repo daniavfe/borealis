@@ -17,7 +17,7 @@ class CommunityDensityHelper(Helper):
         return 200
 
     def get_thread_number(self):
-        return 20
+        return 10
 
     def get_usable_file_content(self, file_path:str) -> list:
         # Check file exists
@@ -30,8 +30,10 @@ class CommunityDensityHelper(Helper):
             return list(reader)[1:]
 
     def get_data_content(self, row:str) -> list:
-        
-        return self.__get_insertable_object__(row[0], 0, row[1], row[1], row[1], row[3] if row[3] else 0)
+        items = dict()
+        item_key = self. __get__insertable__object__key__(row[0], 0, row[1], row[1], row[1])
+        items[item_key] = self.__get_insertable_object__(row[0], 0, row[1], row[1], row[1], row[3] if row[3] else 0)
+        return items
 
     def upload_data(self, items_to_upload:list) -> None:
         # Upload items to API
@@ -70,6 +72,8 @@ class CommunityDensityHelper(Helper):
 
         return
 
+    def __get__insertable__object__key__(self, year:int, month:int, town_id:int,  district_id:int, neighborhood_id:int):
+        return f'{town_id}{year}{month}{district_id}{neighborhood_id}'
 
     def __get_insertable_object__(self, year:int, month:int, town_id:int,  district_id:int, neighborhood_id:int, value:float):
-        return [{'year': year, 'month': month,'townId':town_id, 'districtId': district_id, 'neighborhoodId': neighborhood_id, 'value': value}]
+        return {'year': year, 'month': month,'townId':town_id, 'districtId': district_id, 'neighborhoodId': neighborhood_id, 'value': value}

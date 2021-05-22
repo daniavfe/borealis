@@ -9,10 +9,10 @@ class TownBusiness:
     def get_towns(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            None: Town.creation_date,
+            None: Town.town_id,
 
         }
-        order_by_field = order_by_switch.get(order_by, Town.creation_date)
+        order_by_field = order_by_switch.get(order_by, Town.town_id)
 
         #get data
         data = db.session.query(Town)

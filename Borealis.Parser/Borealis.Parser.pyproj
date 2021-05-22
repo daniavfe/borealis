@@ -67,10 +67,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="density\density_helper.py" />
+    <Compile Include="holiday\community_holiday_analyzer.py" />
     <Compile Include="holiday\holiday_analyzer.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="holiday\community_holiday_downloader.py" />
+    <Compile Include="holiday\community_holiday_helper.py" />
     <Compile Include="holiday\holiday_helper.py">
       <SubType>Code</SubType>
     </Compile>

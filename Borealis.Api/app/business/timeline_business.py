@@ -10,9 +10,9 @@ class TimelineBusiness():
     def get_timelines(self, page, per_page, order_by, order_by_descending):
         order_by_descending = order_by_descending != None and order_by_descending
         order_by_switch = {
-            None: Timeline.creation_date
+            None: Timeline.id
         }
-        order_by_field = order_by_switch.get(order_by, Timeline.creation_date)
+        order_by_field = order_by_switch.get(order_by, Timeline.id)
 
         #get data
         data = db.session.query(Timeline)

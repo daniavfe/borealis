@@ -23,8 +23,8 @@ class PollutionInitialLoader():
         #measurement_parser.upload_all_files(self.__pollution_configuration__.download_path)
 
         #Comunidad
-        community_pollution_downloader: CommunityPollutionDownloader = CommunityPollutionDownloader(self.__pollution_configuration__,self.__api_client__, self.__logger__)
-        community_pollution_downloader.get_available_files()
+        #community_pollution_downloader: CommunityPollutionDownloader = CommunityPollutionDownloader(self.__pollution_configuration__,self.__api_client__, self.__logger__)
+        #community_pollution_downloader.get_available_files()
 
         helper = CommunityPollutionHelper(self.__api_client__, self.__logger__)
         measurement_parser = MeasurementParser(self.__api_client__, self.__logger__, helper)

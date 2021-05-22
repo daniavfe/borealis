@@ -22,7 +22,9 @@
   },
   "holiday": {
     "main_page_url": "https://datos.madrid.es/sites/v/index.jsp?vgnextoid=9f710c96da3f9510VgnVCM2000001f4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD",
-    "download_path": "data/holiday"
+    "community_main_page_url": "https://datos.comunidad.madrid/catalogo/dataset/7ad4da4d-1bdc-4ad5-a7c3-1c5b1856a226/resource/1e0fad70-b02b-48d8-883a-b6de32720264/download/festivos_locales_historicos.csv",
+    "download_path": "data/holiday/town",
+    "community_download_path": "data/holiday/community"
   },
   "meteorology": {
     "main_page_url": "https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=fa8357cec5efa610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default",

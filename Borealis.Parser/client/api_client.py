@@ -28,7 +28,7 @@ class ApiClient():
         data = json.loads(response.content)
         return {item['id'] for item in data['items']}
 
-    def get_existing_towns(self, page:int=1, per_page:int=20)->list:
+    def get_existing_towns(self, page:int=1, per_page:int=20) -> list:
         response = requests.get(f'{ self.__base_url__}{self.__town_endpoint__}', params={'page':page, 'perPage':per_page})
         data = json.loads(response.content)
         return {item['townId'] for item in data['items']}
@@ -54,15 +54,15 @@ class ApiClient():
             return itemgetter(*items_not_created)(measurements)     
         return []
 
-    def create_holiday(self, date:datetime, day_of_week:int, name:str, scope:str):
-        payload = {"date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope}
+    def create_holiday(self, town_id:int, date:datetime, day_of_week:int, name:str, scope:str):
+        payload = {"townId":town_id, "date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope}
         requests.post(f'{self.__base_url__}{self.__holiday_endpoint__}', data=json.dumps(payload))
 
     def create_holidays(self, holidays:list) -> list:
         response = requests.post(f'{self.__base_url__}{self.__holiday_endpoint__}/many', data=json.dumps(holidays))
         items_not_created = json.loads(response.content)['itemsNotCreatedPositions']
         if len(items_not_created) > 0:
-            return itemgetter(*items_not_created)(measurements)     
+            return itemgetter(*items_not_created)(measurements)  
         return []
 
     def create_town(self, town_id:int, name:str):

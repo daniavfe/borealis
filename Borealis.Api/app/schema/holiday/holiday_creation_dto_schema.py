@@ -4,6 +4,7 @@ from ..camel_cased_schema import CamelCasedSchema
 
 
 class HolidayCreationDtoSchema(CamelCasedSchema):
+    town_id = fields.Integer()
     date = fields.DateTime()
     day_of_week = fields.Integer()
     name = fields.String()

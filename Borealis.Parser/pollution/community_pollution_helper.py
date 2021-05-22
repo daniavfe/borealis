@@ -31,8 +31,8 @@ class CommunityPollutionHelper(Helper):
             reader = csv.reader(csv_file, delimiter=';')
             return list(reader)[1:]
 
-    def get_data_content(self, row:str) -> list:
-        items = list()
+    def get_data_content(self, row:str) -> dict:
+        items = dict()
         town_id = int(row[1])
         station_id = row[2]
         magnitude_id = row[3]
@@ -44,10 +44,11 @@ class CommunityPollutionHelper(Helper):
             index = 8 + (hour * 2)
             validation_code = row[index + 1].strip()
             if validation_code == 'N':
-                break
+                continue
             data = float(row[index])
             measurement_datetime = date + timedelta(hours=hour + 1)
-            items.append(self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code))      
+            item_key = self. __get__insertable__object__key__(town_id, measurement_datetime,magnitude_id,station_id)
+            items[item_key] = self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code)     
         return items
 
     def upload_data(self, items_to_upload:list) -> None:
@@ -75,6 +76,9 @@ class CommunityPollutionHelper(Helper):
         self.__api_client__.create_towns(missing_towns)
         self.__api_client__.create_stations(missing_stations)
         self.__api_client__.create_magnitudes(missing_magnitudes)
+    
+    def __get__insertable__object__key__(self, town_id:int, datetime:datetime, magnitude_id:int, station_id:int):
+        return f'{town_id}{datetime.strftime("%Y-%m-%d %H:%M:%S")}{station_id}{magnitude_id}'
 
     def __get_insertable_object__(self, town_id:int, datetime:datetime, magnitude_id:int, station_id:int, data:float, validation_code:str):
         return {"townId": town_id, "datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id, "data": data, "validationCode": validation_code}

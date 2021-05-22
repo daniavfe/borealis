@@ -28,7 +28,7 @@ class MeteorologyHelper(Helper):
         file = open(file_path, 'r')
         return file.readlines()
 
-    def get_data_content(self, row:str) -> list:
+    def get_data_content(self, row:str) -> dict:
         if row[2] == ',':
             return self.__get_from_comma_separated_content__(row)
         else:
@@ -56,12 +56,15 @@ class MeteorologyHelper(Helper):
         # Create missing station and magnitudes
         self.__api_client__.create_stations(missing_stations)
         self.__api_client__.create_magnitudes(missing_magnitudes)
+    
+    def __get__insertable__object__key__(self, town_id:int, datetime:datetime, magnitude_id:int, station_id:int):
+        return f'{town_id}{datetime.strftime("%Y-%m-%d %H:%M:%S")}{station_id}{magnitude_id}'
 
     def __get_insertable_object__(self, town_id:int, datetime:datetime, magnitude_id:int, station_id:int, data:float, validation_code:str):
         return {"townId": town_id, "datetime": datetime.strftime("%Y-%m-%d %H:%M:%S"),"magnitudeId": magnitude_id, "stationId": station_id, "data": data, "validationCode": validation_code}
 
-    def __get_from_comma_separated_content__(self, row:str)->list:
-        items = list()
+    def __get_from_comma_separated_content__(self, row:str)->dict:
+        items = dict()
         component = row.split(',')
         town_id = int(component[1])
         station_id = int(component[2])
@@ -75,11 +78,12 @@ class MeteorologyHelper(Helper):
             data = float(component[index])
             validation_code = component[index + 1].strip()
             measurement_datetime = date + timedelta(hours=hour + 1)
-            items.append(self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code))
+            item_key = self. __get__insertable__object__key__(town_id, measurement_datetime,magnitude_id,station_id)
+            items[item_key] = self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code)
         return items
 
-    def __get_from_text_content__(self, row:str):
-        items = list()
+    def __get_from_text_content__(self, row:str)->dict:
+        items = dict()
         town_id = int(row[2:5])
         station_id = int(row[5:8])
         magnitude_id = int(row[8:10])
@@ -92,5 +96,6 @@ class MeteorologyHelper(Helper):
             data = float(row[index: index + 5])
             validation_code = row[index + 5:index + 6]
             measurement_datetime = date + timedelta(hours=hour + 1)
-            items.append(self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code))
+            item_key = self. __get__insertable__object__key__(town_id, measurement_datetime,magnitude_id,station_id)
+            items[item_key] = self.__get_insertable_object__(town_id, measurement_datetime,magnitude_id,station_id, data, validation_code)
         return items

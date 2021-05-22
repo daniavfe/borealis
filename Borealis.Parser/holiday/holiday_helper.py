@@ -18,7 +18,7 @@ class HolidayHelper():
         return 20
 
     def get_thread_number(self):
-        return 20
+        return 2
 
     def get_usable_file_content(self, file_path:str) -> list:
         # Check file exists
@@ -30,7 +30,8 @@ class HolidayHelper():
             reader = csv.reader(csv_file, delimiter=';')
             return list(reader)[1:]
 
-    def get_data_content(self, row:str) -> list:
+    def get_data_content(self, row:str) -> dict:
+        items = dict()
         day_of_week_switch = {
             'lunes':0,
             'martes': 1,
@@ -48,17 +49,20 @@ class HolidayHelper():
         }
 
         if row[0] == '':
-            return[]
+            return items
 
         day_of_week = day_of_week_switch.get(row[1], '')
 
         scope = scope_switch.get(row[3], None)  
-        if scope == None:
-            return []
+        if scope == None or scope == 'LOCAL_FESTIVE':
+            return items
 
         date = datetime.strptime(row[0], '%d/%m/%Y').strftime('%Y-%m-%d %H:%M:%S')
         name = row[4]
-        return self.__get_insertable_object__(date, day_of_week,name, scope)
+
+        item_key = self. __get__insertable__object__key__(date)
+        items[item_key] = self.__get_insertable_object__(date, day_of_week,name, scope)
+        return items
 
     def upload_data(self, items_to_upload:list) -> None:
         # Upload items to API
@@ -68,7 +72,10 @@ class HolidayHelper():
     def pre_upload(self, file_path:str) -> None:
         return
 
+    def __get__insertable__object__key__(self, date:datetime):
+        return f'9999{date}'
+
     def __get_insertable_object__(self, date:datetime, day_of_week:int, name:str, scope:str) -> list:
-        return [{"date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope}]
+        return {"date":date, "dayOfWeek":day_of_week, "name":name, "scope":scope, "townId":9999}
 
 

@@ -1,7 +1,7 @@
 from ..extension import db
 from ..dto import *
 from ..model import *
-from sqlalchemy import desc, exc
+from sqlalchemy import desc,tuple_, exc
 import math
 
 class MeasurementBusiness:
@@ -55,8 +55,18 @@ class MeasurementBusiness:
        
         data = list(map(lambda x: Measurement(x.town_id,x.datetime, x.station_id, x.magnitude_id, x.data, x.validation_code), measurement_creation_dto_list))
 
-        db.session.add_all(data)
-        db.session.commit()
+        try:
+            db.session.add_all(data)
+            db.session.commit()
+        except exc.IntegrityError:
+            db.session.rollback()
+            keys = list(map(lambda x: (x.town_id,x.datetime, x.station_id, x.magnitude_id), data))
+            existing_items = set(db.session.query(Measurement.town_id, Measurement.datetime,  Measurement.station_id, Measurement.magnitude_id).filter(tuple_(Measurement.town_id, Measurement.datetime,  Measurement.station_id, Measurement.magnitude_id).in_(keys)).all())
+            not_existing_items = set(keys).difference(set(existing_items))
+            data = [item for item in data if (item.town_id,item.datetime, item.station_id, item.magnitude_id) in not_existing_items]
+            db.session.add_all(data)
+            db.session.commit()
+
         return BatchCreationResultDto([])
 
     def assign_station_magnitude(self, station_magnitude_creation_dto):

@@ -57,7 +57,7 @@ class CommunityMeteorologyDownloader():
                       measurement_analyzer = MeasurementCsvAnalyzer(self.__logger__)
                       file_path = os.path.join(root, file)
                       measurement_analyzer.analyze_file(file_path)  
-                      file_id = self.__api_client__.create_timeline('MeteorologyPollution', measurement_analyzer.first_date, measurement_analyzer.last_date, 'Downloaded', file_path)
+                      file_id = self.__api_client__.create_timeline('CommunityMeteorology', measurement_analyzer.first_date, measurement_analyzer.last_date, 'Downloaded', file_path)
                       file_path_with_id = os.path.join(folder_path,f'{file_id}-{file}')
                       os.rename(file_path, file_path_with_id)
 
