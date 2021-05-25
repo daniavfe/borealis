@@ -1,4 +1,4 @@
-export class Station{
+export class StationDto{
     id:number;
     name:string;
     address:string;

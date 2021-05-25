@@ -16,6 +16,7 @@ measurement_blueprint = Blueprint('measurement_blueprint', __name__)
 measurement_api = Api(measurement_blueprint)
 measurement_api.add_resource(MeasurementListEndpoint, '/api/measurement/', endpoint='measurement_list_endpoint')
 measurement_api.add_resource(MeasurementCreationEndpoint, '/api/measurement/', endpoint='measurement_creation_endpoint')
+measurement_api.add_resource(MeasurementChartEndpoint, '/api/measurement/chart/', endpoint='measurement_chart_endpoint')
 measurement_api.add_resource(MeasurementBatchCreationEndpoint, '/api/measurement/many/', endpoint='measurement_batch_creation_endpoint')
 
 measurement_api.add_resource(PollutionStationMagnitudeEndpoint, '/api/pollution/station/assign/', endpoint='pollution_station_assign_endpoint')
@@ -31,7 +32,7 @@ station_api.add_resource(StationExistenceEndpoint, '/api/station/existence/', en
 
 #Magnitude endpoints
 magnitude_blueprint = Blueprint('magnitude_blueprint', __name__)
-magnitude_api = Api(magnitude_blueprint )
+magnitude_api = Api(magnitude_blueprint)
 magnitude_api.add_resource(MagnitudeListEndpoint, '/api/magnitude/', endpoint='magnitude_list_endpoint')
 magnitude_api.add_resource(MagnitudeCreationEndpoint, '/api/magnitude/', endpoint='magnitude_creation_endpoint')
 magnitude_api.add_resource(MagnitudeUpdateEndpoint, '/api/magnitude/', endpoint='magnitude_update_endpoint')
@@ -56,6 +57,7 @@ holiday_api = Api(holiday_blueprint)
 holiday_api.add_resource(HolidayListEndpoint, '/api/holiday/', endpoint='holiday_list_endpoint')
 holiday_api.add_resource(HolidayCreationEndpoint, '/api/holiday/', endpoint='holiday_creation_endpoint')
 holiday_api.add_resource(HolidayBatchCreationEndpoint, '/api/holiday/many/', endpoint='holiday_batch_creation_endpoint')
+holiday_api.add_resource(HolidayByYearListEndpoint, '/api/holiday/year/', endpoint='holiday_list_by_year_endpoint')
 
 #Town
 town_blueprint = Blueprint('town_blueprint', __name__)
@@ -86,3 +88,4 @@ timeline_api.add_resource(TimelineListEndpoint, '/api/timeline/',endpoint='timel
 timeline_api.add_resource(TimelineCreationEndpoint, '/api/timeline/',endpoint='timeline_creation_endpoint')
 timeline_api.add_resource(LastTimelineEndpoint, '/api/timeline/last/',endpoint='last_timeline_endpoint')
 timeline_api.add_resource(TimelineUpdateEndpoint, '/api/timeline/',endpoint='timeline_update_endpoint')
+timeline_api.add_resource(TimelineIntervalEndpoint, '/api/timeline/interval',endpoint='timeline_interval_endpoint')

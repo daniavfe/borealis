@@ -45,10 +45,21 @@ class LastTimelineEndpoint(Resource):
     def get():
         #Get params from url
         type = request.args.get('type')
-        #Get holidays from business
+        #Get timelines from business
         timeline = timeline_business.get_last_timeline(type)
         #Instance schema
         last_timeline_dto_schema = LastTimelineDtoSchema()
         #Return json data
         return last_timeline_dto_schema.dump(timeline)
 
+class TimelineIntervalEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get params from url
+        type = request.args.get('type')
+        #Get timeline interval from business
+        timeline_interval = timeline_business.get_timeline_interval(type)
+        #Instance schema
+        timeline_interval_dto_schema = TimelineIntervalDtoSchema()
+        #Return json data
+        return timeline_interval_dto_schema.dump(timeline_interval)

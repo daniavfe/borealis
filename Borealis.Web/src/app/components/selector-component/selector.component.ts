@@ -7,12 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class SelectorComponent implements OnInit {
 
-    @Input() content: any[];
-    @Output() getSearchStatusChange = new EventEmitter<number[]>();
-
     constructor() { }
 
     ngOnInit(): void {
+    }
+
+    public loadData():void{
+        
     }
 
 }

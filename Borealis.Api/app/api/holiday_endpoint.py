@@ -43,3 +43,15 @@ class HolidayBatchCreationEndpoint(Resource):
         holiday_batch_creation_result_dto_schema = BatchCreationResultDtoSchema()
         #Return json data
         return holiday_batch_creation_result_dto_schema.dump(items_not_created, many=False)
+
+class HolidayByYearListEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get params from url
+        year = QueryParamsHelper.get_param(request, 'year')
+        #Get holidays from business
+        holidays = holiday_business.get_holidays_by_year(year)
+        #Instance schema
+        holiday_dto_schema = HolidayDtoSchema()
+        #Return json data
+        return holiday_dto_schema.dump(holidays, many=True)

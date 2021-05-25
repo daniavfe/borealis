@@ -33,7 +33,7 @@ class HolidayBusiness:
 
         data = data.offset(per_page * (page - 1)).limit(per_page).all()
 
-        mappedData = list(map(lambda x: HolidayDto(x.date, x.day_of_week, x.name, x.scope), data))
+        mappedData = list(map(lambda x: HolidayDto( x.town_id, x.date, x.day_of_week, x.name, x.scope), data))
         return PFOCollectionDto(page, page_count, per_page, order_by_field, order_by_descending, mappedData)
 
     def create_holiday(self, holiday_creation_dto):
@@ -59,3 +59,6 @@ class HolidayBusiness:
             
         return BatchCreationResultDto([])
 
+    def get_holidays_by_year(self, year):
+        data = db.session.query(Holiday).filter(db.extract('year', Holiday.date) == year)
+        return list(map(lambda x: HolidayDto( x.town_id, x.date, x.day_of_week, x.name, x.scope), data))

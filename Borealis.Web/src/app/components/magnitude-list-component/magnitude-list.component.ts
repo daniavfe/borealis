@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { MagnitudeService } from 'src/app/services/magnitude.service';
-import { Magnitude } from 'src/app/types/magnitude/magnitude';
+import { MagnitudeDto } from 'src/app/types/magnitude/magnitudeDto';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Magnitude } from 'src/app/types/magnitude/magnitude';
     styleUrls: ['./magnitude-list.component.scss']
 })
 export class MagnitudeListComponent implements OnInit {
-    public magnitudes: Magnitude[] = [];
+    public magnitudes: MagnitudeDto[] = [];
 
     constructor(
         private zone: NgZone,

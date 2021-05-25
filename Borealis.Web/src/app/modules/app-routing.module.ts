@@ -5,6 +5,7 @@ import { DensityComponent } from '../components/density-component/density.compon
 import { EventListComponent } from '../components/event-list-component/event-list.component';
 import { HolidayListComponent } from '../components/holiday-list-component/holiday-list.component';
 import { MagnitudeListComponent } from '../components/magnitude-list-component/magnitude-list.component';
+import { MeasurementComponent } from '../components/measurement-component/measurement.component';
 import { ReportComponent } from '../components/report-component/report.component';
 import { StationListComponent } from '../components/station-list-component/station-list.component';
 import { TimelineListComponent } from '../components/timeline-list-component/timeline-list.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'timeline/list', component: TimelineListComponent },
     { path: 'density', component: DensityComponent },
     { path: 'report', component: ReportComponent },
-    { path: '', redirectTo: '/magnitude/list', pathMatch: 'full' },
+    { path: 'measurement', component: MeasurementComponent },
+    { path: '', redirectTo: '/measurement', pathMatch: 'full' },
 ];
 
 // configures NgModule imports and exports

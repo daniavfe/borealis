@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { StationService } from 'src/app/services/station.service';
-import { Station } from 'src/app/types/station/station';
+import { StationDto } from 'src/app/types/station/stationDto';
 import { StationUpdate } from 'src/app/types/station/stationUpdate';
 
 @Component({
@@ -10,7 +10,7 @@ import { StationUpdate } from 'src/app/types/station/stationUpdate';
 })
 export class StationListComponent implements OnInit {
 
-    public stations: Station[] = [];
+    public stations: StationDto[] = [];
 
     constructor(
         private zone: NgZone,

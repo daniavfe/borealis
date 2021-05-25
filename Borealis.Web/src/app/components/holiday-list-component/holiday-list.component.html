@@ -1,3 +1,33 @@
-<ul>
-    <li *ngFor="let holiday of holidays">{{holiday.date}} {{holiday.name}}</li>
-</ul>
+<section>
+    <button (click)="changeYear(year-1)">--</button><div>{{year}}</div><button (click)="changeYear(year+1)">-></button>
+    <div class="year" fxLayout="row wrap" fxLayoutAlign="start start">
+        <div *ngFor="let daysInMonth of daysInMonths; let month = index" class="month">
+            <div fxLayout="row" fxLayoutAlign="center center">
+                L
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                M
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                X
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                J
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                V
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                S
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                D
+            </div>
+            <div *ngFor="let day of getRange(getMonthDisplacement(month+1))" fxLayout="row" fxLayoutAlign="center center"></div>
+            <div *ngFor="let day of getRange(daysInMonth)" fxLayout="row" fxLayoutAlign="center center">
+                {{day+1}}{{isFestiveDay(month, day)?'f':''}}
+            </div>
+        </div>
+    </div>
+
+</section>

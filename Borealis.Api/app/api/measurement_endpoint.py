@@ -52,3 +52,18 @@ class PollutionStationMagnitudeEndpoint(Resource):
         pollution_station_magnitude_creation_dto = pollution_station_magnitude_creation_dto_schema.loads(request.data)
         #Create station magnitude
         return pollution_business.assign_station_magnitude(pollution_station_magnitude_creation_dto)
+
+class MeasurementChartEndpoint(Resource):
+    @staticmethod
+    def get():
+        #Get url params
+        year = QueryParamsHelper.get_param(request, 'year')
+        month = QueryParamsHelper.get_param(request, 'month')
+        granularity = request.args.get('granularity')
+        magnitude_ids = request.args.getlist('magnitudeIds')
+        #get report from business
+        measurement_list_dto = measurement_business.get_measurement_for_charts(year, month, granularity, magnitude_ids)      
+        #Instance schema
+        measurement_dto = MeasurementDtoSchema()
+        #Return json data
+        return measurement_dto.dump(measurement_list_dto, many=True)

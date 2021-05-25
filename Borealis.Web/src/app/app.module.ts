@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './modules/app-routing.module'
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 //Components
@@ -21,6 +22,7 @@ import { HolidayListComponent } from './components/holiday-list-component/holida
 import { ReportComponent } from './components/report-component/report.component';
 import { TimelineListComponent } from './components/timeline-list-component/timeline-list.component';
 import { SelectorComponent } from './components/selector-component/selector.component';
+import { MeasurementComponent } from './components/measurement-component/measurement.component';
 
 //Services
 import { DensityService } from './services/density.service';
@@ -30,7 +32,8 @@ import { HolidayService } from './services/holiday.service';
 import { EventService } from './services/event.service';
 import { ReportService } from './services/report.service';
 import { TimelineService } from './services/timeline.service';
-
+import { MeasurementService } from './services/measurement.service';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -46,6 +49,8 @@ import { TimelineService } from './services/timeline.service';
         ReportComponent,
         TimelineListComponent,
         SelectorComponent,
+        MeasurementComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,
@@ -53,7 +58,8 @@ import { TimelineService } from './services/timeline.service';
         HttpClientModule,
         FormsModule,
         NgxChartsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FlexLayoutModule 
     ],
     providers: [
         DensityService, 
@@ -62,7 +68,8 @@ import { TimelineService } from './services/timeline.service';
         HolidayService, 
         EventService,
         ReportService,
-        TimelineService
+        TimelineService,
+        MeasurementService
     ],
     bootstrap: [AppComponent]
 })

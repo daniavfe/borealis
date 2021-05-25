@@ -1,4 +1,4 @@
-export class Holiday{
+export class HolidayDto{
     public date:Date;
     public dayOfWeek: number;
     public name:string;

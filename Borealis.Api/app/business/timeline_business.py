@@ -1,7 +1,7 @@
 from ..extension import db
 from ..dto import *
 from ..model import Timeline
-from sqlalchemy import desc, exc
+from sqlalchemy import desc, exc, func
 import math
 
 
@@ -58,3 +58,7 @@ class TimelineBusiness():
             return LastTimelineDto()
 
         return LastTimelineDto(data.life_end)
+
+    def get_timeline_interval(self, type):
+        data = db.session.query(func.min(Timeline.life_start).label('life_start'), func.max(Timeline.life_end).label('life_end')).filter(Timeline.type == type).group_by(Timeline.type).first()
+        return TimelineIntervalDto(data.life_start, data.life_end)

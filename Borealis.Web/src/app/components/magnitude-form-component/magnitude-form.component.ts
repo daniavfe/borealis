@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MagnitudeService } from 'src/app/services/magnitude.service';
-import { Magnitude } from 'src/app/types/magnitude/magnitude';
+import { MagnitudeDto } from 'src/app/types/magnitude/magnitudeDto';
 
 @Component({
     selector: 'magnitude-form',
@@ -9,11 +9,11 @@ import { Magnitude } from 'src/app/types/magnitude/magnitude';
 })
 export class MagnitudeFormComponent implements OnInit {
 
-    public magnitude: Magnitude;
+    public magnitude: MagnitudeDto;
 
     constructor(private magnitudeService: MagnitudeService) {
 
-        this.magnitude = new Magnitude();
+        this.magnitude = new MagnitudeDto();
     }
 
     ngOnInit(): void {

@@ -1,0 +1,7 @@
+.month{
+    display: grid;
+    grid-template-columns:repeat(7, 20px);
+    grid-template-rows: repeat(4, 20px);
+    grid-gap: 10px;
+    border: 1px solid #000;
+}

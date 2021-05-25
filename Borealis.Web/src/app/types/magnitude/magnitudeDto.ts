@@ -1,4 +1,4 @@
-export class Magnitude {
+export class MagnitudeDto {
     id: number;
     name: string;
     formula: string;
