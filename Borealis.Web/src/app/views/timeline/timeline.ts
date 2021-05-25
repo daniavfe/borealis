@@ -3,11 +3,11 @@ import { TimelineService } from 'src/app/services/timeline.service';
 import { TimelineDto } from 'src/app/types/timeline/timelineDto';
 
 @Component({
-    selector: 'timeline-list',
-    templateUrl: './timeline-list.component.html',
-    styleUrls: ['./timeline-list.component.scss']
+    selector: 'timeline',
+    templateUrl: './timeline.html',
+    styleUrls: ['./timeline.scss']
 })
-export class TimelineListComponent implements OnInit {
+export class TimelineView implements OnInit {
 
     public timelines: TimelineDto[] = [];
 

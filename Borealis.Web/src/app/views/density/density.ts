@@ -3,11 +3,11 @@ import { DensityService } from 'src/app/services/density.service';
 import { DensityData } from 'src/app/types/density/densityData';
 
 @Component({
-    selector: 'density-component',
-    templateUrl: './density.component.html',
-    styleUrls: ['./density.component.scss']
+    selector: 'density',
+    templateUrl: './density.html',
+    styleUrls: ['./density.scss']
 })
-export class DensityComponent implements OnInit {
+export class DensityView implements OnInit {
     single2020: any[];
     single2019: any[];
     densityData: DensityData[];

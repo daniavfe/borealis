@@ -1,11 +1,14 @@
-<nav>
-    <ul>
-        <li><a routerLink="/measurement">Measurements</a></li>
-        <li><a routerLink="/holiday/list">Holidays</a></li>
-        <li><a routerLink="/density">Densities</a></li>
-        <li><a routerLink="/station/list">Stations</a></li>
-        <li><a routerLink="/magnitude/list">Magnitudes</a></li>
-        <li><a routerLink="/timeline/list">Timelines</a></li>
-        <li><a routerLink="/timeline/list">Reports</a></li>
-    </ul>
-</nav>
+<header class="main-header" fxLayout="row" fxLayoutAlign="center" fxFlex>
+    <nav class="navigation-header layout" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-button>Home</button>
+        <ul fxLayout="row">
+            <li><a routerLink="/measurement">Measurements</a></li>
+            <li><a routerLink="/holiday">Holidays</a></li>
+            <li><a routerLink="/density">Densities</a></li>
+            <li><a routerLink="/station">Stations</a></li>
+            <li><a routerLink="/magnitude">Magnitudes</a></li>
+            <li><a routerLink="/timeline">Timelines</a></li>
+            <li><a routerLink="/timeline">Reports</a></li>
+        </ul>
+    </nav>
+</header>

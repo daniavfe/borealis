@@ -11,23 +11,27 @@ import { StationDto } from 'src/app/types/station/stationDto';
 
 @Component({
     selector: 'measurement',
-    templateUrl: './measurement.component.html',
-    styleUrls: ['./measurement.component.scss']
+    templateUrl: './measurement.html',
+    styleUrls: ['./measurement.scss']
 })
-export class MeasurementComponent implements OnInit {
+export class MeasurementView implements OnInit {
     public granularity: string = 'monthly';
+    public granularityOptions: string[] = ['hourly', 'daily', 'monthly', 'yearly']
+
     public selectedYear: number;
     public selectedMonth: number;
-    
+    public selectedMagnitudes: number[] = [];
     public measurementYears: number[];
+
     public stations: StationDto[];
     public magnitudes: MagnitudeDto[];
-    public measurements: MeasurementDto[];
+    public measurements: MeasurementDto[] = [];
+
+    public showData: boolean = false;
 
 
-    
     multi: any[];
-    view: any[] = [1200, 500];
+    view: any[] = [0, 500];
 
 
 
@@ -37,7 +41,7 @@ export class MeasurementComponent implements OnInit {
     animations: boolean = false;
     xAxis: boolean = true;
     yAxis: boolean = true;
-    showYAxisLabel: boolean = true;
+    showYAxisLabel: boolean = false;
     showXAxisLabel: boolean = true;
     xAxisLabel: string = 'Date';
     yAxisLabel: string = 'Measurement';
@@ -88,13 +92,12 @@ export class MeasurementComponent implements OnInit {
 
 
     public getMeasurements(): void {
-        const selectedMagnitudes = this.magnitudes.filter((el:any)=>el.checked).map((el:any)=>el.id);
-
-        this.measurementService.getMeasurementForCharts(this.selectedYear,this.selectedMonth, this.granularity, selectedMagnitudes).subscribe(res => {
+        this.showData = false;
+        this.measurementService.getMeasurementForCharts(this.selectedYear, this.selectedMonth, this.granularity, this.selectedMagnitudes).subscribe(res => {
             this.zone.run(() => {
                 this.measurements = res;
                 const reducedMeasurements = this.reduceMeasurements(res);
-
+                
                 this.multi = Object.entries(reducedMeasurements).map(el => {
                     return {
                         name: el[0],
@@ -102,9 +105,10 @@ export class MeasurementComponent implements OnInit {
                             let x: any = { name: el.datetime, value: el.data };
                             return x;
                         })
+                        
                     }
                 });
-
+                this.showData = true;
             });
         });
     };

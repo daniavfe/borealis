@@ -4,11 +4,11 @@ import { StationDto } from 'src/app/types/station/stationDto';
 import { StationUpdate } from 'src/app/types/station/stationUpdate';
 
 @Component({
-    selector: 'station-list',
-    templateUrl: './station-list.component.html',
-    styleUrls: ['./station-list.component.scss']
+    selector: 'station',
+    templateUrl: './station.html',
+    styleUrls: ['./station.scss']
 })
-export class StationListComponent implements OnInit {
+export class StationView implements OnInit {
 
     public stations: StationDto[] = [];
 

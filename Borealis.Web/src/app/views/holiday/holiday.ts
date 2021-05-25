@@ -3,11 +3,11 @@ import { HolidayService } from 'src/app/services/holiday.service';
 import { HolidayDto } from 'src/app/types/holiday/holidayDto';
 
 @Component({
-	selector: 'holiday-list',
-	templateUrl: './holiday-list.component.html',
-	styleUrls: ['./holiday-list.component.scss']
+	selector: 'holiday',
+	templateUrl: './holiday.html',
+	styleUrls: ['./holiday.scss']
 })
-export class HolidayListComponent implements OnInit {
+export class HolidayView implements OnInit {
 
     public year:number = 2020;
     public scope:string[] = ['local', 'national','community'];

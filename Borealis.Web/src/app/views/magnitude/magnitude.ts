@@ -4,11 +4,11 @@ import { MagnitudeDto } from 'src/app/types/magnitude/magnitudeDto';
 
 
 @Component({
-    selector: 'magnitude-list',
-    templateUrl: './magnitude-list.component.html',
-    styleUrls: ['./magnitude-list.component.scss']
+    selector: 'magnitude',
+    templateUrl: './magnitude.html',
+    styleUrls: ['./magnitude.scss']
 })
-export class MagnitudeListComponent implements OnInit {
+export class MagnitudeView implements OnInit {
     public magnitudes: MagnitudeDto[] = [];
 
     constructor(

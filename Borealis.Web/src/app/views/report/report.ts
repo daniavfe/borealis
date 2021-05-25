@@ -3,10 +3,10 @@ import { ReportService } from 'src/app/services/report.service';
 
 @Component({
     selector: 'report',
-    templateUrl: './report.component.html',
-    styleUrls: ['./report.component.scss']
+    templateUrl: './report.html',
+    styleUrls: ['./report.scss']
 })
-export class ReportComponent implements OnInit {
+export class ReportView implements OnInit {
 
     constructor(private reportService: ReportService) { }
 
