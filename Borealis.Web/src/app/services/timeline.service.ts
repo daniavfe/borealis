@@ -2,10 +2,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { PFOCollection } from '../types/pfoCollection';
+import { PFOCollectionDto } from '../dtos/pfoCollectionDto';
 import { HttpHelper } from '../helpers/httpHelper';
-import { TimelineDto } from '../types/timeline/timelineDto';
-import { TimelineIntervalDto } from '../types/timeline/timelineIntervalDto';
+import { TimelineDto } from '../dtos/timeline/timelineDto';
+import { TimelineIntervalDto } from '../dtos/timeline/timelineIntervalDto';
 
 
 @Injectable({
@@ -15,9 +15,9 @@ export class TimelineService {
 
     constructor(private http: HttpClient) { }
 
-    public getTimelines(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollection<TimelineDto>> {
+    public getTimelines(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollectionDto<TimelineDto>> {
         const params = HttpHelper.createQueryParams({ page: page, perPage: perPage, orderBy: orderBy, orderByDescending: orderByDescending });
-        return this.http.get<PFOCollection<TimelineDto>>('api/timeline', { params });
+        return this.http.get<PFOCollectionDto<TimelineDto>>('api/timeline', { params });
     }
 
     public getTimelineInterval(type: string): Observable<TimelineIntervalDto> {

@@ -1,9 +1,9 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PFOCollection } from '../types/pfoCollection';
+import { PFOCollectionDto } from '../dtos/pfoCollectionDto';
 import { HttpHelper } from '../helpers/httpHelper';
-import { HolidayDto } from '../types/holiday/holidayDto';
+import { HolidayDto } from '../dtos/holiday/holidayDto';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -13,9 +13,9 @@ export class HolidayService {
 
     constructor(private http: HttpClient) { }
 
-    public getHolidays(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollection<HolidayDto>> {
+    public getHolidays(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollectionDto<HolidayDto>> {
         const params = HttpHelper.createQueryParams({page:page,perPage:perPage,orderBy:orderBy, orderByDescending:orderByDescending}); 
-        return this.http.get<PFOCollection<HolidayDto>>('api/holiday', {params});
+        return this.http.get<PFOCollectionDto<HolidayDto>>('api/holiday', {params});
     }
 
     public getHolidaysByYear(year:number): Observable<HolidayDto[]> {

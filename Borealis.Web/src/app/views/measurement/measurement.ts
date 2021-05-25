@@ -4,9 +4,9 @@ import { MagnitudeService } from 'src/app/services/magnitude.service';
 import { MeasurementService } from 'src/app/services/measurement.service';
 import { StationService } from 'src/app/services/station.service';
 import { TimelineService } from 'src/app/services/timeline.service';
-import { MagnitudeDto } from 'src/app/types/magnitude/magnitudeDto';
-import { MeasurementDto } from 'src/app/types/measurement/measurementDto';
-import { StationDto } from 'src/app/types/station/stationDto';
+import { MagnitudeDto } from 'src/app/dtos/magnitude/magnitudeDto';
+import { MeasurementDto } from 'src/app/dtos/measurement/measurementDto';
+import { StationDto } from 'src/app/dtos/station/stationDto';
 
 
 @Component({

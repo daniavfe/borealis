@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { TimelineService } from 'src/app/services/timeline.service';
-import { TimelineDto } from 'src/app/types/timeline/timelineDto';
+import { TimelineDto } from 'src/app/dtos/timeline/timelineDto';
 
 @Component({
     selector: 'timeline',

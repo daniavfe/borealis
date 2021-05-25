@@ -1,11 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StationDto } from '../types/station/stationDto';
-import { PFOCollection } from '../types/pfoCollection';
+import { StationDto } from '../dtos/station/stationDto';
+import { PFOCollectionDto } from '../dtos/pfoCollectionDto';
 import { HttpHelper } from '../helpers/httpHelper';
-import { StationCreation } from '../types/station/stationCreation';
-import { StationUpdate } from '../types/station/stationUpdate';
+import { StationCreationDto } from '../dtos/station/stationCreationDto';
+import { StationUpdateDto } from '../dtos/station/stationUpdateDto';
 
 @Injectable({
     providedIn: 'root'
@@ -14,16 +14,16 @@ export class StationService {
 
     constructor(private http: HttpClient) { }
 
-    public createStation(stationCreation:StationCreation){
-        return this.http.post<PFOCollection<StationDto>>('api/station', stationCreation);
+    public createStation(stationCreation:StationCreationDto){
+        return this.http.post<PFOCollectionDto<StationDto>>('api/station', stationCreation);
     }
 
-    public updateStation(stationId:number, stationUpdate:StationUpdate){
-        return this.http.put<PFOCollection<StationDto>>(`api/station?id=${stationId}`, stationUpdate);
+    public updateStation(stationId:number, stationUpdate:StationUpdateDto){
+        return this.http.put<PFOCollectionDto<StationDto>>(`api/station?id=${stationId}`, stationUpdate);
     }
 
-    public getStations(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollection<StationDto>> {
+    public getStations(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollectionDto<StationDto>> {
         const params = HttpHelper.createQueryParams({page:page,perPage:perPage,orderBy:orderBy, orderByDescending:orderByDescending}); 
-        return this.http.get<PFOCollection<StationDto>>('api/station', {params});
+        return this.http.get<PFOCollectionDto<StationDto>>('api/station', {params});
     }
 }

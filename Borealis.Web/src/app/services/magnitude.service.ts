@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { HttpHelper } from '../helpers/httpHelper';
-import { MagnitudeDto } from '../types/magnitude/magnitudeDto';
-import { PFOCollection } from '../types/pfoCollection';
+import { MagnitudeDto } from '../dtos/magnitude/magnitudeDto';
+import { PFOCollectionDto } from '../dtos/pfoCollectionDto';
 
 @Injectable({
     providedIn: 'root'
@@ -20,8 +19,8 @@ export class MagnitudeService {
         return this.http.post<number>('api/magnitude/', magnitude);
     }
 
-    public getMagnitudes(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollection<MagnitudeDto>> {
+    public getMagnitudes(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollectionDto<MagnitudeDto>> {
         const params = HttpHelper.createQueryParams({page:page,perPage:perPage,orderBy:orderBy, orderByDescending:orderByDescending});  
-        return this.http.get<PFOCollection<MagnitudeDto>>('api/magnitude',{params});
+        return this.http.get<PFOCollectionDto<MagnitudeDto>>('api/magnitude',{params});
     }
 }

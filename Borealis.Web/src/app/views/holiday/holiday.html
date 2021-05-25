@@ -1,6 +1,6 @@
 <section>
     <button (click)="changeYear(year-1)">--</button><div>{{year}}</div><button (click)="changeYear(year+1)">-></button>
-    <div class="year" fxLayout="row wrap" fxLayoutAlign="start start">
+    <div class="year">
         <div *ngFor="let daysInMonth of daysInMonths; let month = index" class="month">
             <div fxLayout="row" fxLayoutAlign="center center">
                 L

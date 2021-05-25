@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHelper } from '../helpers/httpHelper';
-import { MeasurementDto } from '../types/measurement/measurementDto';
+import { MeasurementDto } from '../dtos/measurement/measurementDto';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({

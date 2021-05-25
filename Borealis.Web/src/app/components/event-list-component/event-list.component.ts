@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
-import { Event } from 'src/app/types/event/event';
+import { Event } from 'src/app/dtos/event/event';
 
 @Component({
 	selector: 'event-list',

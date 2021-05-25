@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MagnitudeService } from 'src/app/services/magnitude.service';
-import { MagnitudeDto } from 'src/app/types/magnitude/magnitudeDto';
+import { MagnitudeDto } from 'src/app/dtos/magnitude/magnitudeDto';
 
 @Component({
     selector: 'magnitude-form',

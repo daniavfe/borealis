@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DensityData } from '../types/density/densityData';
+import { DensityDataDto } from '../dtos/density/densityDataDto';
 
 @Injectable({
     providedIn: 'root'
@@ -15,9 +15,9 @@ export class DensityService {
 
     //Dame datos del año X, mes X, distrito X, y barrio X
 
-    public getdensityData(years: number[], districts: number[], neighborhoods: number[], months: number[]): Observable<DensityData[]> {
+    public getdensityData(years: number[], districts: number[], neighborhoods: number[], months: number[]): Observable<DensityDataDto[]> {
         let year_list = years.length > 1 ? '?years=' + years.join('&years=') : '';
         let district_list = districts.length > 1 ? '&districts=' + districts.join('&districts=') : '';
-        return this.http.get<DensityData[]>(`api/density${year_list}${district_list}`);
+        return this.http.get<DensityDataDto[]>(`api/density${year_list}${district_list}`);
     }
 }

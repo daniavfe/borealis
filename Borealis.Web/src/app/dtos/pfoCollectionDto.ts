@@ -1,5 +1,5 @@
 
-export class PFOCollection<T>{
+export class PFOCollectionDto<T>{
     public page: Number;
     public pageCount: Number;
     public perPage: Number;

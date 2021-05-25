@@ -1,4 +1,4 @@
-export class StationUpdate{
+export class StationUpdateDto{
     public name:string;
     public address:string;
     public startDate:Date;

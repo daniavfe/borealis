@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { StationService } from 'src/app/services/station.service';
-import { StationDto } from 'src/app/types/station/stationDto';
-import { StationUpdate } from 'src/app/types/station/stationUpdate';
+import { StationDto } from 'src/app/dtos/station/stationDto';
+import { StationUpdateDto } from 'src/app/dtos/station/stationUpdateDto';
 
 @Component({
     selector: 'station',
@@ -33,7 +33,7 @@ export class StationView implements OnInit {
     }
 
     updateStation(station):void{
-        const uploadStation = new StationUpdate(station?.name, station?.address, station?.startDate, station?.endDate, station?.latitude, station?.longitude, station?.altitude);
+        const uploadStation = new StationUpdateDto(station?.name, station?.address, station?.startDate, station?.endDate, station?.latitude, station?.longitude, station?.altitude);
         this.stationService.updateStation(station.id, uploadStation).subscribe(res =>{
             console.log("updated");
         });

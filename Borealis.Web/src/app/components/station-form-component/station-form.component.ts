@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StationService } from 'src/app/services/station.service';
-import { StationCreation } from 'src/app/types/station/stationCreation';
+import { StationCreationDto } from 'src/app/dtos/station/stationCreationDto';
 
 @Component({
     selector: 'station-form',
@@ -9,12 +9,12 @@ import { StationCreation } from 'src/app/types/station/stationCreation';
 })
 export class StationFormComponent implements OnInit {
 
-    public station:StationCreation;
+    public station:StationCreationDto;
 
     constructor(private stationService:StationService) { }
 
     ngOnInit(): void {
-        this.station = new StationCreation();
+        this.station = new StationCreationDto();
     }
 
     createStation():void{

@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { HolidayService } from 'src/app/services/holiday.service';
-import { HolidayDto } from 'src/app/types/holiday/holidayDto';
+import { HolidayDto } from 'src/app/dtos/holiday/holidayDto';
 
 @Component({
 	selector: 'holiday',

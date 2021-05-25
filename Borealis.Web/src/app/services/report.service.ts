@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHelper } from '../helpers/httpHelper';
-import { ReportDto } from '../types/report/report';
-import { TimelineDate } from '../types/timeline/timelineDate';
+import { ReportDto } from '../dtos/report/reportDto';
+import { TimelineDateDto } from '../dtos/timeline/timelineDateDto';
 
 
 @Injectable({
@@ -22,7 +22,7 @@ export class ReportService {
         return this.http.get<ReportDto>('api/report/town', { params });
     }
 
-    public getTimelineDates(): Observable<TimelineDate> {
-        return this.http.get<TimelineDate>('api/report/dates');
+    public getTimelineDates(): Observable<TimelineDateDto> {
+        return this.http.get<TimelineDateDto>('api/report/dates');
     }
 }
