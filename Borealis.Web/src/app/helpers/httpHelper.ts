@@ -5,8 +5,9 @@ export class HttpHelper{
     public static createQueryParams(params:any):HttpParams
     {
         let queryParams = new HttpParams();
-
         for(let key in params){
+            if (params[key] == null)
+                continue;
             switch(typeof(params[key])){
                 case typeof(Boolean):
                     if(params[key]){

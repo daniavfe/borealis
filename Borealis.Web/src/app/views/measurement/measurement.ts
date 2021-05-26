@@ -7,6 +7,7 @@ import { TimelineService } from 'src/app/services/timeline.service';
 import { MagnitudeDto } from 'src/app/dtos/magnitude/magnitudeDto';
 import { MeasurementDto } from 'src/app/dtos/measurement/measurementDto';
 import { StationDto } from 'src/app/dtos/station/stationDto';
+import { Status } from 'src/app/types/status';
 
 
 @Component({
@@ -15,24 +16,28 @@ import { StationDto } from 'src/app/dtos/station/stationDto';
     styleUrls: ['./measurement.scss']
 })
 export class MeasurementView implements OnInit {
+
     public granularity: string = 'monthly';
-    public granularityOptions: string[] = ['hourly', 'daily', 'monthly', 'yearly']
+    public granularityOptions: string[] = ['hourly', 'daily', 'monthly']
+    public measurementYears: number[];
+    public stations: StationDto[];
+    public magnitudes: MagnitudeDto[];
+    public measurements: MeasurementDto[];
 
     public selectedYear: number;
     public selectedMonth: number;
     public selectedMagnitudes: number[] = [];
-    public measurementYears: number[];
 
-    public stations: StationDto[];
-    public magnitudes: MagnitudeDto[];
-    public measurements: MeasurementDto[] = [];
+
+
+    public status: Status;
+    public statusEnum = Status;
 
     public showData: boolean = false;
 
 
     multi: any[];
     view: any[] = [0, 500];
-
 
 
     // options
@@ -59,6 +64,7 @@ export class MeasurementView implements OnInit {
         private magnitudeService: MagnitudeService) { }
 
     ngOnInit(): void {
+        this.status = Status.idle;
         this.loadMeasurementTypeYears();
         this.loadStations();
         this.loadMagnitudes();
@@ -90,14 +96,13 @@ export class MeasurementView implements OnInit {
         })
     }
 
-
     public getMeasurements(): void {
-        this.showData = false;
+        this.status = Status.loading;
         this.measurementService.getMeasurementForCharts(this.selectedYear, this.selectedMonth, this.granularity, this.selectedMagnitudes).subscribe(res => {
             this.zone.run(() => {
                 this.measurements = res;
                 const reducedMeasurements = this.reduceMeasurements(res);
-                
+
                 this.multi = Object.entries(reducedMeasurements).map(el => {
                     return {
                         name: el[0],
@@ -105,10 +110,10 @@ export class MeasurementView implements OnInit {
                             let x: any = { name: el.datetime, value: el.data };
                             return x;
                         })
-                        
+
                     }
                 });
-                this.showData = true;
+                this.status = Status.loaded;
             });
         });
     };
@@ -122,6 +127,35 @@ export class MeasurementView implements OnInit {
             return accumulator;
         }, {});
         return reduced;
+    }
+
+    public mustYearBeSelected() {
+        return this.granularity != 'monthly';
+    }
+
+    public mustMonthBeSelected() {
+        return (this.granularity == 'hourly');
+    }
+
+    public granularityChanged() {
+        switch (this.granularity) {
+            case 'monthly':
+                this.selectedYear = null;
+            case 'daily':
+                this.selectedMonth = null;
+                break;
+        }
+    }
+
+    public canLoadChart():boolean{
+        switch (this.granularity) {
+            case 'hourly':
+                return !!this.selectedMonth && !!this.selectedYear;
+            case 'daily':
+                return !!this.selectedYear;
+        }
+
+        return true;
     }
 }
 

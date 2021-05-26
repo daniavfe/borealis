@@ -1,41 +1,44 @@
 <section fxFlex fxLayout="column" fxLayoutAlign="start stretch">
     <h1>Measurements</h1>
-    <div fxFlex fxLayout="row" fxLayoutAlign="start start">
+    <div fxFlex fxLayout="row" fxLayoutAlign="start stretch">
         <!-- Graphics -->
-        <div fxFlex=75 class="chart-container" fxLayout="column" fxLayoutAlign="start stretch" >
-            <div *ngIf="showData" #ContainerRef>
-                <ngx-charts-line-chart [view]="[ContainerRef.offsetWidth, 700]" [scheme]="colorScheme" [legend]="legend"
+        <div fxFlex=75 class="chart-container" fxLayout="column" fxLayoutAlign="start stretch">   
+            <div *ngIf="status == statusEnum.idle"  fxLayout="column" fxLayoutAlign="center center" fxFlex class="idle-container">
+                Select data to show chart
+            </div>
+            <div *ngIf="status == statusEnum.loading" fxLayout="column" fxLayoutAlign="center center" fxFlex class="loading-container">
+                <mat-spinner diameter="50"></mat-spinner>
+            </div>
+
+            <div *ngIf="status == statusEnum.loaded" #ContainerRef>
+                <ngx-charts-line-chart [view]="[ContainerRef.offsetWidth, 600]" [scheme]="colorScheme" [legend]="legend"
                     [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
                     [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="multi">
                 </ngx-charts-line-chart>
-            </div>
-            <div *ngIf="!showData">
-asdf
             </div>
 
         </div>
         <!-- Data -->
         <div fxFlex=25 fxLayout="column" fxLayoutAlign="start stretch" class="data-container padding" name="asdf">
             <h2>Filter</h2>
-
             <mat-form-field appearance="fill" fxFlex>
                 <mat-label>Granularity</mat-label>
-                <mat-select [(ngModel)]="granularity">
+                <mat-select [(ngModel)]="granularity" (ngModelChange)="granularityChanged()">
                     <mat-option *ngFor="let granularity of granularityOptions" [value]="granularity">{{granularity}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" fxFlex>
+            <mat-form-field appearance="fill" fxFlex *ngIf="mustYearBeSelected()">
                 <mat-label>Year</mat-label>
                 <mat-select [(ngModel)]="selectedYear">
                     <mat-option *ngFor="let year of measurementYears" [value]="year">{{year}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" fxFlex>
+            <mat-form-field appearance="fill" fxFlex *ngIf="mustMonthBeSelected()">
                 <mat-label>Month</mat-label>
-                <mat-select [(ngModel)]="selectedMonth">
+                <mat-select [(ngModel)]="selectedMonth" >
                     <mat-option value="1">Ene</mat-option>
                     <mat-option value="2">Feb</mat-option>
                     <mat-option value="3">Mar</mat-option>
@@ -58,7 +61,7 @@ asdf
                 </mat-list-option>
             </mat-selection-list>
 
-            <button mat-flat-button color="primary" (click)="getMeasurements()">Show data</button>
+            <button mat-flat-button color="primary" (click)="getMeasurements()" [disabled]="!canLoadChart()">Show data</button>
         </div>
     </div>
 </section>
