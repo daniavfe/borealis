@@ -20,7 +20,7 @@ export class TimelineView implements OnInit {
     }
 
     loadTimelines(): void {
-        this.timelineService.getTimelines(1, 1000, "id", false).subscribe(
+        this.timelineService.getTimelines(1, 20, "id", false).subscribe(
             res => {
                 this.zone.run(
                     () => {

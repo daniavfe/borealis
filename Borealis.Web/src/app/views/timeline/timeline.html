@@ -1,5 +1,13 @@
-<div>
-    <ul>
-        <li *ngFor="let timeline of timelines">{{timeline.id}} {{timeline.type}} {{timeline.status}} {{timeline.details}}</li>
-    </ul>
-</div>
+<section fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+    <h1>Timelines</h1>
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
+        <div fxFlex=70 fxLayout="column" fxLayoutAlign="start stretch" class="timeline-list">
+            <div *ngFor="let timeline of timelines" class="timeline-list-item" fxLayout="row" fxLayoutAlign="space-between center">
+                <span>{{timeline.type}} {{timeline.details}}</span>{{timeline.status}} 
+            </div>
+        </div>
+        <div fxFlex=25 fxLayout="column" fxLayoutAlign="start stretch" class="data-container padding">
+            <h2>Filter</h2>
+        </div>
+    </div>
+</section>
