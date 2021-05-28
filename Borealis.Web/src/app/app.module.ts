@@ -36,6 +36,7 @@ import { ReportService } from './services/report.service';
 import { TimelineService } from './services/timeline.service';
 import { MeasurementService } from './services/measurement.service';
 import { HeaderComponent } from './components/header/header.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { HeaderComponent } from './components/header/header.component';
         ReportView,
         TimelineView,
         MeasurementView,
-        HeaderComponent
+        HeaderComponent,
+        PaginatorComponent
     ],
     imports: [
         BrowserModule,

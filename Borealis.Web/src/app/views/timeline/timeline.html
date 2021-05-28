@@ -5,8 +5,9 @@
             <div *ngFor="let timeline of timelines" class="timeline-list-item" fxLayout="row" fxLayoutAlign="space-between center">
                 <span>{{timeline.type}} {{timeline.details}}</span>{{timeline.status}} 
             </div>
+            <paginator *ngIf="status == statusEnum.loaded" [page]="paginatedTimelines.page" [pageCount]="paginatedTimelines.pageCount" [perPage]="paginatedTimelines.perPage" [perPageOptions]="[10, 20, 50, 100]" (onLoadPage)="reload($event)"></paginator>
         </div>
-        <div fxFlex=25 fxLayout="column" fxLayoutAlign="start stretch" class="data-container padding">
+        <div  fxFlex=25 fxLayout="column" fxLayoutAlign="start stretch" class="data-container padding">
             <h2>Filter</h2>
         </div>
     </div>

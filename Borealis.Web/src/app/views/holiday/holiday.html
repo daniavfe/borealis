@@ -1,33 +1,69 @@
-<section>
-    <button (click)="changeYear(year-1)">--</button><div>{{year}}</div><button (click)="changeYear(year+1)">-></button>
+<section fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+    <h1>Holidays</h1>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+        <button mat-flat-button color="primary" (click)="changeYear(year-1)">{{year-1}}</button>
+        <h1>{{year}}</h1>
+        <button mat-flat-button color="primary" (click)="changeYear(year+1)">{{year+1}}</button>
+    </div>
+    <div class="legend-container" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="legend local"></div><span>Local</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="legend communitary"></div><span>Communitary</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="legend national"></div><span>National</span>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="legend localcommunitary"></div><span>Local & Communitary</span>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="legend localnational"></div><span>Local & National</span>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="legend communitarynational"></div><span>Communitary & National</span>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div class="legend localcommunitarynational"></div><span>Local & Communitary & National</span>
+        </div>
+    </div>
     <div class="year">
         <div *ngFor="let daysInMonth of daysInMonths; let month = index" class="month">
-            <div fxLayout="row" fxLayoutAlign="center center">
-                L
+            <div class="month-header" fxLayout="row" fxLayoutAlign="center center">
+                {{months[month]}}
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
-                M
+                <b>Mo</b>
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
-                X
+                <b>Tu</b>
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
-                J
+                <b>We</b>
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
-                V
+                <b>Th</b>
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
-                S
+                <b>Fr</b>
             </div>
             <div fxLayout="row" fxLayoutAlign="center center">
-                D
+                <b>Sa</b>
             </div>
-            <div *ngFor="let day of getRange(getMonthDisplacement(month+1))" fxLayout="row" fxLayoutAlign="center center"></div>
-            <div *ngFor="let day of getRange(daysInMonth)" fxLayout="row" fxLayoutAlign="center center">
-                {{day+1}}{{isFestiveDay(month, day)?'f':''}}
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <b>Su</b>
+            </div>
+            <div *ngFor="let day of getRange(getMonthDisplacement(month)-1)" fxLayout="row" fxLayoutAlign="center center"></div>
+            <div *ngFor="let day of getRange(daysInMonth)" fxLayout="column" fxLayoutAlign="center center" [ngClass]="getTypeOfFestive(month, day)">
+                {{day+1}}
             </div>
         </div>
+        
     </div>
 
 </section>
