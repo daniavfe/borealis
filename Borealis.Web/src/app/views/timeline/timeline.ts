@@ -17,22 +17,30 @@ export class TimelineView implements OnInit {
     status:Status;
     statusEnum:any = Status;
 
+    page:number = 1;
+    itemsPerPage:number = 20;
+
+    timelineTypes: string[] = ['Pollution', 'CommunityPollution', 'Meteorology', 'CommunityMeteorology', 'Holiday', 'CommunityHoliday', 'Density','CommunityDensity'];
+    selectedTimelineType:string;
+
     constructor(
         private zone: NgZone,
         private timelineService: TimelineService) { }
 
     ngOnInit(): void {
         this.status = Status.idle;
-        this.loadTimelines(1, 20);
+        this.loadTimelines();
     }
 
     reload(pagination:Pagination){
-        this.loadTimelines(pagination.page, pagination.perPage);
+        this.page = pagination.page;
+        this.itemsPerPage = pagination.perPage;
+        this.loadTimelines();
     }
 
-    loadTimelines(page:number, itemsPerPage:number): void {
+    loadTimelines(): void {
         this.status = Status.loading;
-        this.timelineService.getTimelines(page, itemsPerPage, "id", false).subscribe(
+        this.timelineService.getTimelines(this.page, this.itemsPerPage, "id", false).subscribe(
             res => {
                 
                 this.zone.run(

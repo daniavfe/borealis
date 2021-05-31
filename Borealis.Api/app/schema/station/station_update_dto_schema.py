@@ -11,6 +11,7 @@ class StationUpdateDtoSchema(CamelCasedSchema):
     longitude = fields.String(missing=None)
     latitude = fields.String(missing=None)
     altitude = fields.Integer(missing=None)
+    neighborhood_id = fields.Integer(missing=None)
 
     @post_load
     def make(self, data, **kwargs):

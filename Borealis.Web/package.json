@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "build": "ng build --proxy-config proxy.conf.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^11.0.9",
     "@angular/platform-browser-dynamic": "~11.0.4",
     "@angular/router": "~11.0.4",
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@swimlane/ngx-charts": "^17.0.1",
     "checklist-model": "^1.0.0",
     "clean": "^4.0.2",

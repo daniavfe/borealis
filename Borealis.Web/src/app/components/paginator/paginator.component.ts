@@ -37,8 +37,8 @@ export class PaginatorComponent implements OnInit {
         }
     }
 
-    reloadPage(perPage:number) {
-        this.onLoadPage.emit(new Pagination(this.page, perPage));
+    reloadPage() {
+        this.onLoadPage.emit(new Pagination(this.page, this.perPage));
     }
 
 }

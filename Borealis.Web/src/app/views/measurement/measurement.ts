@@ -105,7 +105,7 @@ export class MeasurementView implements OnInit {
 
                 this.multi = Object.entries(reducedMeasurements).map(el => {
                     return {
-                        name: el[0],
+                        name:this.magnitudes.find(mag=>mag.id == parseInt(el[0])).name,
                         series: el[1].map(el => {
                             let x: any = { name: el.datetime, value: el.data };
                             return x;

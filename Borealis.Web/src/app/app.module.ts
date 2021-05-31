@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,8 +21,8 @@ import { MeasurementView } from './views/measurement/measurement';
 import { MainView } from './views/main/main';
 
 //Components
-import { MagnitudeFormComponent } from './components/magnitude-form-component/magnitude-form.component';
-import { StationFormComponent } from './components/station-form-component/station-form.component';
+import { MagnitudeFormDialog } from './components/magnitude-form-dialog/magnitude-form';
+import { StationFormDialog } from './components/station-form-dialog/station-form';
 import { EventListComponent } from './components/event-list-component/event-list.component';
 
 
@@ -44,9 +44,9 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
         MainView,
         DensityView,
         MagnitudeView,
-        MagnitudeFormComponent,
+        MagnitudeFormDialog,
         StationView,
-        StationFormComponent,
+        StationFormDialog,
         EventListComponent,
         HolidayView,
         ReportView,
@@ -60,16 +60,17 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
         BrowserAnimationsModule,
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
         NgxChartsModule,
         FlexLayoutModule,
         RoutingModule,
         MaterialModule
     ],
     providers: [
-        DensityService, 
-        MagnitudeService, 
-        StationService, 
-        HolidayService, 
+        DensityService,
+        MagnitudeService,
+        StationService,
+        HolidayService,
         EventService,
         ReportService,
         TimelineService,

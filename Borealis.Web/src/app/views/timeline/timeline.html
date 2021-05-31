@@ -1,14 +1,22 @@
 <section fxFlex fxLayout="column" fxLayoutAlign="start stretch">
     <h1>Timelines</h1>
-    <div fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
-        <div fxFlex=70 fxLayout="column" fxLayoutAlign="start stretch" class="timeline-list">
-            <div *ngFor="let timeline of timelines" class="timeline-list-item" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex=70 fxLayout="column" fxLayoutAlign="start stretch" class="list">
+            <div *ngFor="let timeline of timelines" class="list-item" fxLayout="row" fxLayoutAlign="space-between center">
                 <span>{{timeline.type}} {{timeline.details}}</span>{{timeline.status}} 
             </div>
             <paginator *ngIf="status == statusEnum.loaded" [page]="paginatedTimelines.page" [pageCount]="paginatedTimelines.pageCount" [perPage]="paginatedTimelines.perPage" [perPageOptions]="[10, 20, 50, 100]" (onLoadPage)="reload($event)"></paginator>
         </div>
         <div  fxFlex=25 fxLayout="column" fxLayoutAlign="start stretch" class="data-container padding">
             <h2>Filter</h2>
+            <mat-form-field appearance="fill" fxFlex>
+                <mat-label>Granularity</mat-label>
+                <mat-select [(ngModel)]="selectedTimelineType">
+                    <mat-option *ngFor="let type of timelineTypes" [value]="type">{{type}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-flat-button color="primary" (click)="loadTimelines()">Load</button>
         </div>
-    </div>
+    </div> 
 </section>

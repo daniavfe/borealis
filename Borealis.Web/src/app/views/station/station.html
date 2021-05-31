@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div *ngFor="let station of stations">
         <span>{{station.id}}</span>
         <input type="text" placeholder="name"  [(ngModel)]="station.name">
@@ -14,4 +14,28 @@
 
     <h2>Create station</h2>
     <station-form></station-form>
-</div>
+</div> -->
+
+<section fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+    <h1>Stations</h1>
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex=70 fxLayout="column" fxLayoutAlign="start stretch" class="list">
+            <div *ngFor="let station of stations" class="list-item" fxLayout="row"
+                fxLayoutAlign="space-between center">
+                <span>{{station.id}} {{station.name}} {{station.address}}</span>
+                <div>
+                    <button mat-icon-button color="primary" (click)="openEditionDialog(station)">
+                        <i class="fal fa-edit"></i>
+                    </button>
+                </div>
+            </div>
+            <paginator *ngIf="status == statusEnum.loaded" [page]="paginatedItems.page"
+                [pageCount]="paginatedItems.pageCount" [perPage]="paginatedItems.perPage"
+                [perPageOptions]="[10, 20, 50, 100]" (onLoadPage)="reload($event)"></paginator>
+        </div>
+        <div fxFlex=25 fxLayout="column" fxLayoutAlign="start stretch" class="data-container padding">
+            <h2>Filter</h2>
+            <button mat-flat-button color="primary" (click)="loadStations()">Load</button>
+        </div>
+    </div>
+</section>

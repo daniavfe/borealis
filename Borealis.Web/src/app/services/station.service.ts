@@ -14,12 +14,13 @@ export class StationService {
 
     constructor(private http: HttpClient) { }
 
-    public createStation(stationCreation:StationCreationDto){
+    public createStation(stationCreation:StationCreationDto, id:number){
         return this.http.post<PFOCollectionDto<StationDto>>('api/station', stationCreation);
     }
 
-    public updateStation(stationId:number, stationUpdate:StationUpdateDto){
-        return this.http.put<PFOCollectionDto<StationDto>>(`api/station?id=${stationId}`, stationUpdate);
+    public updateStation(station:StationUpdateDto, id:number){
+        const params = HttpHelper.createQueryParams({id:id});  
+        return this.http.put<number>('api/station/', station, {params:params});
     }
 
     public getStations(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollectionDto<StationDto>> {

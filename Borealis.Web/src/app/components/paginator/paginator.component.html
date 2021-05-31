@@ -1,8 +1,13 @@
-<div>
-    <button (click)="loadPreviousPage()">Previous</button>
-    <span>page {{page}} of {{pageCount}}</span>    
-    <button (click)="loadNextPage()">Next</button>
-    <select [(ngModel)]="perPage" (change)="reloadPage($event.target.value)">
-        <option *ngFor="let option of perPageOptions" [value]="option">{{option}}</option>
-    </select>
-</div>
+<section class="paginator" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+        <button mat-button color="primary" (click)="loadPreviousPage()">Previous</button>
+        <span class="page-info">page {{page}} of {{pageCount}}</span>
+        <button mat-button color="primary" (click)="loadNextPage()">Next</button>
+    </div>
+    <mat-form-field>
+        <mat-label>Items per page</mat-label>
+        <mat-select [(ngModel)]="perPage" (ngModelChange)="reloadPage()">
+            <mat-option *ngFor="let option of perPageOptions" [value]="option">{{option}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</section>

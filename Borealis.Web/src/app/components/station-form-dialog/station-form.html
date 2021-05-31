@@ -1,0 +1,61 @@
+<section mat-dialog-content class="magnitude-form-dialog" fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
+    <h1 mat-dialog-title>Station edition</h1>
+    <div class="station-form">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Station name" [(ngModel)]="station.name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Station address" [(ngModel)]="station.address">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Start date</mat-label>
+            <input matInput [matDatepicker]="startDate" [(ngModel)]="station.startDate">
+            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>End date</mat-label>
+            <input matInput [matDatepicker]="endDate" [(ngModel)]="station.endDate">
+            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Latitude</mat-label>
+            <input matInput placeholder="Station latitude" [(ngModel)]="station.latitude">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Longitude</mat-label>
+            <input matInput placeholder="Station longitude" [(ngModel)]="station.longitude">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Altitude</mat-label>
+            <input type="number" matInput placeholder="Station altitude" [(ngModel)]="station.longitude">
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Number</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [formControl]="autocompleteControl"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFunction">
+              <mat-option *ngFor="let option of neighborhoodOptions | async" [value]="option">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button mat-flat-button color="primary" (click)="updateStation()">Update station</button>
+    </div>
+</section>

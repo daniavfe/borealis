@@ -1,16 +1,23 @@
-<ul>
-    <li *ngFor="let magnitude of magnitudes">{{magnitude.id}} {{magnitude.name}} {{magnitude.formula}} {{magnitude.measurementUnit}}</li>
-</ul>
-
-<div *ngFor="let magnitude of magnitudes">
-    <input type="number" placeholder="id" [(ngModel)]="magnitude.id" />
-    <input type="text" placeholder="name" [(ngModel)]="magnitude.name" />
-    <input type="text" placeholder="formula" [(ngModel)]="magnitude.formula" />
-    <input type="text" placeholder="measurement unit" [(ngModel)]="magnitude.measurementUnit" />
-    <button (click)="updateMagnitude()"></button>
-</div>
-
-<h2>Crear nuevo</h2>
-<magnitude-form></magnitude-form>
-
-
+<section fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+    <h1>Magnitudes</h1>
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex=70 fxLayout="column" fxLayoutAlign="start stretch" class="list">
+            <div *ngFor="let magnitude of magnitudes" class="list-item" fxLayout="row"
+                fxLayoutAlign="space-between center">
+                <span>{{magnitude.name}} ({{magnitude.formula}})</span>
+                <div>
+                    <button mat-icon-button color="primary" (click)="openEditionDialog(magnitude)">
+                        <i class="fal fa-edit"></i>
+                    </button>
+                </div>
+            </div>
+            <paginator *ngIf="status == statusEnum.loaded" [page]="paginatedItems.page"
+                [pageCount]="paginatedItems.pageCount" [perPage]="paginatedItems.perPage"
+                [perPageOptions]="[10, 20, 50, 100]" (onLoadPage)="reload($event)"></paginator>
+        </div>
+        <div fxFlex=25 fxLayout="column" fxLayoutAlign="start stretch" class="data-container padding">
+            <h2>Filter</h2>
+            <button mat-flat-button color="primary" (click)="loadMagnitudes()">Load</button>
+        </div>
+    </div>
+</section>

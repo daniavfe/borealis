@@ -1,26 +1,45 @@
 version: "3.9"
 services:
-  api:
-    build: Borealis.Api\.
-    ports:
-      - "5000:5000"
+    
+    mysql: 
+        image: mysql
+        ports:
+            - "3306:3306"
+        volumes:
+            - D:\Projects\ddbb:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: pass
+        networks:
+            - backend
 
-  ddbb: 
-    image: mysql
-    ports:
-      - "3306:3306"
-    volumes:
-      - D:\Projects\ddbb:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: pass
-  
-  geoserver:
-    image: kartoza/geoserver
-    ports:
-      - "8080:8080"
-    volumes:
-    - D:\Projects\geoserver:/home/geoserver/data
-    environment:
-      GEOSERVER_DATA_DIR: /home/geoserver/data
-      GEOSERVER_ADMIN_PASSWORD: pass
-      GEOSERVER_ADMIN_USER: user
+    api:
+        build: Borealis.Api\.
+        ports:
+            - "5000:5000"
+        depends_on:
+            - mysql
+        networks:
+            - backend
+    # geoserver:
+    #     image: kartoza/geoserver
+    #     ports:
+    #     - "8080:8080"
+    #     volumes:
+    #         - D:\Projects\geoserver:/home/geoserver/data
+    #     environment:
+    #         GEOSERVER_DATA_DIR: /home/geoserver/data
+    #         GEOSERVER_ADMIN_PASSWORD: pass
+    #         GEOSERVER_ADMIN_USER: user
+
+    web:
+        build: Borealis.Web\.
+        ports:
+            - "80:80"
+        depends_on:
+            - api
+        networks:
+            - backend
+        
+networks:
+    backend:
+    frontend:

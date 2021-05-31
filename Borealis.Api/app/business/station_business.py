@@ -64,6 +64,8 @@ class StationBusiness:
             station.longitude = station_update_dto.longitude
         if station_update_dto.longitude != None:
             station.altitude = station_update_dto.altitude
+        if station_update_dto.neighborhood_id != None:
+            station.neighborhood_id = station_update_dto.neighborhood_id
 
         station.save()
 

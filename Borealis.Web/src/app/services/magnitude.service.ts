@@ -15,8 +15,14 @@ export class MagnitudeService {
     public createMagnitudeFromParams(id: number, name: string, formula: string, measurementUnit: string): Observable<number> {
         return this.http.post<number>('api/magnitude/', { id: id, name: name, formula: formula, measurementUnit: measurementUnit });
     }
+
     public createMagnitude(magnitude: MagnitudeDto): Observable<number> {
         return this.http.post<number>('api/magnitude/', magnitude);
+    }
+
+    public updateMagnitude(magnitude: MagnitudeDto, id:number): Observable<number> {
+        const params = HttpHelper.createQueryParams({id:id});  
+        return this.http.put<number>('api/magnitude/', magnitude, {params:params});
     }
 
     public getMagnitudes(page: number, perPage: number, orderBy: string, orderByDescending: boolean): Observable<PFOCollectionDto<MagnitudeDto>> {

@@ -6,7 +6,7 @@
     <ProjectGuid>7f50adfc-fd7b-4741-9e69-dfdec1695cfa</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <ProjectTypeGuids>{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>wsgi.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -351,11 +351,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\__init__.py" />
-    <Compile Include="main.py" />
+    <Compile Include="wsgi.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />
     <Content Include="requirements.txt" />
+    <Content Include="uwsgi.ini" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -391,8 +392,8 @@
   <ItemGroup>
     <Interpreter Include="env\">
       <Id>env</Id>
-      <Version>3.7</Version>
-      <Description>env (Python 3.7 (64-bit))</Description>
+      <Version>3.9</Version>
+      <Description>env (Python 3.9 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>

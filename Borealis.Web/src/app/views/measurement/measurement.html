@@ -57,7 +57,7 @@
             <h3>Magnitudes</h3>
             <mat-selection-list [(ngModel)]="selectedMagnitudes">
                 <mat-list-option *ngFor="let magnitude of magnitudes" [value]="magnitude.id">
-                    {{magnitude.id}}
+                    {{magnitude.name}} ({{magnitude.formula}})
                 </mat-list-option>
             </mat-selection-list>
 

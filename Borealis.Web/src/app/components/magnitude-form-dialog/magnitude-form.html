@@ -1,0 +1,20 @@
+<section mat-dialog-content class="magnitude-form-dialog" fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
+    <h1 mat-dialog-title>Magnitude edition</h1>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Magnitude name" [(ngModel)]="magnitude.name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Formula</mat-label>
+        <input matInput placeholder="Magnitude formula" [(ngModel)]="magnitude.formula">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Measurement unit</mat-label>
+        <input matInput placeholder="Magnitude unit" [(ngModel)]="magnitude.measurementUnit">
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="updateMagnitude()">Update</button>
+
+</section>

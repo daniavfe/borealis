@@ -33,6 +33,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+ 
 
 
 @NgModule({
@@ -68,7 +70,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatSortModule,
         MatPaginatorModule,
         MatButtonModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatNativeDateModule
     ]
 })
 export class MaterialModule { }
