@@ -7,7 +7,10 @@ from .extension import marshmallow, migrate
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_pyfile("configuration/development.py")
+    app.config.from_pyfile("config/default.py")
+    app.config.from_envvar('APP_CONFIG_FILE')
+    #app.config.from_pyfile("config/development.py")
+
     # app.config.from_object(settings_module)
     # Inicializa las extensiones
     db.init_app(app)

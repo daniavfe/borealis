@@ -83,8 +83,10 @@
     </Compile>
     <Compile Include="app\business\__init__.py" />
     <Compile Include="app\common\__init__.py" />
-    <Compile Include="app\configuration\development.py" />
-    <Compile Include="app\configuration\__init__.py" />
+    <Compile Include="app\config\production.py" />
+    <Compile Include="app\config\default.py" />
+    <Compile Include="app\config\development.py" />
+    <Compile Include="app\config\__init__.py" />
     <Compile Include="app\dto\density\density_creation_dto.py">
       <SubType>Code</SubType>
     </Compile>
@@ -363,7 +365,7 @@
     <Folder Include="app\api\" />
     <Folder Include="app\business\" />
     <Folder Include="app\common\" />
-    <Folder Include="app\configuration\" />
+    <Folder Include="app\config\" />
     <Folder Include="app\dto\" />
     <Folder Include="app\dto\density\" />
     <Folder Include="app\dto\event\" />
