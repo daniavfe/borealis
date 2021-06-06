@@ -4,7 +4,7 @@ export class StationDto{
     address:string;
     startDate:Date;
     endDate:Date;
-    latitude:string;
-    longitude:string;
+    latitude:number;
+    longitude:number;
     altitude:number;
 }

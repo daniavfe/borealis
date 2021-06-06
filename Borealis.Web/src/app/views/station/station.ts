@@ -1,12 +1,12 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { StationService } from 'src/app/services/station.service';
 import { StationDto } from 'src/app/dtos/station/stationDto';
-import { StationUpdateDto } from 'src/app/dtos/station/stationUpdateDto';
 import { Status } from 'src/app/types/status';
 import { PFOCollectionDto } from 'src/app/dtos/pfoCollectionDto';
 import { Pagination } from 'src/app/types/pagination';
 import { MatDialog } from '@angular/material/dialog';
 import { StationFormDialog } from 'src/app/components/station-form-dialog/station-form';
+import { icon, latLng, Layer, Marker, marker, MarkerClusterGroup, MarkerClusterGroupOptions, tileLayer } from 'leaflet';
 
 @Component({
     selector: 'station',
@@ -22,6 +22,20 @@ export class StationView implements OnInit {
 
     page: number = 1;
     itemsPerPage: number = 20;
+
+    options:any = {
+        layers: [
+            tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18})
+        ],
+        zoom: 11,
+        center: latLng(40.4240, -3.6900)
+    };
+
+    map:any;
+
+    index:number = 0;
+
+    markers: Layer[] = [];
 
     constructor(
         private zone: NgZone,
@@ -47,12 +61,19 @@ export class StationView implements OnInit {
                     () => {
                         this.paginatedItems = res;
                         this.stations = res.items;
+                        this.markers = this.stations.filter(x=>!!x.latitude && !!x.longitude).map(x=> marker([x.latitude, x.longitude]).bindPopup('<p>asdfasdf</p>'));
                     }
                 )
                 this.status = Status.loaded;
+                
             }
         );
     }
+
+    onMapReady(map){
+        this.map = map;
+    }
+
 
     openEditionDialog(station) {
         const dialog = this.dialog.open(StationFormDialog, { data: Object.assign({}, station) });
@@ -62,6 +83,10 @@ export class StationView implements OnInit {
                 this.loadStations();
             }
         );
+    }
+
+    ngAfterViewInit() {
+        this.map.invalidateSize();
     }
 
 

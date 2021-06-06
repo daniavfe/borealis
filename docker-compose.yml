@@ -20,17 +20,17 @@ services:
             - mysql
         networks:
             - backend
-    # geoserver:
-    #     image: kartoza/geoserver
-    #     ports:
-    #     - "8080:8080"
-    #     volumes:
-    #         - D:\Projects\geoserver:/home/geoserver/data
-    #     environment:
-    #         GEOSERVER_DATA_DIR: /home/geoserver/data
-    #         GEOSERVER_ADMIN_PASSWORD: pass
-    #         GEOSERVER_ADMIN_USER: user
 
+    geoserver:
+        image: kartoza/geoserver
+        ports:
+        - "3000:8080"
+        volumes:
+            - D:\Projects\geoserver:/home/geoserver/data
+        environment:
+            GEOSERVER_DATA_DIR: /home/geoserver/data
+            GEOSERVER_ADMIN_PASSWORD: pass
+            GEOSERVER_ADMIN_USER: user
     web:
         build: Borealis.Web\.
         ports:

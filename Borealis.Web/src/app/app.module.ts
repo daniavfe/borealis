@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './modules/material.module'
 import { RoutingModule } from './modules/routing.module'
@@ -37,6 +39,7 @@ import { TimelineService } from './services/timeline.service';
 import { MeasurementService } from './services/measurement.service';
 import { HeaderComponent } from './components/header/header.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { NoRightClickDirective } from './directives/right-click-removed.directive';
 
 
 @NgModule({
@@ -53,7 +56,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
         TimelineView,
         MeasurementView,
         HeaderComponent,
-        PaginatorComponent
+        PaginatorComponent,
+        NoRightClickDirective
     ],
     imports: [
         BrowserModule,
@@ -62,6 +66,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
         FormsModule,
         ReactiveFormsModule,
         NgxChartsModule,
+        LeafletModule,
+        LeafletMarkerClusterModule,
         FlexLayoutModule,
         RoutingModule,
         MaterialModule

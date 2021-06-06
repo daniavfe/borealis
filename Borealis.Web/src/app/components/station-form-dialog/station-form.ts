@@ -21,14 +21,16 @@ export class StationFormDialog implements OnInit {
     public autocompleteControl = new FormControl();
     public neighborhoodOptions: Observable<NeighborhoodDto[]>;
 
-    public neighborhood:NeighborhoodDto;
+    public neighborhood: NeighborhoodDto;
 
     constructor(
         private zone: NgZone,
         private densityService: DensityService,
         private stationService: StationService,
         @Inject(MAT_DIALOG_DATA) public data: StationUpdateDto,
-        public dialogRef: MatDialogRef<StationFormDialog>) {
+        public dialogRef: MatDialogRef<StationFormDialog>
+    ) {
+        console.log(data);
         this.station = data;
     }
 
